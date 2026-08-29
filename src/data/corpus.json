@@ -1,0 +1,6472 @@
+{
+ "sessions": [
+  {
+   "id": "6213",
+   "topic": "Number lines and intervals",
+   "question": "A number line runs from 125 to 150 with four marks between them. What is the value one mark before 150?",
+   "answer": "A (145)",
+   "strand": "Number and place value",
+   "grade": 3,
+   "ukYear": 4,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi again Cara 😁👋",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "What is the difference between 125 and 150?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "are you a human 👀👀",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "Yes 😎 eedi is the robot and I am the human tutor!",
+     "m": [
+      "FEEDBACK_NEUTRAL"
+     ],
+     "x": {
+      "why": "This acknowledges what the student said without marking it right or wrong.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "Any idea what the difference between 125 and 150 is?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "sorry for all the questions and it is 25👌👌",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "No worries!",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "No worries",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "It is indeed and how many spaces are there on the number line between 125 and 150?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "4",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Hi Cara, Dana just finished her shift but I'm here to help!",
+     "m": [
+      "MANAGING"
+     ],
+     "x": {
+      "why": "This handles the running of the session rather than the maths.",
+      "clues": []
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "ok hi xx",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "There are four markings between 125 and 150 but they make 5 spaces, can you see that?",
+     "m": [
+      "PROBING_UNDERSTAND"
+     ],
+     "x": {
+      "why": "The tutor checks what the student understands before going on.",
+      "clues": [
+       {
+        "q": "can you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "So we have a difference of 25 split into 5 spaces, meaning each space will be worth...",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "5",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Great! Does that help you answer the question?",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "is it c?",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "Ooh not quite, that would be if each space was worth 1",
+     "m": [
+      "FEEDBACK_INCORRECT",
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly. It is doing two things at once — it also counts as explaining a procedure.",
+      "clues": [
+       {
+        "q": "not quite",
+        "why": "A softened negative — marks the answer wrong without saying 'no' flatly."
+       }
+      ]
+     }
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "i know what it is it is d",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "Hmm keep thinking... We are one space before 150, and we said each space is worth 5.",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly.",
+      "clues": []
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "b",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "That would be 10 before 150, what's 5 before 150?",
+     "m": [
+      "FEEDBACK_INCORRECT",
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly. It is doing two things at once — it also counts as prompting next step.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "i know its a",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "It certainly is, can you see why? If you count in 5s along the number line you'd get 145",
+     "m": [
+      "FEEDBACK_CORRECT",
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new. It is doing two things at once — it also counts as explaining a procedure.",
+      "clues": [
+       {
+        "q": "can you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "Ready to carry on?",
+     "m": []
+    },
+    {
+     "n": 26,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "Great, keep it up! Bye 👋",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "12124",
+   "topic": "Ordering numbers, ascending",
+   "question": "Put 5099, 5619 and 5671 in ascending order, and pick the matching option from A-D.",
+   "answer": "D",
+   "strand": "Number and place value",
+   "grade": 3,
+   "ukYear": 4,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 0,
+     "s": "Hello",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "Hi again!",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "What does ascending order mean?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "I don’t know",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 0,
+     "s": "Oh",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "Is it smallest to biggest",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "Ascending means smallest to biggest",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "Yes good!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "Thank you",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Which number do you think comes first, 5099, 5619 or 5671?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "Which",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "5099",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "Good!🧠👍",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "What comes next?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "Is it 6619",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "Sorry 5619",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Yes I think you meant 5619",
+     "m": [
+      "FEEDBACK_NEUTRAL"
+     ],
+     "x": {
+      "why": "This acknowledges what the student said without marking it right or wrong.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "And we only have 1 number left 5671",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "So f",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "Yes",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "from ABCD, which is the right answer?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "D",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "Super work🎉 How do you feel about this now you've worked through it?",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "Super",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "Very happy",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 0,
+     "s": "😀😀😀",
+     "m": []
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "Great, I'll leave and let you type your answer in. Good luck with the lesson!👋",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 26,
+     "t": 0,
+     "s": "Thank you very much",
+     "m": []
+    },
+    {
+     "n": 27,
+     "t": 0,
+     "s": "Bye",
+     "m": []
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "Bye👋😄",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "9956",
+   "topic": "Arrays and inverse operations",
+   "question": "An array shows 5 x 8 = 40. Given A x 5 = B and C ÷ 5 = D, which letters have equal values?",
+   "answer": "C (A and D are 8; B and C are 40)",
+   "strand": "Multiplication and division",
+   "grade": 4,
+   "ukYear": 5,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi Adam!",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "Hi I am too confused with this question",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "Ok, I'll just have a look",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "Ok",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "It is confusing!",
+     "m": [
+      "VALIDATING_FEELING"
+     ],
+     "x": {
+      "why": "The student has just said they are confused. Rather than going straight to the maths, the tutor names that feeling and agrees with it.",
+      "clues": [
+       {
+        "q": "It is confusing",
+        "why": "Picks up the student's own word from the message before and agrees with it, instead of moving past it."
+       },
+       {
+        "why": "The turn asks for nothing — no question, no instruction. It only settles the student."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "first, just tell me,,,,",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "what sum is shown by the array?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "A question the student can answer from what is already on screen. It targets a smaller sub-step — reading the array — rather than the final answer they are stuck on, so the thinking stays with the student.",
+      "clues": [
+       {
+        "q": "what sum",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "the array",
+        "why": "Points at something already in front of the student, which makes the step small enough to attempt."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question mark — the tutor stops here and waits for the student."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 8,
+     "t": 0,
+     "s": "5x8=40",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "Great",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "A short, purely evaluative reply straight after the student gave an answer. It confirms the answer is right and adds nothing else.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A positive evaluation word carrying no other content."
+       },
+       {
+        "why": "It lands immediately after the student's answer (5x8=40), which is what makes it feedback rather than general praise."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "So, bea's write that as  8 x 5 = 40",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "Because then we can see that A = ?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "Having reframed the sum, the tutor hands the next piece back rather than completing it. The trailing question mark leaves a blank for the student to fill.",
+      "clues": [
+       {
+        "q": "A = ?",
+        "why": "Leaves the value open for the student to supply."
+       },
+       {
+        "q": "Because then we can see",
+        "why": "Links this step to the previous one, so the student knows why they are being asked."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "40",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Not quite....it says A x 5 = B",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "Marks the answer as wrong, gently, and points back at the relevant part of the question instead of correcting it outright.",
+      "clues": [
+       {
+        "q": "Not quite",
+        "why": "A softened negative — signals the answer is wrong without saying 'no'."
+       },
+       {
+        "q": "it says A x 5 = B",
+        "why": "Redirects to the question's own wording rather than supplying the right value."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "Ok",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "So, A = 8",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "After two attempts, the tutor supplies the value directly. The student is no longer being asked to work it out.",
+      "clues": [
+       {
+        "q": "A = 8",
+        "why": "States the value outright, with nothing left open."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "B = 40",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "The second half of the same handover — the remaining value is given rather than asked for.",
+      "clues": [
+       {
+        "q": "B = 40",
+        "why": "States the value outright."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "Yes",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "C= 40?",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "Now can you write a division sum, using 8, 5 and 40?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor moves to a new step and asks the student to produce it. The numbers are given, but the arrangement — the actual thinking — is left to the student.",
+      "clues": [
+       {
+        "q": "can you write",
+        "why": "Asks the student to do something, rather than describing what to do."
+       },
+       {
+        "q": "using 8, 5 and 40",
+        "why": "Constrains the task so it is attemptable, while still leaving the reasoning open."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 20,
+     "t": 0,
+     "s": "Ok",
+     "m": []
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "40 ÷ 5 = 8",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "Great!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "Confirms the student's division sum is right, immediately and with nothing added.",
+      "clues": [
+       {
+        "q": "Great!",
+        "why": "A short positive evaluation, directly after a student answer."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "So, that matches the sum...",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "C ÷ 5 = D",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "So, what are the values of C and D?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "Hands the reading of that notation back to the student. The tutor has set the structure up and now asks them to fill it in.",
+      "clues": [
+       {
+        "q": "what are the values",
+        "why": "A question word, asking the student to supply the content."
+       },
+       {
+        "q": "?",
+        "why": "The tutor stops and waits."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 26,
+     "t": 0,
+     "s": "40 and 8",
+     "m": []
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "Great!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "Confirms both values are right, with nothing added.",
+      "clues": [
+       {
+        "q": "Great!",
+        "why": "Short positive evaluation following a student answer."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "So, we have C = 40",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor starts assembling what has been established so far into one place, so the student can compare the values in the next step.",
+      "clues": [
+       {
+        "q": "So, we have",
+        "why": "Gathers up prior results rather than introducing anything new — the mark of setting up a plan."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 29,
+     "t": 1,
+     "s": "D = 8",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "Continues collecting the established values together ready for comparison.",
+      "clues": [
+       {
+        "q": "D = 8",
+        "why": "A value already agreed earlier, restated as part of the summary."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 30,
+     "t": 0,
+     "s": "Yep",
+     "m": []
+    },
+    {
+     "n": 31,
+     "t": 1,
+     "s": "A = 8",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "Still assembling — the tutor is lining all four letters up so the pattern becomes visible to the student.",
+      "clues": [
+       {
+        "q": "A = 8",
+        "why": "Restates an established value as part of the line-up."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 32,
+     "t": 1,
+     "s": "B = 40",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "Completes the set of four values, which is what makes the next question answerable.",
+      "clues": [
+       {
+        "q": "B = 40",
+        "why": "The last of the four values being gathered."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 33,
+     "t": 0,
+     "s": "Yes",
+     "m": []
+    },
+    {
+     "n": 34,
+     "t": 1,
+     "s": "So, which letters have the same values?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "With everything laid out, the tutor asks the student to spot the pattern themselves rather than pointing it out.",
+      "clues": [
+       {
+        "q": "which letters",
+        "why": "A question word — the comparison is handed to the student."
+       },
+       {
+        "q": "same values",
+        "why": "Names exactly what to look for, keeping the step small."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 35,
+     "t": 0,
+     "s": "A,b,d and c",
+     "m": []
+    },
+    {
+     "n": 36,
+     "t": 1,
+     "s": "Nearly...",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "Marks the answer as wrong very softly — the student was close, and the tutor says so without elaborating.",
+      "clues": [
+       {
+        "q": "Nearly...",
+        "why": "A softened negative that also signals the student was close. The trailing dots leave room for another try."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 37,
+     "t": 1,
+     "s": "A and D both = 8",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "After a second near-miss, the tutor supplies the pairing directly instead of asking again.",
+      "clues": [
+       {
+        "q": "A and D both = 8",
+        "why": "States the relationship outright."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 38,
+     "t": 1,
+     "s": "B and C both = 40",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "The other half of the same direct handover.",
+      "clues": [
+       {
+        "q": "B and C both = 40",
+        "why": "States the relationship outright."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 39,
+     "t": 1,
+     "s": "So, you need which answer?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "Turns the supplied pairing back into a question, asking the student to select the matching multiple-choice answer.",
+      "clues": [
+       {
+        "q": "you need which answer?",
+        "why": "Asks the student to make the final selection themselves."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 40,
+     "t": 0,
+     "s": "A and c",
+     "m": []
+    },
+    {
+     "n": 41,
+     "t": 0,
+     "s": "B and d",
+     "m": []
+    },
+    {
+     "n": 42,
+     "t": 1,
+     "s": "Not quite...",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "The selection is still wrong. The tutor marks it, again softly, without yet explaining why.",
+      "clues": [
+       {
+        "q": "Not quite...",
+        "why": "A softened negative, repeated from earlier in the session."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 43,
+     "t": 1,
+     "s": "we need to say which ones have the same values",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "we need",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 44,
+     "t": 1,
+     "s": "A and D are the same (8)",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "The tutor gives the pairing again, this time with the values in brackets, having seen two wrong selections.",
+      "clues": [
+       {
+        "q": "A and D are the same (8)",
+        "why": "States the answer outright, now with the value spelled out."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 45,
+     "t": 1,
+     "s": "B and C are the same (40)",
+     "m": [
+      "GIVING_ANSWER"
+     ],
+     "x": {
+      "why": "The second pairing, also supplied directly.",
+      "clues": [
+       {
+        "q": "B and C are the same (40)",
+        "why": "States the answer outright."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 46,
+     "t": 1,
+     "s": "Which answer to the question matches this?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "Even after giving the pairings, the tutor still asks the student to make the final match rather than naming the option for them.",
+      "clues": [
+       {
+        "q": "Which answer",
+        "why": "A question word — the last step stays with the student."
+       },
+       {
+        "q": "matches this?",
+        "why": "Frames it as a comparison the student can carry out."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 47,
+     "t": 0,
+     "s": "C",
+     "m": []
+    },
+    {
+     "n": 48,
+     "t": 1,
+     "s": "Great! ⭐️",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "Confirms the student has finally landed on the right option.",
+      "clues": [
+       {
+        "q": "Great!",
+        "why": "Short positive evaluation, directly after the student's selection."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 49,
+     "t": 1,
+     "s": "Well done! Bye for now 👋",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "Well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "Well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "11646",
+   "topic": "Factorising two different ways",
+   "question": "Two students factorise 12 x 21 differently — one as 12 x 7 x 3, the other as 21 x 6 then doubled. Are both correct?",
+   "answer": "Both are correct",
+   "strand": "Multiplication and division",
+   "grade": 4,
+   "ukYear": 5,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 0,
+     "s": "hi",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "Hi Pia, how can I help?",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "im a bit confused on this question",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "Ok let's have a look together.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "You got the previous one right, did that one make sense to you? That x 3 x 4 is the same as x 12?",
+     "m": [
+      "PROBING_UNDERSTAND"
+     ],
+     "x": {
+      "why": "The tutor checks what the student understands before going on.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "Great, so here we're splitting up numbers into their factors the same way",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "we're",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "t": 0,
+     "s": "ok",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "But Uma and Vera have done it two different ways",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 10,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "We have 12 x 7 x 3, can you put that together into 12 x 21?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "can you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "We have",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Excellent so Uma is right, and what about Vera? What is her multiplication?",
+     "m": [
+      "EXPLAINING_PROCEDURAL",
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done. It is doing two things at once — it also counts as prompting next step.",
+      "clues": [
+       {
+        "q": "Excellent",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "21 x 6 then double",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "Yep, which is another way to say 21 x 6 x 2",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "Yep",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Does that make 21 x 12?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "so would they both be correct",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "Absolutely 😊",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "Does that clear things up?",
+     "m": [
+      "PROBING_UNDERSTAND"
+     ],
+     "x": {
+      "why": "The tutor checks what the student understands before going on.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "thankyou for help and it dose clear things up thankyou",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "Fab! I'll let you get on, bye 👋",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "5983",
+   "topic": "Splitting numbers into factors",
+   "question": "To multiply by 24, one student splits 24 into factors (6 x 4) and another splits it as 20 x 4. Who has factorised correctly?",
+   "answer": "A — 24 factorises as 6 x 4 or 8 x 3; 20 x 4 is 80, not 24",
+   "strand": "Multiplication and division",
+   "grade": 4,
+   "ukYear": 5,
+   "confidence": "inferred",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi, new lesson! Well done on finishing the last one.",
+     "m": [
+      "PRAISING_OUTCOME"
+     ],
+     "x": {
+      "why": "The praise is aimed at the result the student reached.",
+      "clues": [
+       {
+        "q": "Well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "Well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "Hi i have a question do u teach other kids when u finish teaching me like straight after or do other tutors help them",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "I'm helping everyone who is online at the moment, but if I get too busy another tutor might be able to help out. That's why sometimes it might take us longer to answer, because we're talking to someone else at the same time.",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "we're",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "Oh so if u teach me and another kid need u u trpeach them at the same time",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "Yep!",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "Wow so i might get diffrent tutor too",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "R u teaching someone else right now?",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "Not right now, no.",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "Ok",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Any questions about the maths?",
+     "m": []
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "Yeh",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "When wren works out her answer it confuses me",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Yes, Wren's way wouldn't work at all!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "Because isnt 20 times 4 800",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "Exactly!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Exactly",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 16,
+     "t": 0,
+     "s": "Oh because that really cinfused me and i pressed C",
+     "m": []
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "She was supposed to split the numbers into the factors, so she could split 24 into 6 x 4 or 8 x 3, not 20 x 4",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "So the answer is A",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "Yes",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "Ira has split the numbers into factors correctly",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "Thank u so much u are really good helper",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 0,
+     "s": "Im lucky to have u as my tutor",
+     "m": []
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "Thanks Zuri, you're doing some really good maths! Keep it up!",
+     "m": [
+      "PRAISING_TRAITS"
+     ],
+     "x": {
+      "why": "The praise is aimed at the student as a person.",
+      "clues": [
+       {
+        "q": "good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 24,
+     "t": 0,
+     "s": "Thank u",
+     "m": []
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "Ready to try the next one?",
+     "m": []
+    },
+    {
+     "n": 26,
+     "t": 0,
+     "s": "Mhm now that u have helped me",
+     "m": []
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "Good good, bye 👋",
+     "m": []
+    },
+    {
+     "n": 28,
+     "t": 0,
+     "s": "Bye and thanks a bunch",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "4249",
+   "topic": "Rounding to the nearest 100",
+   "question": "Round 356,958 to the nearest 100.",
+   "answer": "357,000",
+   "strand": "Number and place value",
+   "grade": 4,
+   "ukYear": 5,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi Faye!",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "hello",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "I see you got the previous question correct - well done!",
+     "m": [
+      "PRAISING_OUTCOME"
+     ],
+     "x": {
+      "why": "The praise is aimed at the result the student reached.",
+      "clues": [
+       {
+        "q": "correct",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "Ok, so rounding 356, 958 to the nearest 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "So, now we'll be looking at numbers in the 100 times table....0, 100, 200, 300 etc.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "we'll",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "So, let's just look at the relevant part of the number: 958, because we're rounding to the nearest 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "ok",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "Which is the hundreds digit?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "Which",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "yeah",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Which is the hundreds digit?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "Which",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "9?",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "Yes, great!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Ok, so because we're rounding to the nearest 100, we then need to look at the digit after the 9 to tell us whether to round up or down.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "we're",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "What is the number after the 9?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "5?",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Yes!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "Does a 5 mean we round up or down?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "up?",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "Perfect!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Perfect",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "Ok, so if you round 900 up to the next 100, what number is that?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "1,000",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "⭐️",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "Ok, perfect!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "perfect",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 24,
+     "t": 0,
+     "s": "👍",
+     "m": []
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "So, you've rounded 958 to the nearest 100 and you got 1000 - perfect.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "perfect",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "But we were actually rounding 356, 958 to the nearest 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "were",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "So which answer do you think it is?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 28,
+     "t": 0,
+     "s": "are we adding them up?",
+     "m": []
+    },
+    {
+     "n": 29,
+     "t": 1,
+     "s": "It depends how you mean....so, if I said round 6958 to the nearest 100, what would you say?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "would you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 30,
+     "t": 0,
+     "s": "6058? I dont really know",
+     "m": []
+    },
+    {
+     "n": 31,
+     "t": 1,
+     "s": "Ok, don't worry...you're almost there...",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "almost",
+        "why": "A softened negative — marks the answer wrong without saying 'no' flatly."
+       },
+       {
+        "q": "don't worry",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 32,
+     "t": 0,
+     "s": "wait i jknow]",
+     "m": []
+    },
+    {
+     "n": 33,
+     "t": 1,
+     "s": "ok....",
+     "m": []
+    },
+    {
+     "n": 34,
+     "t": 0,
+     "s": "2000",
+     "m": []
+    },
+    {
+     "n": 35,
+     "t": 1,
+     "s": "I think you've got the right kind of idea....",
+     "m": [
+      "FEEDBACK_NEUTRAL"
+     ],
+     "x": {
+      "why": "This acknowledges what the student said without marking it right or wrong.",
+      "clues": []
+     }
+    },
+    {
+     "n": 36,
+     "t": 1,
+     "s": "356, 958",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 37,
+     "t": 0,
+     "s": "Oh#",
+     "m": []
+    },
+    {
+     "n": 38,
+     "t": 1,
+     "s": "Just reminding myself of the original number...",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": []
+     }
+    },
+    {
+     "n": 39,
+     "t": 0,
+     "s": "im confuesd",
+     "m": []
+    },
+    {
+     "n": 40,
+     "t": 1,
+     "s": "You've rounded 958 to 1000, to the nearest 100, correctly.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 41,
+     "t": 1,
+     "s": "Yes, sorry.  I broke the number down to try and help...but that may not have helped.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "sorry",
+        "why": "The tutor flags something on their own side rather than the student's."
+       }
+      ]
+     }
+    },
+    {
+     "n": 42,
+     "t": 1,
+     "s": "Let's quickly go back to the start.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 43,
+     "t": 1,
+     "s": "We're rounding 356, 958 the the nearest 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "We're",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 44,
+     "t": 0,
+     "s": "im dumb 😑😑",
+     "m": []
+    },
+    {
+     "n": 45,
+     "t": 1,
+     "s": "NOT AT ALL!!!",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": []
+     }
+    },
+    {
+     "n": 46,
+     "t": 1,
+     "s": "If you don't get it then I just have to try again....it's not your fault 😀",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": []
+     }
+    },
+    {
+     "n": 47,
+     "t": 0,
+     "s": "Ok sorry i just get what you where saying",
+     "m": []
+    },
+    {
+     "n": 48,
+     "t": 1,
+     "s": "The most clever thing you can do in maths is to practice...and that's what you are doing, so you are super smart!",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "super",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 49,
+     "t": 0,
+     "s": "Ok thanks",
+     "m": []
+    },
+    {
+     "n": 50,
+     "t": 1,
+     "s": "We're rounding 356, 958 the the nearest 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "We're",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 51,
+     "t": 1,
+     "s": "You have done the hardest bit already, you rounded 958 to 1000 correctly.  We now just need to look back at the original number to see what that tells us.",
+     "m": [
+      "STRATEGIZING",
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it. It is doing two things at once — it also counts as encouraging.",
+      "clues": []
+     }
+    },
+    {
+     "n": 52,
+     "t": 1,
+     "s": "In the original number, which is the thousands number?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 53,
+     "t": 0,
+     "s": "ok thank you😀😀",
+     "m": []
+    },
+    {
+     "n": 54,
+     "t": 1,
+     "s": "In the original number (356,958) , which is the thousands number?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 55,
+     "t": 0,
+     "s": "is it 6?",
+     "m": []
+    },
+    {
+     "n": 56,
+     "t": 1,
+     "s": "Yes, perfect!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "perfect",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 57,
+     "t": 1,
+     "s": "And you've rounded 958 up to 1000, so the thousands number will increase by 1.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 58,
+     "t": 1,
+     "s": "So what will the thousands number become?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 59,
+     "t": 0,
+     "s": "so will it be 1000 or 1958",
+     "m": []
+    },
+    {
+     "n": 60,
+     "t": 1,
+     "s": "So, the thousands number (6) will go up by 1, so will become 7. So 356, 958 will round to 357,000",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 61,
+     "t": 0,
+     "s": "Im sorry",
+     "m": []
+    },
+    {
+     "n": 62,
+     "t": 1,
+     "s": "Please don't apologise Faye, I honestly mean that you are doing brilliantly - you are working hard to understand, you're a super star!",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "super",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "hard",
+        "why": "Names the difficulty of the task out loud."
+       },
+       {
+        "q": "apologise",
+        "why": "The tutor flags something on their own side rather than the student's."
+       }
+      ]
+     }
+    },
+    {
+     "n": 63,
+     "t": 0,
+     "s": "Ok thanks :}",
+     "m": []
+    },
+    {
+     "n": 64,
+     "t": 1,
+     "s": "I'm going to leave you to it, watch the videos carefully when they come up and shout again if you need help.  My shift has finished now so if you need any more help, my colleague, Gia is here. HAve a great day and a huge well done to you! 🌟",
+     "m": [
+      "MANAGING",
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "This handles the running of the session rather than the maths. It is doing two things at once — it also counts as praising process.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "255",
+   "topic": "Angles in a regular polygon",
+   "question": "Two students each claim their shape is a regular polygon. One shape is marked with equal-side dashes and equal-angle arcs (three of each, so most likely an equilateral triangle); the other carries no markings. Who is correct?",
+   "answer": "Only the marked shape. The unmarked one cannot be judged — nothing tells us about its sides or angles.",
+   "strand": "Geometry",
+   "grade": 5,
+   "ukYear": 6,
+   "confidence": "inferred",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 0,
+     "s": "hello",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "Hi this is Ira one of the tutors at Eedi",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "How can I help?",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "i dont get the questtio",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 0,
+     "s": "question",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "No worries 😃, let's have a look at it together",
+     "m": [
+      "STRATEGIZING",
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it. It is doing two things at once — it also counts as encouraging.",
+      "clues": [
+       {
+        "q": "No worries",
+        "why": "Reassurance, offered before any teaching."
+       },
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "ok sure",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "A regular polygon is a shape where all the sides are the same and all the angles are the same",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "the dashes on the lines tell us how many sides of the shape are the same length",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "the arrows on the lines tell us about which sides are parallel",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 13,
+     "t": 0,
+     "s": "yep7",
+     "m": []
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "the angle markings tells us how many of the angles are the same",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "3",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Using this is Xan's shape regular?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "👍",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "All the sides and angles are the same",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 20,
+     "t": 0,
+     "s": "but would yara be correct",
+     "m": []
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "What about Yaras? Is that shape regular?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 22,
+     "t": 0,
+     "s": "no",
+     "m": []
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "👍",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "How do we know it isn't regular?",
+     "m": [
+      "PROMPTING_SELF_EXPLANATION"
+     ],
+     "x": {
+      "why": "The tutor asks the student to put their own reasoning into words.",
+      "clues": [
+       {
+        "q": "How",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 25,
+     "t": 0,
+     "s": "so only xan would be correct",
+     "m": []
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "👍",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 27,
+     "t": 0,
+     "s": "thanks for your help",
+     "m": []
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "We cannot tell if Yara's shape is regular as we are not told anything about it's sides or angles",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 29,
+     "t": 0,
+     "s": "yep",
+     "m": []
+    },
+    {
+     "n": 30,
+     "t": 1,
+     "s": "No worries keep up the great work",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "No worries",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 31,
+     "t": 0,
+     "s": "bye",
+     "m": []
+    },
+    {
+     "n": 32,
+     "t": 1,
+     "s": "I will pass you straight back to the bot",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "7570",
+   "topic": "Dividing by a decimal",
+   "question": "Dividing 0.3 by a decimal gives 1.2 — larger than the original. Which division is it?",
+   "answer": "A (0.3 ÷ 0.25 = 1.2)",
+   "strand": "Decimals",
+   "grade": 6,
+   "ukYear": 7,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi there Quinn",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "hello!! 😃😃",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "My name is Rosa 😊 how can I help?",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "Can I please get help with this question!",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "Of course",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": []
+     }
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "😊😊",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "So, this is a little tricky!",
+     "m": [
+      "VALIDATING_FEELING"
+     ],
+     "x": {
+      "why": "Before asking the student to do anything, the tutor says outright that the question is hard. This gives the student permission to find it difficult.",
+      "clues": [
+       {
+        "q": "a little tricky",
+        "why": "Names the difficulty of the task, and softens it with 'a little'."
+       },
+       {
+        "why": "It comes before any instruction — the tutor settles the student first, then teaches."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 8,
+     "t": 0,
+     "s": "yes!!",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "What do you notice about the answer, compared to the original value (0.3)",
+     "m": [
+      "PROMPTING_SELF_EXPLANATION"
+     ],
+     "x": {
+      "why": "The tutor asks the student to put their own reasoning into words.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       }
+      ]
+     }
+    },
+    {
+     "n": 10,
+     "t": 0,
+     "s": "I think the answer is bigger!!",
+     "m": []
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "Yes so that is a bit strange when we are dividing, that we get an answer that is bigger!",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The student noticed the answer got bigger. The tutor confirms it and flags why that is surprising — dividing is supposed to make things smaller. This explains why, not how.",
+      "clues": [
+       {
+        "q": "that is a bit strange",
+        "why": "Marks the result as counter-intuitive, which is a signal the tutor is addressing understanding rather than method."
+       },
+       {
+        "q": "when we are dividing, that we get an answer that is bigger",
+        "why": "States the underlying idea rather than a step to carry out."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "If it said 0.3 x ____ =1.2",
+     "m": [
+      "GIVING_HINT"
+     ],
+     "x": {
+      "why": "The tutor nudges toward the answer while leaving the work with the student.",
+      "clues": [
+       {
+        "q": "If it said",
+        "why": "Sets up a hypothetical rather than asserting anything."
+       },
+       {
+        "q": "____",
+        "why": "Leaves a blank for the student to fill in."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "What would we say?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "Turns the rewritten sum into a direct question, handing the step to the student.",
+      "clues": [
+       {
+        "q": "What would we say?",
+        "why": "A question word plus 'we', asking the student to supply the missing piece as joint work."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "(as in, what would fill in the blank)",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor immediately restates the question more plainly, having judged the first phrasing might be unclear. The step asked of the student is unchanged.",
+      "clues": [
+       {
+        "q": "what would fill in the blank",
+        "why": "A simpler rewording of the same request, narrowing what is being asked for."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "yes!! I think the answer for the star would be bigger since we get a bigger decimal than the first decimal!! So, I think that 0.3 divided by 0.25 = 1.2!!",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 0,
+     "s": "So, the answer would be A 😁😁",
+     "m": []
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "that is it exactly!!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "The student produced a long piece of reasoning and the right answer. The tutor confirms it is right, emphatically and without adding anything.",
+      "clues": [
+       {
+        "q": "that is it exactly",
+        "why": "Confirms correctness directly, with 'exactly' marking it as fully right rather than partly."
+       }
+      ]
+     },
+     "hand": 1
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "Wow 👏👏👏",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": []
+     }
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "yay!! 😁😁😁😁😁",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "Absolutely brilliant! wel done Quinn!",
+     "m": [
+      "PRAISING_TRAITS"
+     ],
+     "x": {
+      "why": "The praise is aimed at the student as a person.",
+      "clues": [
+       {
+        "q": "brilliant",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "are you ok to return to the lesson now? 😊",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 0,
+     "s": "Thank you for helping me and explaining really well!! 😊😊😊😊",
+     "m": []
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "yes please!!",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "no problem at all!",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "9407",
+   "topic": "Finding 5% using 10%",
+   "question": "Which is larger, 5% of 20 or 20% of 5?",
+   "answer": "They are equal (both 1)",
+   "strand": "Percentages",
+   "grade": 6,
+   "ukYear": 7,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi Eli",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "How are you?",
+     "m": [
+      "ASKING_FEELING"
+     ],
+     "x": {
+      "why": "The tutor asks how the student is doing.",
+      "clues": [
+       {
+        "q": "How",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "are you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "Hello",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "how ca I help you?",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 0,
+     "s": "I am a bit confused",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "why?",
+     "m": [
+      "PROMPTING_SELF_EXPLANATION"
+     ],
+     "x": {
+      "why": "The tutor asks the student to put their own reasoning into words.",
+      "clues": [
+       {
+        "q": "why",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "I dont understand how to do this",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "let's take a look",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "t find 5%, we could find 10% first",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "how do you find 10% of a number?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "how",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "move the decimal",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "no, the decimal never moves",
+     "m": [
+      "FEEDBACK_INCORRECT",
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly. It is doing two things at once — it also counts as explaining a concept.",
+      "clues": []
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "to find 10% of a number, we divide by 10",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "so 2",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "digits move 1 place to the right",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "so 2, yes!! well done",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "yes",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "10% = 2",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "what is 5%",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "what",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       }
+      ]
+     }
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "1",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "good",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "ok, now for the other number",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "10% of 5 =?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "0.5",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 0,
+     "s": "ahh so 20% is1",
+     "m": []
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "great, so how do we get 20%",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "ohh well done",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "so which is bigger?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 28,
+     "t": 0,
+     "s": "they are the same",
+     "m": []
+    },
+    {
+     "n": 29,
+     "t": 1,
+     "s": "they are indeed!!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 30,
+     "t": 0,
+     "s": "thankyou",
+     "m": []
+    },
+    {
+     "n": 31,
+     "t": 1,
+     "s": "there is something to look out for in these types of questions",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 32,
+     "t": 1,
+     "s": "what do you notice about the number and percentage value?",
+     "m": [
+      "PROMPTING_RELATED_CONCEPTS"
+     ],
+     "x": {
+      "why": "The tutor asks the student to connect this to something they already know.",
+      "clues": [
+       {
+        "q": "what",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 33,
+     "t": 0,
+     "s": "they both have a 5 and a 20",
+     "m": []
+    },
+    {
+     "n": 34,
+     "t": 1,
+     "s": "yes, can you see the numbers and % have swapped",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": [
+       {
+        "q": "can you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 35,
+     "t": 1,
+     "s": "so 1st part: 5% of 20",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 36,
+     "t": 1,
+     "s": "2nd part: 20% of 5",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 37,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 38,
+     "t": 1,
+     "s": "these will always give the same answer",
+     "m": [
+      "EXPLAINING_CONCEPTUAL"
+     ],
+     "x": {
+      "why": "The tutor explains why something works, rather than which steps to carry out.",
+      "clues": []
+     }
+    },
+    {
+     "n": 39,
+     "t": 0,
+     "s": "ahh",
+     "m": []
+    },
+    {
+     "n": 40,
+     "t": 1,
+     "s": "it's like 10% of 2 and 2% of 10",
+     "m": [
+      "GIVING_EXAMPLE"
+     ],
+     "x": {
+      "why": "The tutor offers a parallel case for the student to reason from.",
+      "clues": []
+     }
+    },
+    {
+     "n": 41,
+     "t": 1,
+     "s": "they are the same too",
+     "m": [
+      "GIVING_EXAMPLE"
+     ],
+     "x": {
+      "why": "The tutor offers a parallel case for the student to reason from.",
+      "clues": []
+     }
+    },
+    {
+     "n": 42,
+     "t": 0,
+     "s": "ahh yes thakyou",
+     "m": []
+    },
+    {
+     "n": 43,
+     "t": 1,
+     "s": "no problem",
+     "m": []
+    },
+    {
+     "n": 44,
+     "t": 1,
+     "s": "can I help with anything else?",
+     "m": []
+    },
+    {
+     "n": 45,
+     "t": 0,
+     "s": "no thankyou",
+     "m": []
+    },
+    {
+     "n": 46,
+     "t": 1,
+     "s": "ok - keep up the good work",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "5228",
+   "topic": "Writing percents as fractions",
+   "question": "Write 0.1% as a fraction, then 24.4% as a fraction.",
+   "answer": "1/1000, then 244/1000",
+   "strand": "Percentages",
+   "grade": 6,
+   "ukYear": 7,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 0,
+     "s": "hi",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "Hi.",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "im stuck on the one im on right now",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "Writing percents as fractions?",
+     "m": [
+      "ASKING_TO_CLARIFY_CONTEXT"
+     ],
+     "x": {
+      "why": "The tutor asks what the student is looking at, to locate the problem.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "Do you want to go over the 0.1% to a fraction problem?",
+     "m": [
+      "ASKING_TO_CLARIFY_CONTEXT"
+     ],
+     "x": {
+      "why": "The tutor asks what the student is looking at, to locate the problem.",
+      "clues": [
+       {
+        "q": "Do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "i put 1/10 but it was wrong #",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 0,
+     "s": "then i put 1/100 and it was wrong #",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "I always start by remembering that percents are out of 100.  So let's put .1 over 100 first.  .1/100",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Now we can't leave that.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "we can",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "Now",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "We don't like to have decimals in our fractions.  We need to multiply our top and our bottom by 10 so we get rid of that decimal.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "We need",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": ".1 x 10 = 1",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "What is 100 x 10?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "1000",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "So our fraction is going to be 1/1000",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 16,
+     "t": 0,
+     "s": "thanks",
+     "m": []
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "Would you like to try the 24.4%?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "Would you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "We start by putting our percent over 100, since all percents are over 100.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "since",
+        "why": "Gives a reason, rather than only an instruction."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "24.4/100",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "Now, we can't leave it like that, because we don't like the decimal.  Let's multiply the top and the bottom by 10.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "we can",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "Now",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "24.4 x 10 =",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": []
+     }
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "244",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "Good!  And we know that 100 x 10 is 1000",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "So our fraction would be 244/1000",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "Now, we might be able to simplify it from there, but that gets us started.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Now",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 27,
+     "t": 0,
+     "s": "👍",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "2186",
+   "topic": "Sharing in a ratio",
+   "question": "Sweets are shared in the ratio 3:2. The student with 3 parts receives 60 sweets. How many does the other get?",
+   "answer": "40",
+   "strand": "Ratio and proportion",
+   "grade": 6,
+   "ukYear": 7,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "hello would you like me to look at thsi question with you?",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "yes please",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "hello?",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "sure, I'm just reading it",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 5,
+     "t": 0,
+     "s": "oh so",
+     "m": []
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "sorry*",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "how many parts altogeher in the ration 3:2?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "how",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "ratio",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "5?",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "great!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "so now share the 60 into 5 parts",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "12",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "so that menas do 60 divided by 5",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "so that",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "well done you were fst!",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "fast hahaha",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 0,
+     "s": "😀",
+     "m": []
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "so that means that one part is 12",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "so that",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "oh so that means 2 is 24?",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "oops sorry Jo I'd misread the question!!!",
+     "m": [
+      "CORRECTING_OWN_ERROR"
+     ],
+     "x": {
+      "why": "The tutor notices their own mistake and repairs it in front of the student.",
+      "clues": [
+       {
+        "q": "sorry",
+        "why": "The tutor flags something on their own side rather than the student's."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "let's start it again",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "oh okay",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "it says that Kira got 60 sweets",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "which number in the ratio is Kira's?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "which",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 24,
+     "t": 0,
+     "s": "3?",
+     "m": []
+    },
+    {
+     "n": 25,
+     "t": 1,
+     "s": "yes it is. good work!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "so now those 3 parts are 60 sweets",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 27,
+     "t": 0,
+     "s": "okay",
+     "m": []
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "what would 1 part be? how many sweets",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "what",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 29,
+     "t": 0,
+     "s": "20?",
+     "m": []
+    },
+    {
+     "n": 30,
+     "t": 1,
+     "s": "I agree!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": []
+     }
+    },
+    {
+     "n": 31,
+     "t": 0,
+     "s": "😄",
+     "m": []
+    },
+    {
+     "n": 32,
+     "t": 1,
+     "s": "and so now how many would Lev get?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 33,
+     "t": 0,
+     "s": "40",
+     "m": []
+    },
+    {
+     "n": 34,
+     "t": 1,
+     "s": "perfect!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "perfect",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 35,
+     "t": 0,
+     "s": "yay!",
+     "m": []
+    },
+    {
+     "n": 36,
+     "t": 1,
+     "s": "are you happy with how you worked that out?",
+     "m": [
+      "PROBING_UNDERSTAND"
+     ],
+     "x": {
+      "why": "The tutor checks what the student understands before going on.",
+      "clues": [
+       {
+        "q": "are you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 37,
+     "t": 0,
+     "s": "yess",
+     "m": []
+    },
+    {
+     "n": 38,
+     "t": 0,
+     "s": "ty i remember how to do this now",
+     "m": []
+    },
+    {
+     "n": 39,
+     "t": 1,
+     "s": "great! I'll hand you back to the bot.",
+     "m": []
+    },
+    {
+     "n": 40,
+     "t": 1,
+     "s": "sorry for my delays today, it's busy!",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": [
+       {
+        "q": "sorry",
+        "why": "The tutor flags something on their own side rather than the student's."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "657",
+   "topic": "Rearranging equations",
+   "question": "Given x + y + 2 = 10 and (x + y) / 2 = 6, which rearranges to x + y = 12?",
+   "answer": "B (only the second; the first gives x + y = 8)",
+   "strand": "Algebra",
+   "grade": 7,
+   "ukYear": 8,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 0,
+     "s": "hi",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "Hello Bea",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "Im really sorry for bothering you but how would i work this out?",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "No problem at all 🙂",
+     "m": [
+      "BUILDING_RAPPORT"
+     ],
+     "x": {
+      "why": "This turn works on the relationship rather than on the maths.",
+      "clues": [
+       {
+        "q": "No problem",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "We want to rearrange both Iras and Pias so that they have just x + y on one side like the original",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "so that",
+        "why": "Gives a reason, rather than only an instruction."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "For Ira we have x + y + 2 = 10",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "We need to get the 2 to the other side",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "We need",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 8,
+     "t": 0,
+     "s": "so x + y + 12??",
+     "m": []
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "We do the opposite of + 2",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 10,
+     "t": 0,
+     "s": "Sorry i struggle with math",
+     "m": []
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "so -2",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "No worries",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "No worries",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Good",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "-2 from both sides",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "8 on 1 side",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Good x + y = 8 so not the same",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "not the",
+        "why": "A softened negative — marks the answer wrong without saying 'no' flatly."
+       },
+       {
+        "q": "Good",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 1,
+     "s": "Now pias",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Now",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 18,
+     "t": 0,
+     "s": "dont you need to minus on both sides??",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "so what abt th x y part",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 1,
+     "s": "we want to do the opposite of divide by 2 as x+y is divided by 2",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 21,
+     "t": 0,
+     "s": "So 2x + 2y = 8??",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "We have (x+y)/2 = 6",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "We have",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 23,
+     "t": 0,
+     "s": "6??",
+     "m": []
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "If we x (x+y)/2 by 2 what do we get?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 25,
+     "t": 0,
+     "s": "(x+y)/4",
+     "m": []
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "the x2 undoes the divide by 2 so we just get x + y",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 27,
+     "t": 0,
+     "s": "oh ok",
+     "m": []
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "the other side was 6 so if we x2 what do we get?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 29,
+     "t": 0,
+     "s": "12",
+     "m": []
+    },
+    {
+     "n": 30,
+     "t": 1,
+     "s": "Great",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 31,
+     "t": 1,
+     "s": "so we rearranged Pia's to get x + y = 12",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 32,
+     "t": 0,
+     "s": "yeah",
+     "m": []
+    },
+    {
+     "n": 33,
+     "t": 1,
+     "s": "and Ira's to get x + y = 8",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 34,
+     "t": 0,
+     "s": "Sooo A??",
+     "m": []
+    },
+    {
+     "n": 35,
+     "t": 1,
+     "s": "Ira did not get x + y = 12",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly.",
+      "clues": []
+     }
+    },
+    {
+     "n": 36,
+     "t": 0,
+     "s": "Oh srry i miss typed i meant and said b xx",
+     "m": []
+    },
+    {
+     "n": 37,
+     "t": 1,
+     "s": "Great",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 38,
+     "t": 1,
+     "s": "I will hand you back, well done",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "4123",
+   "topic": "Solving equations by inverse operations",
+   "question": "Solve (m - 1) / 4 = 20. One student multiplies by 4 first, the other adds 1 first. Who is right?",
+   "answer": "The one who multiplied by 4 first (m - 1 = 80)",
+   "strand": "Algebra",
+   "grade": 7,
+   "ukYear": 8,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hey! How can I help? 😃",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "i am confused",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "what would be the first step in solving the equation?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "what",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "t": 0,
+     "s": "dividing it",
+     "m": []
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "m-1 has all been divided to get 20",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 6,
+     "t": 1,
+     "s": "so we would want to do the opposite of dividing by 4",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "so m=81",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "If we multiply (m-1)/4 by 4, we get m-1",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "and 20 x 4 = 80",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "so we have m-1= 80",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "so",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 0,
+     "s": "so hana is correct",
+     "m": []
+    },
+    {
+     "n": 12,
+     "t": 1,
+     "s": "Hana is, well done",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "Ira is not correct as he has started by +1 which you can't do as all of m-1 was divided by 4",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "correct",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 0,
+     "s": "Hi",
+     "m": []
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "Do you want to go back to the lesson now?",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 0,
+     "s": "Hello ma'am",
+     "m": []
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "Or sir",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "Hello - I will send you back to the lesson to put your answer in now. Bye",
+     "m": []
+    },
+    {
+     "n": 19,
+     "t": 0,
+     "s": "I got the answer",
+     "m": []
+    },
+    {
+     "n": 20,
+     "t": 0,
+     "s": "Thanks 😀👍",
+     "m": []
+    }
+   ]
+  },
+  {
+   "id": "3923",
+   "topic": "Increasing a length by a percentage",
+   "question": "A rectangle's length increases by 10% and its width decreases by 10%. What happens to its area?",
+   "answer": "B (it falls by 1%, to 99% of the original)",
+   "strand": "Percentages",
+   "grade": 7,
+   "ukYear": 8,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hello Mira, how can I help?",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 0,
+     "s": "i dont know how to do it",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 1,
+     "s": "No problem, give me a moment to have a look",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "No problem",
+        "why": "Reassurance, offered before any teaching."
+       }
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "OK, a helpful way to do this is to work out what we would multiply the length by to get the new length.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": []
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "I know we don't know the length of the rectangle but if we did, what would we multiply it by to get the new length?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "would we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "10",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 1,
+     "s": "That would make it 10 times bigger, we want only 10% more",
+     "m": [
+      "FEEDBACK_INCORRECT"
+     ],
+     "x": {
+      "why": "This marks the student's answer as wrong, and does it gently rather than flatly.",
+      "clues": []
+     }
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "What decimal is equal to 10%?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 0,
+     "s": "0.1",
+     "m": []
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "Spot on!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Spot on",
+        "why": "A strong positive evaluation of what the student just did."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "We want to ADD 10% though...",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "so add 0.1?",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 0,
+     "s": "0.1 percent",
+     "m": []
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "We need to multiply the length by 1.1, that will work out 10% and add it on.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "We need",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 15,
+     "t": 0,
+     "s": "oh",
+     "m": []
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "Do you think you've worked with decimals like this? Using them to add on percentages?",
+     "m": [
+      "PROBING_PRIOR_KNOWLEDGE"
+     ],
+     "x": {
+      "why": "The tutor checks what the student already knew coming into this question.",
+      "clues": [
+       {
+        "q": "Do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "no",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "Hmmm... that surprises me.",
+     "m": [
+      "FEEDBACK_NEUTRAL"
+     ],
+     "x": {
+      "why": "This acknowledges what the student said without marking it right or wrong.",
+      "clues": []
+     }
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "How about I show you how I would do this question and you see whether the method seems at all familar?",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "How",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 0,
+     "s": "yes pls",
+     "m": []
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "OK!",
+     "m": []
+    },
+    {
+     "n": 22,
+     "t": 1,
+     "s": "So, I would multiply the length by 1.1 to add 10%",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "then I would multiply the width by 0.9 because that finds me 90%, which is the same as taking away 10%",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       },
+       {
+        "q": "then",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 24,
+     "t": 1,
+     "s": "Now, how do we find area of a rectangle?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "Now",
+        "why": "A sequencing word, marking this as a step in an order."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 25,
+     "t": 0,
+     "s": "length x width",
+     "m": []
+    },
+    {
+     "n": 26,
+     "t": 1,
+     "s": "Yes!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 27,
+     "t": 1,
+     "s": "So multiplying the original lengths will give me the original area.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 28,
+     "t": 1,
+     "s": "by then multiplying by 1.1 x 0.9 (because that's the change I've made to the two lengths) will show me the new area.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       }
+      ]
+     }
+    },
+    {
+     "n": 29,
+     "t": 1,
+     "s": "1.1 x 0.9 = 0.99",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 30,
+     "t": 1,
+     "s": "So the new area is 0.99 of the old area - or 99%",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 31,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 32,
+     "t": 1,
+     "s": "So which is the right answer? a, B, C or D?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 33,
+     "t": 0,
+     "s": "c?",
+     "m": []
+    },
+    {
+     "n": 34,
+     "t": 1,
+     "s": "We've gone from the old area to 99% of it. That's DOWN 1%. \\",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 35,
+     "t": 0,
+     "s": "ohh so b",
+     "m": []
+    },
+    {
+     "n": 36,
+     "t": 0,
+     "s": "i get it now",
+     "m": []
+    },
+    {
+     "n": 37,
+     "t": 1,
+     "s": "You're welcome! Shall I pass you back?",
+     "m": []
+    },
+    {
+     "n": 38,
+     "t": 0,
+     "s": "yes thanks",
+     "m": []
+    },
+    {
+     "n": 39,
+     "t": 1,
+     "s": "Will do. Go for it!",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "7927",
+   "topic": "Percentage increase and decrease",
+   "question": "An amount is increased by 50%, then that result is increased by 10%. What percentage of the original is it?",
+   "answer": "165%",
+   "strand": "Percentages",
+   "grade": 7,
+   "ukYear": 8,
+   "confidence": "high",
+   "msgs": [
+    {
+     "n": 1,
+     "t": 1,
+     "s": "Hi Sana!",
+     "m": []
+    },
+    {
+     "n": 2,
+     "t": 1,
+     "s": "How can I help?",
+     "m": []
+    },
+    {
+     "n": 3,
+     "t": 0,
+     "s": "hi faye i don't understand",
+     "m": []
+    },
+    {
+     "n": 4,
+     "t": 1,
+     "s": "Ok, no worries, let's have a look.",
+     "m": [
+      "ENCOURAGING"
+     ],
+     "x": {
+      "why": "The tutor urges the student to keep going.",
+      "clues": [
+       {
+        "q": "no worries",
+        "why": "Reassurance, offered before any teaching."
+       },
+       {
+        "q": "let's",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "t": 1,
+     "s": "Ok, so first of all we're increasing the money by 50%, so what percentage do we have in total at this stage?",
+     "m": [
+      "STRATEGIZING",
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it. It is doing two things at once — it also counts as prompting next step.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "we're",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "t": 0,
+     "s": "50% of 200 is 100",
+     "m": []
+    },
+    {
+     "n": 7,
+     "t": 0,
+     "s": "so if we increase 200 by 50% the answer would be 300",
+     "m": []
+    },
+    {
+     "n": 8,
+     "t": 1,
+     "s": "Yes, that's right - well done, although, for this question it doesn't actually matter about the amount of money because they're just asking us to think about the percentages.",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "Yes",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "because",
+        "why": "Gives a reason, rather than only an instruction."
+       }
+      ]
+     }
+    },
+    {
+     "n": 9,
+     "t": 1,
+     "s": "Because the answer is a percentage, not an amount of money.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "Because",
+        "why": "Gives a reason, rather than only an instruction."
+       }
+      ]
+     }
+    },
+    {
+     "n": 10,
+     "t": 1,
+     "s": "So, the original amount we start with is 100%.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": [
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 11,
+     "t": 1,
+     "s": "And then we add 50%.",
+     "m": [
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "The tutor walks through how the step is done.",
+      "clues": []
+     }
+    },
+    {
+     "n": 12,
+     "t": 0,
+     "s": "150%",
+     "m": []
+    },
+    {
+     "n": 13,
+     "t": 1,
+     "s": "So what percentage do we have now altogether?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do we",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       },
+       {
+        "q": "So",
+        "why": "A sequencing word, marking this as a step in an order."
+       }
+      ]
+     }
+    },
+    {
+     "n": 14,
+     "t": 1,
+     "s": "Fab!",
+     "m": [
+      "FEEDBACK_CORRECT"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new.",
+      "clues": [
+       {
+        "q": "Fab",
+        "why": "A short positive evaluation word."
+       }
+      ]
+     }
+    },
+    {
+     "n": 15,
+     "t": 1,
+     "s": "Ok, so now we have 150% and we have to increase this by 10%.",
+     "m": [
+      "STRATEGIZING"
+     ],
+     "x": {
+      "why": "The tutor sets up how to approach the problem rather than working through it.",
+      "clues": [
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 16,
+     "t": 1,
+     "s": "What is 10% of 150?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "What",
+        "why": "Opens with a question word, so this turn asks rather than tells."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 17,
+     "t": 0,
+     "s": "15",
+     "m": []
+    },
+    {
+     "n": 18,
+     "t": 1,
+     "s": "Great!  So, altogether now, we have 150% + 15%",
+     "m": [
+      "FEEDBACK_CORRECT",
+      "EXPLAINING_PROCEDURAL"
+     ],
+     "x": {
+      "why": "This lands straight after a student answer and marks it right, without adding anything new. It is doing two things at once — it also counts as explaining a procedure.",
+      "clues": [
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "we have",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    },
+    {
+     "n": 19,
+     "t": 1,
+     "s": "Does this make sense?",
+     "m": [
+      "PROBING_UNDERSTAND"
+     ],
+     "x": {
+      "why": "The tutor checks what the student understands before going on.",
+      "clues": [
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 20,
+     "t": 0,
+     "s": "yes",
+     "m": []
+    },
+    {
+     "n": 21,
+     "t": 1,
+     "s": "Great!  So do you have your answer?",
+     "m": [
+      "PROMPTING_NEXT_STEP"
+     ],
+     "x": {
+      "why": "The tutor puts a question to the student instead of supplying the step, so the work of answering stays with the student.",
+      "clues": [
+       {
+        "q": "do you",
+        "why": "Addresses the student directly with a request, rather than a statement."
+       },
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "?",
+        "why": "Ends on a question — the tutor stops here and waits for the student."
+       }
+      ]
+     }
+    },
+    {
+     "n": 22,
+     "t": 0,
+     "s": "165%",
+     "m": []
+    },
+    {
+     "n": 23,
+     "t": 1,
+     "s": "Great work! I'll leave you to enter your answer. 🙂. Well done!",
+     "m": [
+      "PRAISING_PROCESS"
+     ],
+     "x": {
+      "why": "The praise is aimed at what the student did — their effort or their approach.",
+      "clues": [
+       {
+        "q": "Well done",
+        "why": "A strong positive evaluation of what the student just did."
+       },
+       {
+        "q": "Great",
+        "why": "A short positive evaluation word."
+       },
+       {
+        "q": "Well",
+        "why": "Uses 'we', framing the work as shared."
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "moves": {
+  "PROMPTING_SELF_EXPLANATION": {
+   "name": "Prompting self-explanation",
+   "category": "learning",
+   "rung": 1,
+   "def": "Asks the student to explain their own reasoning out loud."
+  },
+  "PROMPTING_RELATED_CONCEPTS": {
+   "name": "Prompting related concepts",
+   "category": "learning",
+   "rung": 1,
+   "def": "Asks the student to connect this to something they already know."
+  },
+  "PROMPTING_NEXT_STEP": {
+   "name": "Prompting next step",
+   "category": "learning",
+   "rung": 2,
+   "def": "Asks the student to take the next step themselves, instead of being told what it is."
+  },
+  "GIVING_HINT": {
+   "name": "Giving a hint",
+   "category": "learning",
+   "rung": 3,
+   "def": "Nudges toward the answer while leaving the work to the student."
+  },
+  "GIVING_EXAMPLE": {
+   "name": "Giving an example",
+   "category": "learning",
+   "rung": 4,
+   "def": "Offers a parallel case for the student to reason from."
+  },
+  "EXPLAINING_CONCEPTUAL": {
+   "name": "Explaining a concept",
+   "category": "learning",
+   "rung": 4,
+   "def": "Explains why something works, not just how to do it."
+  },
+  "EXPLAINING_PROCEDURAL": {
+   "name": "Explaining a procedure",
+   "category": "learning",
+   "rung": 5,
+   "def": "Walks through the steps of how something is done."
+  },
+  "GIVING_ANSWER": {
+   "name": "Giving the answer",
+   "category": "learning",
+   "rung": 6,
+   "def": "Supplies the answer outright."
+  },
+  "STRATEGIZING": {
+   "name": "Strategizing",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Sets out the plan or structure for tackling the problem."
+  },
+  "PROBING_UNDERSTAND": {
+   "name": "Probing understanding",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Checks what the student currently understands."
+  },
+  "PROBING_PRIOR_KNOWLEDGE": {
+   "name": "Probing prior knowledge",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Checks what the student already knew coming in."
+  },
+  "FEEDBACK_CORRECT": {
+   "name": "Feedback: correct",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Confirms the student's answer is right."
+  },
+  "FEEDBACK_INCORRECT": {
+   "name": "Feedback: incorrect",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Signals the answer isn't right, without necessarily supplying the right one."
+  },
+  "FEEDBACK_NEUTRAL": {
+   "name": "Feedback: neutral",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Acknowledges the answer without marking it right or wrong."
+  },
+  "CORRECTING_OWN_ERROR": {
+   "name": "Correcting own error",
+   "category": "tutoring",
+   "rung": null,
+   "def": "The tutor catches and repairs their own mistake."
+  },
+  "ASKING_TO_CLARIFY_CONTEXT": {
+   "name": "Asking to clarify context",
+   "category": "tutoring",
+   "rung": null,
+   "def": "Asks what the student is looking at or working on."
+  },
+  "VALIDATING_FEELING": {
+   "name": "Validating feeling",
+   "category": "social",
+   "rung": null,
+   "def": "Names and accepts how the student is feeling."
+  },
+  "BUILDING_RAPPORT": {
+   "name": "Building rapport",
+   "category": "social",
+   "rung": null,
+   "def": "Builds the relationship rather than working on the maths."
+  },
+  "ENCOURAGING": {
+   "name": "Encouraging",
+   "category": "social",
+   "rung": null,
+   "def": "Urges the student to keep going."
+  },
+  "PRAISING_PROCESS": {
+   "name": "Praising process",
+   "category": "social",
+   "rung": null,
+   "def": "Praises effort or strategy — what the student did."
+  },
+  "PRAISING_OUTCOME": {
+   "name": "Praising outcome",
+   "category": "social",
+   "rung": null,
+   "def": "Praises the result the student reached."
+  },
+  "PRAISING_TRAITS": {
+   "name": "Praising traits",
+   "category": "social",
+   "rung": null,
+   "def": "Praises the student as a person ('you're so clever')."
+  },
+  "ASKING_FEELING": {
+   "name": "Asking about feeling",
+   "category": "social",
+   "rung": null,
+   "def": "Asks how the student is doing."
+  },
+  "MANAGING": {
+   "name": "Managing the session",
+   "category": "logistical",
+   "rung": null,
+   "def": "Handles the running of the session itself."
+  },
+  "TECHNICAL_ISSUES": {
+   "name": "Technical issues",
+   "category": "logistical",
+   "rung": null,
+   "def": "Deals with the platform rather than the maths."
+  }
+ },
+ "categories": {
+  "learning": "Learning support",
+  "tutoring": "Tutoring support",
+  "social": "Social-emotional support",
+  "logistical": "Logistical"
+ },
+ "spectrum": {
+  "1": "Student does the explaining",
+  "2": "Student takes the step",
+  "3": "Student works from a nudge",
+  "4": "Student reasons from what's given",
+  "5": "Tutor walks it through",
+  "6": "Tutor supplies it"
+ },
+ "renames": {
+  "PROMPTING_NEXT_STEP": "PROMPTING_ACTION",
+  "PROMPTING_SELF_EXPLANATION": "PROMPTING_EXPLANATION",
+  "PROMPTING_RELATED_CONCEPTS": "PROMPTING_RELATED_KNOWLEDGE"
+ },
+ "grades": {
+  "3": "Grade 3",
+  "4": "Grade 4",
+  "5": "Grade 5",
+  "6": "Grade 6",
+  "7": "Grade 7"
+ },
+ "stats": {
+  "sessions": 15,
+  "messages": 507,
+  "tutor": 306,
+  "student": 201,
+  "contested": 0,
+  "classified": 264
+ }
+}

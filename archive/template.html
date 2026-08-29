@@ -1,0 +1,868 @@
+<title>Tutoring Moves Library</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+:root{
+  --paper:#F1F4F5; --card:#FFFFFF;
+  --ink:#1A2024; --ink-soft:#59656E; --ink-faint:#8E989F;
+  --rule:#DCE3E6; --rule-firm:#BCC7CC;
+  --accent:#2F5D8C; --accent-wash:#E8EFF6; --accent-ink:#173A5C;
+  --flag:#8A6A1F; --flag-wash:#F7F0DC; --flag-ink:#5E4711;
+  --agree:#3D6B57; --agree-wash:#E7F0EB;
+  --shadow:0 4px 16px rgba(20,32,40,.10);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14181B; --card:#1E2427;
+    --ink:#E8EDEF; --ink-soft:#A3AFB6; --ink-faint:#79858C;
+    --rule:#2B3336; --rule-firm:#3D474C;
+    --accent:#83B4E2; --accent-wash:#1A2B3B; --accent-ink:#CFE2F5;
+    --flag:#D8B45E; --flag-wash:#302811; --flag-ink:#EBD9A6;
+    --agree:#82C1A2; --agree-wash:#16281F;
+    --shadow:0 4px 16px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14181B; --card:#1E2427;
+  --ink:#E8EDEF; --ink-soft:#A3AFB6; --ink-faint:#79858C;
+  --rule:#2B3336; --rule-firm:#3D474C;
+  --accent:#83B4E2; --accent-wash:#1A2B3B; --accent-ink:#CFE2F5;
+  --flag:#D8B45E; --flag-wash:#302811; --flag-ink:#EBD9A6;
+  --agree:#82C1A2; --agree-wash:#16281F;
+  --shadow:0 4px 16px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+/* ---------- chrome ---------- */
+.top{position:sticky;top:0;z-index:20;background:var(--card);
+  border-bottom:1px solid var(--rule-firm)}
+.top-in{max-width:1140px;margin:0 auto;padding:11px 24px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-size:14.5px;font-weight:600;white-space:nowrap}
+.brand span{font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-faint);display:block;font-weight:400}
+.top .spacer{margin-left:auto}
+.tbtn{background:none;border:1px solid transparent;border-radius:3px;
+  padding:5px 10px;font-size:13px;color:var(--ink-soft)}
+.tbtn:hover{border-color:var(--rule-firm);color:var(--ink)}
+.wrap{max-width:1140px;margin:0 auto;padding:26px 24px 96px}
+
+/* ---------- browse ---------- */
+.hero{margin-bottom:24px;max-width:70ch}
+.hero h1{font-size:24px;margin-bottom:8px}
+.hero p{margin:0;color:var(--ink-soft);font-size:14px}
+.searchrow{display:flex;gap:10px;margin:20px 0 18px;flex-wrap:wrap}
+.search{flex:1;min-width:220px;border:1px solid var(--rule-firm);
+  background:var(--card);border-radius:3px;padding:9px 12px;font:inherit;
+  font-size:13.5px;color:var(--ink)}
+.search::placeholder{color:var(--ink-faint)}
+.cols{display:grid;grid-template-columns:222px minmax(0,1fr);gap:26px;
+  align-items:start}
+.facet{position:sticky;top:70px}
+.facet h3{font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;
+  margin:0 0 7px}
+.facet-group{margin-bottom:16px}
+.fbtn{display:flex;width:100%;gap:8px;align-items:baseline;background:none;
+  border:0;padding:3px 6px;border-radius:3px;text-align:left;font-size:13px;
+  color:var(--ink-soft)}
+.fbtn:hover{background:var(--accent-wash);color:var(--accent)}
+.fbtn.on{background:var(--accent-wash);color:var(--accent);font-weight:600}
+.fbtn .ct{margin-left:auto;font-family:var(--mono);font-size:10.5px;
+  color:var(--ink-faint)}
+.fbtn.on .ct{color:var(--accent)}
+.clearf{font-size:12px;color:var(--accent);background:none;border:0;padding:3px 6px}
+
+.resulthead{font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+.cards{display:grid;gap:10px}
+.card{width:100%;text-align:left;background:var(--card);
+  border:1px solid var(--rule);border-radius:3px;padding:13px 15px;
+  display:block}
+.card:hover{border-color:var(--rule-firm);box-shadow:var(--shadow)}
+.card-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  margin-bottom:7px}
+.card-said{font-size:14px;margin:0 0 8px}
+.card-ctx{font-size:12.5px;color:var(--ink-faint);display:flex;gap:8px;
+  flex-wrap:wrap}
+.empty{border:1px dashed var(--rule-firm);border-radius:3px;padding:26px;
+  text-align:center;color:var(--ink-soft);font-size:13.5px}
+
+/* ---------- tags ---------- */
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;
+  letter-spacing:.02em;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.tag.move{background:var(--agree-wash);color:var(--agree)}
+.tag.unc{background:var(--flag-wash);color:var(--flag)}
+.tag.none{color:var(--ink-faint);padding-left:0}
+.tag.cat{background:var(--paper);color:var(--ink-faint);
+  border:1px solid var(--rule)}
+
+/* ---------- session ---------- */
+.crumb{display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  flex-wrap:wrap}
+.back{background:none;border:0;color:var(--accent);font-size:13px;padding:0}
+.shead{margin-bottom:18px}
+.shead h2{font-size:19px;margin-bottom:4px}
+.shead p{margin:0;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:22px;align-items:start}
+.script{background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:16px 16px 20px}
+.turn{display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;
+  margin-bottom:10px}
+.seq{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);
+  padding-top:7px;text-align:right}
+.bubble{width:100%;text-align:left;border:1px solid var(--rule);
+  border-radius:3px;padding:8px 11px;font-size:13.5px;background:var(--card);
+  display:block}
+.turn.student .bubble{background:var(--paper);color:var(--ink-soft);
+  cursor:default}
+button.bubble:hover{border-color:var(--accent)}
+.turn.on .seq{color:var(--accent);font-weight:500}
+.turn.on .bubble{background:var(--accent-wash);border-color:var(--accent);
+  color:var(--accent-ink);box-shadow:0 0 0 1px var(--accent)}
+.tagline{margin-top:6px;display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.mark{background:var(--accent-wash);color:var(--accent-ink);padding:0 3px;
+  border-radius:2px;transition:background .12s,color .12s}
+.mark.lit{background:var(--accent);color:var(--card)}
+.turn.on .mark{background:var(--card)}
+.turn.on .mark.lit{background:var(--accent);color:var(--card)}
+
+/* ---------- explanation ---------- */
+.panel{position:sticky;top:70px;scroll-margin-top:62px;background:var(--card);
+  border:1px solid var(--rule-firm);border-radius:3px;overflow:hidden}
+.panel-hd{padding:13px 16px;border-bottom:1px solid var(--rule)}
+.kick{font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px}
+.panel-hd h3{font-size:15.5px}
+.panel-bd{padding:14px 16px}
+.why{font-size:13.5px;margin:0 0 14px}
+.defn{font-size:12.5px;color:var(--ink-soft);border-left:2px solid var(--rule-firm);
+  padding-left:10px;margin:0 0 14px}
+.cue{display:grid;grid-template-columns:15px minmax(0,1fr);gap:9px;
+  margin-bottom:9px;font-size:13px;line-height:1.5}
+.cuedot{width:8px;height:8px;border:1px solid var(--accent);border-radius:50%;
+  margin-top:6px}
+.cue.hot .cuedot{background:var(--accent)}
+.cuephrase{background:var(--accent-wash);color:var(--accent-ink);padding:0 3px;
+  border-radius:2px}
+.reading{border:1px solid var(--rule);border-radius:3px;padding:10px 12px;
+  margin-bottom:8px;font-size:13px}
+.reading .tag{margin-bottom:5px}
+.uncbox{background:var(--flag-wash);border:1px solid var(--flag);
+  color:var(--flag-ink);border-radius:3px;padding:10px 12px;font-size:12.5px;
+  margin-bottom:13px}
+.uncbox b{display:block;font-family:var(--mono);font-size:10px;
+  letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+
+/* spectrum */
+.spec{margin:0 0 15px}
+.spec-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+.spec-bar{display:flex;gap:3px;margin-bottom:5px}
+.spec-seg{height:5px;flex:1;border-radius:1px;background:var(--rule)}
+.spec-seg.fill{background:var(--accent)}
+.spec-cap{display:flex;justify-content:space-between;font-size:11px;
+  color:var(--ink-faint)}
+.spec-now{font-size:12px;color:var(--ink-soft);margin-top:4px}
+
+/* ---------- feedback ---------- */
+.ask{border-top:1px solid var(--rule);padding:13px 16px;background:var(--paper)}
+.ask p{margin:0 0 9px;font-size:13px}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+.b{background:var(--card);border:1px solid var(--rule-firm);border-radius:3px;
+  padding:6px 12px;font-size:12.5px}
+.b:hover{border-color:var(--ink-soft)}
+.b.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.b.sm{padding:4px 9px;font-size:12px}
+.thanks{display:flex;gap:8px;align-items:flex-start;font-size:13px;
+  color:var(--ink-soft)}
+.tick{width:15px;height:15px;border:1.5px solid var(--agree);border-radius:50%;
+  position:relative;flex-shrink:0;margin-top:3px}
+.tick::after{content:"";position:absolute;left:4px;top:1.5px;width:4px;height:8px;
+  border-right:1.5px solid var(--agree);border-bottom:1.5px solid var(--agree);
+  transform:rotate(42deg)}
+.opt{display:grid;grid-template-columns:14px minmax(0,1fr);gap:9px;width:100%;
+  text-align:left;border:1px solid var(--rule);border-radius:3px;
+  padding:8px 10px;margin-bottom:6px;font-size:12.5px;background:var(--card);
+  align-items:start}
+.box{width:12px;height:12px;border:1px solid var(--rule-firm);border-radius:2px;
+  margin-top:3px}
+.opt.picked{border-color:var(--accent);background:var(--accent-wash);
+  color:var(--accent-ink)}
+.opt.picked .box{background:var(--accent);border-color:var(--accent)}
+.ta{width:100%;border:1px solid var(--rule-firm);border-radius:3px;
+  padding:8px 10px;font:inherit;font-size:12.5px;background:var(--card);
+  color:var(--ink);resize:vertical;min-height:62px;margin-bottom:8px}
+.stars{display:flex;gap:3px;align-items:center}
+.star{background:none;border:0;padding:1px;font-size:17px;line-height:1;
+  color:var(--rule-firm)}
+.star.on{color:var(--flag)}
+.picker{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+
+/* ---------- intro + footer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(12,18,22,.55);z-index:40;
+  display:flex;align-items:center;justify-content:center;padding:22px;
+  overflow-y:auto}
+.modal{background:var(--card);border-radius:5px;max-width:560px;width:100%;
+  box-shadow:0 22px 54px rgba(0,0,0,.4);padding:26px 28px;margin:auto}
+.modal h2{font-size:19px;margin-bottom:10px}
+.modal p{font-size:13.5px;color:var(--ink-soft);margin:0 0 11px}
+.modal ol{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px;padding-left:19px}
+.modal li{margin-bottom:5px}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--card);
+  border-top:1px solid var(--rule-firm)}
+.foot-in{max-width:1140px;margin:0 auto;padding:9px 24px;display:flex;
+  gap:12px;align-items:center;font-size:12.5px;color:var(--ink-soft);
+  flex-wrap:wrap}
+.foot a{color:var(--accent)}
+.foot .push{margin-left:auto;font-family:var(--mono);font-size:11px;
+  color:var(--ink-faint)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--agree);
+  flex-shrink:0}
+.dot.off{background:var(--rule-firm)}
+
+@media (max-width:900px){
+  .cols,.split{grid-template-columns:minmax(0,1fr)}
+  .facet,.panel{position:static}
+  .wrap{padding:20px 16px 92px}
+  .top-in,.foot-in{padding:9px 16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div id="root"></div>
+
+<script id="corpus" type="application/json">/*__CORPUS__*/null</script>
+<script id="feedback" type="application/json">{"events":[]}</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+
+<script>
+// Snapshot the document BEFORE React mounts, so republishing never serialises
+// a DOM that React has since mutated. Feedback is saved by rewriting the
+// #feedback block inside this snapshot.
+var DOC_SNAPSHOT = "<!doctype html>\n" + document.documentElement.outerHTML;
+</script>
+
+<script>
+(function () {
+"use strict";
+
+// ===========================================================================
+// Replace with the advisory-board feedback form before sharing the link.
+var FORM_URL = "https://docs.google.com/forms/__REPLACE_WITH_YOUR_FORM__";
+// ===========================================================================
+
+var html = htm.bind(React.createElement);
+var useState = React.useState, useMemo = React.useMemo,
+    useEffect = React.useEffect, useRef = React.useRef,
+    useCallback = React.useCallback;
+
+var CORPUS = JSON.parse(document.getElementById("corpus").textContent);
+var MOVES = CORPUS.moves, CATS = CORPUS.categories, SPEC = CORPUS.spectrum;
+var SEEN_KEY = "tml.seen", PLACE_KEY = "tml.place";
+
+function moveName(code) { return MOVES[code] ? MOVES[code].name : code; }
+function readLocal(k, fallback) {
+  try { var v = localStorage.getItem(k); return v === null ? fallback : v; }
+  catch (e) { return fallback; }
+}
+function writeLocal(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+// --------------------------------------------------------------- persistence
+var initialFeedback = { events: [] };
+try {
+  initialFeedback = JSON.parse(document.getElementById("feedback").textContent);
+} catch (e) {}
+
+var artifactNs = null, artifactReady = false;
+function connect(onSettled) {
+  if (!window.claude || !window.claude.use) { artifactReady = true; onSettled(); return; }
+  window.claude.use("artifact").then(function (ns) {
+    artifactNs = ns; artifactReady = true; onSettled();
+  }, function () { artifactReady = true; onSettled(); });
+}
+
+function documentWith(state) {
+  var json = JSON.stringify(state).replace(/</g, "\\u003c");
+  return DOC_SNAPSHOT.replace(
+    /(<script id="feedback" type="application\/json">)[\s\S]*?(<\/script>)/,
+    function (_, open, close) { return open + json + close; }
+  );
+}
+
+// Publishing reloads every open view, so batch: save 1.6s after the last
+// interaction rather than on every click. Where the reader was is kept in
+// localStorage, so the reload lands them back in place.
+function makeSaver(onStatus) {
+  var timer = null, pending = null;
+  return function save(events) {
+    pending = events;
+    onStatus("saving");
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function () {
+      if (!artifactNs) { onStatus("local"); return; }
+      artifactNs.publish(documentWith({ events: pending })).then(
+        function () { onStatus("saved"); },
+        // A conflict means someone else published first and this view is about
+        // to reload to their version. Retrying would fight them. Not-writer
+        // means the link was shared read-only. Neither is worth alarming a
+        // board member about.
+        function () { onStatus("local"); }
+      );
+    }, 1600);
+  };
+}
+
+// ------------------------------------------------------------------ helpers
+function classified(msg) { return !!msg.x; }
+
+function buildIndex(sessions) {
+  var out = [];
+  sessions.forEach(function (s) {
+    s.msgs.forEach(function (m) {
+      if (!classified(m)) return;
+      out.push({
+        sid: s.id, topic: s.topic, n: m.n, text: m.s,
+        moves: m.m, contested: !!m.c,
+        alts: m.alt || [], hand: !!m.hand,
+      });
+    });
+  });
+  return out;
+}
+
+function countsByMove(index) {
+  var c = {};
+  index.forEach(function (e) {
+    e.moves.forEach(function (mv) { c[mv] = (c[mv] || 0) + 1; });
+  });
+  return c;
+}
+
+// Split a message into plain strings and highlighted clue spans.
+function segment(text, clues) {
+  var spans = [];
+  clues.forEach(function (cue, i) {
+    if (!cue.q) return;
+    var at = text.indexOf(cue.q);
+    if (at < 0) return;
+    var overlaps = spans.some(function (s) {
+      return at < s.end && at + cue.q.length > s.start;
+    });
+    if (!overlaps) spans.push({ start: at, end: at + cue.q.length, idx: i });
+  });
+  spans.sort(function (a, b) { return a.start - b.start; });
+  var parts = [], cursor = 0;
+  spans.forEach(function (s) {
+    if (s.start > cursor) parts.push({ t: text.slice(cursor, s.start) });
+    parts.push({ t: text.slice(s.start, s.end), idx: s.idx });
+    cursor = s.end;
+  });
+  if (cursor < text.length) parts.push({ t: text.slice(cursor) });
+  return parts;
+}
+
+// ================================================================ components
+function Tags(props) {
+  var m = props.msg;
+  if (m.c) return html`<span class="tag unc">△ Uncertain</span>`;
+  if (!m.m.length) return html`<span class="tag none">No move detected</span>`;
+  return m.m.map(function (code) {
+    return html`<span class="tag move" key=${code}>${moveName(code)}</span>`;
+  });
+}
+
+function Spectrum(props) {
+  var rung = MOVES[props.code] && MOVES[props.code].rung;
+  if (!rung) return null;
+  var segs = [1, 2, 3, 4, 5, 6].map(function (i) {
+    return html`<div class=${"spec-seg" + (i <= rung ? " fill" : "")} key=${i}></div>`;
+  });
+  return html`
+    <div class="spec">
+      <div class="spec-lbl">How much thinking stays with the student</div>
+      <div class="spec-bar">${segs}</div>
+      <div class="spec-cap"><span>Student leads</span><span>Tutor leads</span></div>
+      <div class="spec-now">${SPEC[String(rung)]}</div>
+    </div>`;
+}
+
+function Explanation(props) {
+  var msg = props.msg, x = msg.x;
+  var hot = props.hot, setHot = props.setHot;
+
+  var cues = (x.clues || []).map(function (cue, i) {
+    return html`
+      <div class=${"cue" + (hot === i ? " hot" : "")} key=${i}
+           onMouseEnter=${function () { setHot(i); }}
+           onMouseLeave=${function () { setHot(null); }}>
+        <div class="cuedot"></div>
+        <div>
+          ${cue.q ? html`<span class="cuephrase">${cue.q}</span>${" — "}` : null}
+          ${cue.why}
+        </div>
+      </div>`;
+  });
+
+  var body;
+  if (x.readings) {
+    body = html`
+      <div class="uncbox">
+        <b>The AI is not confident here</b>
+        Two people trained on this framework labelled this turn differently and
+        never settled it. Rather than pick one and look certain, the library
+        shows you both readings.
+      </div>
+      ${x.readings.map(function (r, i) {
+        return html`
+          <div class="reading" key=${i}>
+            ${r.move
+              ? html`<span class="tag move">${moveName(r.move)}</span>`
+              : html`<span class="tag none">Not a move at all</span>`}
+            <div>${r.why}</div>
+          </div>`;
+      })}`;
+  } else {
+    var primary = msg.m[0];
+    body = html`
+      <p class="why">${x.why}</p>
+      <${Spectrum} code=${primary} />
+      <p class="defn">
+        <b>${moveName(primary)}</b> — ${MOVES[primary] ? MOVES[primary].def : ""}
+      </p>`;
+  }
+
+  return html`
+    <div class="panel-bd">
+      ${body}
+      ${cues.length ? html`
+        <div class="kick" style=${{ marginTop: "16px" }}>What the AI noticed</div>
+        ${cues}` : null}
+    </div>`;
+}
+
+function Feedback(props) {
+  var key = props.sid + ":" + props.n;
+  var log = props.log;
+  var mine = props.events.filter(function (e) { return e.key === key; });
+  function last(kind) {
+    for (var i = mine.length - 1; i >= 0; i--) if (mine[i].k === kind) return mine[i];
+    return null;
+  }
+  var verdict = last("explanation"), rating = last("rating");
+  var mode = props.mode, setMode = props.setMode;
+  var note = props.note, setNote = props.setNote;
+
+  function judge(v) {
+    log({ k: "explanation", key: key, sid: props.sid, n: props.n,
+          move: props.moves.join("+") || "contested", verdict: v });
+    setMode(v === "agree" ? null : v);
+  }
+
+  var clueOpts = (props.clues || []).map(function (cue, i) {
+    return html`
+      <button class="opt" key=${i} onClick=${function () {
+        log({ k: "clue", key: key, sid: props.sid, n: props.n,
+              clue: cue.q || cue.why.slice(0, 60) });
+      }}>
+        <span class="box"></span>
+        <span>${cue.q ? html`"${cue.q}" — ` : null}${cue.why}</span>
+      </button>`;
+  });
+
+  var moveOpts = Object.keys(MOVES).map(function (code) {
+    return html`
+      <button class="b sm" key=${code} onClick=${function () {
+        log({ k: "relabel", key: key, sid: props.sid, n: props.n, proposed: code });
+        setMode("done");
+      }}>${moveName(code)}</button>`;
+  });
+
+  var detail = null;
+  if (mode === "not_quite") {
+    detail = html`
+      <div style=${{ marginTop: "11px" }}>
+        <p>Which part is off? Tap anything that doesn't hold up.</p>
+        ${clueOpts}
+        <textarea class="ta" placeholder="Anything else you noticed (optional)"
+          value=${note} onChange=${function (e) { setNote(e.target.value); }} />
+        <button class="b" onClick=${function () {
+          if (note.trim()) log({ k: "note", key: key, sid: props.sid,
+                                 n: props.n, text: note.trim() });
+          setNote(""); setMode("done");
+        }}>Send</button>
+      </div>`;
+  } else if (mode === "relabel") {
+    detail = html`
+      <div style=${{ marginTop: "11px" }}>
+        <p>What would you call this turn instead?</p>
+        <div class="picker">${moveOpts}</div>
+      </div>`;
+  } else if (mode === "done") {
+    detail = html`
+      <div class="thanks" style=${{ marginTop: "11px" }}>
+        <span class="tick"></span>
+        <span>Thank you — that's exactly the kind of correction we need, and it
+          goes straight to the team.</span>
+      </div>`;
+  }
+
+  return html`
+    <div class="ask">
+      <p>Does this explanation match what you see?</p>
+      <div class="btns">
+        <button class=${"b" + (verdict && verdict.verdict === "agree" ? " sel" : "")}
+          onClick=${function () { judge("agree"); }}>Yes, that's right</button>
+        <button class=${"b" + (mode === "not_quite" ? " sel" : "")}
+          onClick=${function () { judge("not_quite"); }}>Not quite</button>
+        <button class=${"b" + (mode === "relabel" ? " sel" : "")}
+          onClick=${function () { judge("relabel"); }}>I'd label it differently</button>
+      </div>
+      ${detail}
+      <div style=${{ marginTop: "14px", borderTop: "1px solid var(--rule)",
+                     paddingTop: "11px" }}>
+        <p>Would you use this moment with your own class, or in training?</p>
+        <div class="stars">
+          ${[1, 2, 3, 4, 5].map(function (i) {
+            var on = rating && rating.stars >= i;
+            return html`
+              <button class=${"star" + (on ? " on" : "")} key=${i}
+                title=${i + " of 5"} aria-label=${i + " of 5"}
+                onClick=${function () {
+                  log({ k: "rating", key: key, sid: props.sid, n: props.n, stars: i });
+                }}>${on ? "★" : "☆"}</button>`;
+          })}
+          ${rating ? html`<span style=${{ fontSize: "12px", color: "var(--ink-faint)",
+            marginLeft: "6px" }}>Recorded</span>` : null}
+        </div>
+      </div>
+    </div>`;
+}
+
+function Session(props) {
+  var s = props.session, focus = props.focus, setFocus = props.setFocus;
+  var hot = props.hot, setHot = props.setHot;
+  var focused = s.msgs.filter(function (m) { return m.n === focus; })[0];
+
+  var turns = s.msgs.map(function (m) {
+    var on = m.n === focus;
+    var inner;
+    if (on && focused && focused.x) {
+      inner = segment(m.s, focused.x.clues || []).map(function (p, i) {
+        return p.idx === undefined
+          ? p.t
+          : html`<span class=${"mark" + (hot === p.idx ? " lit" : "")} key=${i}>${p.t}</span>`;
+      });
+    } else { inner = m.s; }
+
+    var body = html`
+      <div>
+        ${inner}
+        ${m.t ? html`<div class="tagline"><${Tags} msg=${m} /></div>` : null}
+      </div>`;
+
+    return html`
+      <div class=${"turn" + (m.t ? "" : " student") + (on ? " on" : "")}
+           key=${m.n} id=${"turn-" + m.n}>
+        <div class="seq">${m.n}</div>
+        ${classified(m)
+          ? html`<button class="bubble" onClick=${function () { setFocus(m.n); }}>${body}</button>`
+          : html`<div class="bubble">${body}</div>`}
+      </div>`;
+  });
+
+  return html`
+    <div>
+      <div class="crumb">
+        <button class="back" onClick=${props.onBack}>← All exemplars</button>
+      </div>
+      <div class="shead">
+        <h2>${s.topic}</h2>
+        <p>Session ${s.id} · ${s.msgs.length} messages · real tutoring transcript,
+           names replaced</p>
+      </div>
+      <div class="split">
+        <div class="script">${turns}</div>
+        <div>
+          ${focused && focused.x ? html`
+            <div class="panel" id="explain">
+              <div class="panel-hd">
+                <div class="kick">Why the AI tagged message ${focused.n}</div>
+                <h3>${focused.c
+                  ? "Two readings, no agreement"
+                  : focused.m.map(moveName).join(" + ")}</h3>
+              </div>
+              <${Explanation} msg=${focused} hot=${hot} setHot=${setHot} />
+              <${Feedback} sid=${s.id} n=${focused.n} moves=${focused.m}
+                clues=${focused.x.clues || []} events=${props.events}
+                log=${props.log} mode=${props.mode} setMode=${props.setMode}
+                note=${props.note} setNote=${props.setNote} />
+            </div>`
+          : html`<div class="empty">Choose any tagged tutor message to see why
+                   the AI classified it that way.</div>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+function Browse(props) {
+  var index = props.index, counts = props.counts;
+  var active = props.active, setActive = props.setActive;
+  var q = props.q, setQ = props.setQ;
+
+  var results = useMemo(function () {
+    var needle = q.trim().toLowerCase();
+    return index.filter(function (e) {
+      if (active.length) {
+        var pool = e.moves.concat(e.alts);
+        var hit = active.some(function (a) { return pool.indexOf(a) >= 0; });
+        if (!hit) return false;
+      }
+      if (!needle) return true;
+      return (e.text + " " + e.topic + " " + e.moves.join(" "))
+        .toLowerCase().indexOf(needle) >= 0;
+    });
+  }, [index, active, q]);
+
+  function toggle(code) {
+    setActive(active.indexOf(code) >= 0
+      ? active.filter(function (c) { return c !== code; })
+      : active.concat([code]));
+  }
+
+  var groups = Object.keys(CATS).map(function (cat) {
+    var codes = Object.keys(MOVES).filter(function (c) {
+      return MOVES[c].category === cat && counts[c];
+    }).sort(function (a, b) { return counts[b] - counts[a]; });
+    if (!codes.length) return null;
+    return html`
+      <div class="facet-group" key=${cat}>
+        <h3>${CATS[cat]}</h3>
+        ${codes.map(function (c) {
+          return html`
+            <button class=${"fbtn" + (active.indexOf(c) >= 0 ? " on" : "")} key=${c}
+              onClick=${function () { toggle(c); }}>
+              <span>${MOVES[c].name}</span><span class="ct">${counts[c]}</span>
+            </button>`;
+        })}
+      </div>`;
+  });
+
+  var cards = results.slice(0, 60).map(function (e) {
+    return html`
+      <button class="card" key=${e.sid + ":" + e.n}
+        onClick=${function () { props.open(e.sid, e.n); }}>
+        <div class="card-top">
+          ${e.contested
+            ? html`<span class="tag unc">△ Uncertain</span>`
+            : e.moves.map(function (m) {
+                return html`<span class="tag move" key=${m}>${moveName(m)}</span>`;
+              })}
+          ${e.hand ? html`<span class="tag cat">Worked example</span>` : null}
+        </div>
+        <p class="card-said">"${e.text}"</p>
+        <div class="card-ctx">
+          <span>${e.topic}</span><span>·</span>
+          <span>Session ${e.sid}, message ${e.n}</span>
+        </div>
+      </button>`;
+  });
+
+  return html`
+    <div>
+      <div class="hero">
+        <h1>Exemplars of tutoring moves</h1>
+        <p>Every tutor turn below comes from a real tutoring session and has been
+           classified by move. Open any one to see why the AI read it that way —
+           and tell us where it gets that wrong.</p>
+      </div>
+      <div class="searchrow">
+        <input class="search" placeholder="Search what the tutor said, or a topic"
+          value=${q} onChange=${function (e) { setQ(e.target.value); }} />
+        ${(active.length || q) ? html`
+          <button class="b" onClick=${function () { setActive([]); setQ(""); }}>
+            Clear</button>` : null}
+      </div>
+      <div class="cols">
+        <div class="facet">
+          <h3>Filter by move</h3>
+          ${groups}
+          ${active.length ? html`
+            <button class="clearf" onClick=${function () { setActive([]); }}>
+              Clear ${active.length} filter${active.length > 1 ? "s" : ""}</button>` : null}
+        </div>
+        <div>
+          <div class="resulthead">
+            ${results.length} exemplar${results.length === 1 ? "" : "s"}
+            ${results.length > 60 ? " — showing the first 60" : ""}
+          </div>
+          ${results.length
+            ? html`<div class="cards">${cards}</div>`
+            : html`<div class="empty">Nothing matches that yet. This is a
+                     20-session sample, so some moves are rare — validating a
+                     student's feelings appears only twice in the whole corpus.
+                   </div>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+function Intro(props) {
+  return html`
+    <div class="scrim" onClick=${props.close}>
+      <div class="modal" onClick=${function (e) { e.stopPropagation(); }}>
+        <h2>Thanks for taking a look</h2>
+        <p>This is an early prototype of the <b>Tutoring Moves Library</b> — a
+          searchable library of real tutoring exemplars for teachers and tutors.
+          It should take about ten minutes.</p>
+        <p>The idea we most want your reaction to: whenever the AI labels a
+          tutor's move, it has to <b>show you why</b>, in language that makes
+          sense without a background in AI.</p>
+        <ol>
+          <li>Browse or filter the exemplars by the move you care about.</li>
+          <li>Open one, and read why the AI classified it that way.</li>
+          <li>Tell us whether that explanation holds up — especially when it
+            doesn't.</li>
+        </ol>
+        <p>Everything here is a genuine tutoring transcript. Names have been
+          replaced. Your responses are recorded anonymously, with nothing that
+          identifies you.</p>
+        <button class="b" onClick=${props.close}>Start looking</button>
+      </div>
+    </div>`;
+}
+
+function App() {
+  var sessions = CORPUS.sessions;
+  var index = useMemo(function () { return buildIndex(sessions); }, []);
+  var counts = useMemo(function () { return countsByMove(index); }, [index]);
+
+  var place = {};
+  try { place = JSON.parse(readLocal(PLACE_KEY, "{}")) || {}; } catch (e) {}
+
+  var st = useState(place.sid || null), sid = st[0], setSid = st[1];
+  var f = useState(place.n || null), focus = f[0], setFocus = f[1];
+  var a = useState(place.active || []), active = a[0], setActive = a[1];
+  var qq = useState(place.q || ""), q = qq[0], setQ = qq[1];
+  var h = useState(null), hot = h[0], setHot = h[1];
+  var m = useState(null), mode = m[0], setMode = m[1];
+  var nn = useState(""), note = nn[0], setNote = nn[1];
+  var ev = useState(initialFeedback.events), events = ev[0], setEvents = ev[1];
+  var sv = useState("idle"), status = sv[0], setStatus = sv[1];
+  var iv = useState(readLocal(SEEN_KEY, "") !== "1"), intro = iv[0], setIntro = iv[1];
+
+  var saver = useRef(null);
+  useEffect(function () {
+    saver.current = makeSaver(setStatus);
+    connect(function () { setStatus(artifactNs ? "ready" : "local"); });
+  }, []);
+
+  // Remember where the reader was, so the reload that follows a save puts
+  // them back rather than dropping them at the top of the library.
+  useEffect(function () {
+    writeLocal(PLACE_KEY, JSON.stringify({ sid: sid, n: focus, active: active, q: q }));
+  }, [sid, focus, active, q]);
+
+  var lastSid = useRef(null);
+  useEffect(function () {
+    if (!sid || !focus) return;
+    // Instant, never smooth: a reader lands here with the cursor already over
+    // the panel, and an animating page slides the buttons out from under them
+    // mid-click.
+    var narrow = window.matchMedia("(max-width:900px)").matches;
+    if (narrow) {
+      // Stacked layout: the explanation sits below the entire transcript, so
+      // choosing a turn has to carry the reader to it.
+      var panel = document.getElementById("explain");
+      if (panel) panel.scrollIntoView({ block: "start" });
+    } else if (lastSid.current !== sid) {
+      // Wide layout: only reposition when arriving from the library. Doing it
+      // on every choice would yank a turn the reader just clicked.
+      var turn = document.getElementById("turn-" + focus);
+      if (turn) turn.scrollIntoView({ block: "center" });
+    }
+    lastSid.current = sid;
+  }, [sid, focus]);
+
+  var log = useCallback(function (e) {
+    e.ts = Date.now();
+    setEvents(function (prev) {
+      var next = prev.concat([e]);
+      if (saver.current) saver.current(next);
+      return next;
+    });
+  }, []);
+
+  function open(nextSid, n) { setSid(nextSid); setFocus(n); setMode(null); setHot(null); }
+  function focusTurn(n) { setFocus(n); setMode(null); setHot(null); }
+
+  var session = sessions.filter(function (s) { return s.id === sid; })[0];
+  var responded = events.filter(function (e) {
+    return e.k === "explanation" || e.k === "rating";
+  }).length;
+
+  var saveLabel = status === "saving" ? "Saving…"
+    : status === "saved" ? "Responses saved"
+    : status === "ready" ? "Responses are being recorded"
+    : "Responses stay on this device";
+
+  return html`
+    <${React.Fragment}>
+      ${intro ? html`<${Intro} close=${function () {
+        setIntro(false); writeLocal(SEEN_KEY, "1");
+      }} />` : null}
+
+      <header class="top">
+        <div class="top-in">
+          <div class="brand">Tutoring Moves Library
+            <span>NTO · prototype for advisory review</span></div>
+          <div class="spacer"></div>
+          ${sid ? html`<button class="tbtn" onClick=${function () {
+            setSid(null); setFocus(null);
+          }}>All exemplars</button>` : null}
+          <button class="tbtn" onClick=${function () { setIntro(true); }}>
+            About this prototype</button>
+        </div>
+      </header>
+
+      <main class="wrap">
+        ${session
+          ? html`<${Session} session=${session} focus=${focus} setFocus=${focusTurn}
+              hot=${hot} setHot=${setHot} events=${events} log=${log}
+              mode=${mode} setMode=${setMode} note=${note} setNote=${setNote}
+              onBack=${function () { setSid(null); setFocus(null); }} />`
+          : html`<${Browse} index=${index} counts=${counts} active=${active}
+              setActive=${setActive} q=${q} setQ=${setQ} open=${open} />`}
+      </main>
+
+      <footer class="foot">
+        <div class="foot-in">
+          <span class=${"dot" + (status === "ready" || status === "saved" || status === "saving" ? "" : " off")}></span>
+          <span>${saveLabel}</span>
+          <span>·</span>
+          <a href=${FORM_URL} target="_blank" rel="noopener">
+            Share your overall feedback →</a>
+          <span class="push">
+            ${responded ? responded + " response" + (responded === 1 ? "" : "s") + " so far"
+                        : CORPUS.stats.classified + " classified turns"}
+          </span>
+        </div>
+      </footer>
+    <//>`;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+})();
+</script>
