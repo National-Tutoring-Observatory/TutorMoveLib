@@ -65,6 +65,7 @@ a { color: var(--red); }
   flex-shrink: 0;
 }
 .org {
+  white-space: nowrap;
   font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.09em;
@@ -80,6 +81,9 @@ a { color: var(--red); }
 .landing-body {
   flex: 1;
   display: grid;
+  /* minmax(0, 1fr), not the implicit `auto` track: auto sizes to the card
+     grid's max-content width (three columns) and spills off a phone. */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: 34px 28px 60px;
 }
@@ -103,7 +107,9 @@ a { color: var(--red); }
 /* ------------------------------------------------------------------ grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  /* min(290px, 100%) so a phone narrower than a card still gets one column
+     that fits, rather than one that overflows by a few pixels. */
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
   gap: 16px;
   width: 100%;
   max-width: 1020px;
@@ -275,6 +281,9 @@ a { color: var(--red); }
 @media (max-width: 620px) {
   .page { padding: 38px 20px 70px; }
   .landing-body { padding: 24px 18px 48px; }
+  .topbar { flex-wrap: wrap; padding: 11px 16px; }
+  .researcher-link { white-space: nowrap; }
+  .landing-top { padding-top: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
@@ -632,7 +641,9 @@ button.said-btn:hover { border-color: var(--ink-tint); }
 @media (max-width: 900px) {
   .split { grid-template-columns: minmax(0, 1fr); }
   .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
-  .crumbs { width: 100%; margin: 6px 0 0; }
+  .topbar { flex-wrap: wrap; }
+  .crumbs { width: 100%; margin: 6px 0 0; flex-wrap: wrap; row-gap: 2px; }
+  .crumbs > span { white-space: nowrap; }
 }
 
 /* ------------------------------------------------------- back and forward */
