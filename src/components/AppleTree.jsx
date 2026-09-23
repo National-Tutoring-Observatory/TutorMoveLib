@@ -133,6 +133,26 @@ function Bear() {
       {/* body */}
       <ellipse cx="0" cy="516" rx="34" ry="38" fill={red} stroke={dark} strokeWidth="1.5" />
       <ellipse cx="0" cy="524" rx="20" ry="24" fill={tan} />
+      {/* Cornell tee: white, clipped to the torso, red lettering across the chest */}
+      <clipPath id="bear-torso">
+        <ellipse cx="0" cy="516" rx="34" ry="38" />
+      </clipPath>
+      <g clipPath="url(#bear-torso)">
+        <rect x="-40" y="486" width="80" height="58" fill="#fff" />
+        <line x1="-40" y1="544" x2="40" y2="544" stroke={dark} strokeWidth="1.5" />
+      </g>
+      <path d="M-9 500 q9 7 18 0" stroke={dark} strokeWidth="1.2" fill="none" strokeLinecap="round" />
+      <text
+        y="527"
+        textAnchor="middle"
+        fontSize="8.5"
+        fontWeight="700"
+        letterSpacing="0.4"
+        fill={red}
+        style={{ pointerEvents: "none", userSelect: "none" }}
+      >
+        CORNELL
+      </text>
       {/* left arm resting */}
       <path d="M-28 506 C -46 514 -48 530 -36 538" stroke={dark} strokeWidth="1.5" fill={red} strokeLinecap="round" />
       <ellipse cx="-36" cy="536" rx="8" ry="6" fill={red} stroke={dark} strokeWidth="1.5" />
@@ -146,6 +166,9 @@ function Bear() {
         <path d={applePath(10)} fill="#c8102e" stroke="rgba(20,30,10,0.35)" strokeWidth="1.2" />
         <ellipse cx="-4" cy="-3" rx="2" ry="3" fill="#fff" opacity="0.55" />
       </g>
+      {/* sleeves, over the tops of the arms */}
+      <ellipse cx="-31" cy="510" rx="10" ry="7" transform="rotate(-40 -31 510)" fill="#fff" stroke={dark} strokeWidth="1.2" />
+      <ellipse cx="32" cy="502" rx="10" ry="7" transform="rotate(-35 32 502)" fill="#fff" stroke={dark} strokeWidth="1.2" />
       {/* head */}
       <circle cx="-23" cy="450" r="10" fill={red} stroke={dark} strokeWidth="1.5" />
       <circle cx="23" cy="450" r="10" fill={red} stroke={dark} strokeWidth="1.5" />
