@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
+import { MoveTerm, MoveTerms } from "../components/Dictionary.jsx";
 import NavRow from "../components/NavRow.jsx";
 import Shell, { MATH_TINT, RESEARCH_TINT } from "../components/Shell.jsx";
 import {
@@ -43,9 +44,9 @@ function Tags({ msg }) {
   if (msg.c) return <span className="tag unc">△ Uncertain</span>;
   if (!msg.m.length) return <span className="tag none">No move detected</span>;
   return msg.m.map((code) => (
-    <span className="tag move" key={code}>
+    <MoveTerm className="tag move" code={code} key={code}>
       {moveName(code)}
-    </span>
+    </MoveTerm>
   ));
 }
 
@@ -282,7 +283,7 @@ export default function Session() {
                       Message {focused.n} ·{" "}
                       {focused.c
                         ? "two readings"
-                        : focused.m.map(moveName).join(" + ")}
+                        : <MoveTerms codes={focused.m} sep=" + " />}
                     </h2>
                   </div>
                   <div className="stepper">
@@ -321,7 +322,7 @@ export default function Session() {
                     {focused.x.readings.map((r, i) => (
                       <div className="reading" key={i}>
                         {r.move ? (
-                          <span className="tag move">{moveName(r.move)}</span>
+                          <MoveTerm className="tag move" code={r.move}>{moveName(r.move)}</MoveTerm>
                         ) : (
                           <span className="tag none">Not a move at all</span>
                         )}
@@ -334,7 +335,7 @@ export default function Session() {
                     <p className="why">{focused.x.why}</p>
                     <Spectrum code={focused.m[0]} />
                     <p className="defn">
-                      <b>{moveName(focused.m[0])}</b> — {moves[focused.m[0]]?.def}
+                      <b><MoveTerm code={focused.m[0]}>{moveName(focused.m[0])}</MoveTerm></b> — {moves[focused.m[0]]?.def}
                     </p>
                   </>
                 )}

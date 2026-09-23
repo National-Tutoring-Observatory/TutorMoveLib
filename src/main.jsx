@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
+import { DictionaryProvider } from "./components/Dictionary.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import PrototypeNotice from "./components/PrototypeNotice.jsx";
 import Door from "./pages/Door.jsx";
 import Grade from "./pages/Grade.jsx";
 import Landing from "./pages/Landing.jsx";
@@ -18,6 +20,8 @@ import "./styles.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HashRouter>
+      <DictionaryProvider>
+      <PrototypeNotice />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Door />} />
@@ -28,6 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/research" element={<Research />} />
         <Route path="/research/m/:code" element={<Move />} />
       </Routes>
+      </DictionaryProvider>
     </HashRouter>
   </React.StrictMode>
 );

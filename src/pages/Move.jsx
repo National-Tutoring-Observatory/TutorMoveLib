@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
+import { MoveTerms } from "../components/Dictionary.jsx";
 import NavRow from "../components/NavRow.jsx";
 import Shell, { RESEARCH_TINT } from "../components/Shell.jsx";
 import {
@@ -7,7 +8,6 @@ import {
   categoryColor,
   findMove,
   grades,
-  moveName,
   rungColor,
   spectrum,
 } from "../data/corpus.js";
@@ -110,7 +110,7 @@ export default function Move() {
                 <span>message {ex.n}</span>
                 {ex.alsoTagged.length > 0 && (
                   <span className="alsotag">
-                    also {ex.alsoTagged.map(moveName).join(", ")}
+                    also <MoveTerms codes={ex.alsoTagged} sep=", " />
                   </span>
                 )}
                 <span className="open">Open in context →</span>
@@ -140,7 +140,7 @@ export default function Move() {
                     {ex.against.length > 0 ? (
                       <>
                         One annotator read this as <b>{move.name}</b>, the other
-                        as <b>{ex.against.map(moveName).join(", ")}</b>.
+                        as <b><MoveTerms codes={ex.against} sep=", " /></b>.
                       </>
                     ) : (
                       <>

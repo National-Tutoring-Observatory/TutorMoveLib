@@ -1,0 +1,516 @@
+[
+ {
+  "code": "ASKING_TO_CLARIFY_CONTEXT",
+  "name": "asking to clarify context",
+  "cat": "tutoring",
+  "def": "Tutor asks the student about the problem to understand the context or asks for clarification about what the student said about the problem",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Do you have to just state whether it's positive or negative or exact slopes?"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PROBING_PRIOR_KNOWLEDGE",
+  "name": "probing prior knowledge",
+  "cat": "tutoring",
+  "def": "Tutor probes about student's prior knowledge. It should be a yes or no question.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Did you learn about this?"
+   },
+   {
+    "t": "cite",
+    "q": "Are you familiar with area and perimeter in any way?"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PROBING_UNDERSTAND",
+  "name": "probing understanding",
+  "cat": "tutoring",
+  "def": "Tutor questions whether student understood the statement made or step(s) done. It should be a yes or no question.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Do you get that?"
+   },
+   {
+    "t": "cite",
+    "q": "Are you with me?"
+   },
+   {
+    "t": "cite",
+    "q": "Does that make sense?"
+   },
+   {
+    "t": "cite",
+    "q": "Do you know why I did that?"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "CORRECTING_OWN_ERROR",
+  "name": "correcting own error",
+  "cat": "tutoring",
+  "def": "Tutor explicitly recognizes a mathematical error they made.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "My bad actually you're right, we don't need that distance, we just need the height"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "STRATEGIZING",
+  "name": "strategizing",
+  "cat": "tutoring",
+  "def": "Tutor situates the session, including discussing learning goals and the plan to complete the problem.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "I think the approach here might be to write multiple equations of what we know, and to then create a system of equations to solve these together"
+   },
+   {
+    "t": "cite",
+    "q": "so what we found out is that our equation, as we move to the right, grows without limit"
+   },
+   {
+    "t": "cite",
+    "q": "Okay, so we're going to estimate the position of tens and hundreds on a number line."
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PROMPTING_RELATED_KNOWLEDGE",
+  "name": "prompting related knowledge",
+  "cat": "learning",
+  "def": "Tutor prompts the student to make connections to related knowledge without giving detailed explanations of the related knowledge.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "okay first explain what that regression line is i need to make sure you know it"
+   },
+   {
+    "t": "cite",
+    "q": "So, what can you tell me about the place value chart? What happens in it usually?"
+   }
+  ],
+  "rung": 1
+ },
+ {
+  "code": "PROMPTING_RELATED_REPRESENTATION",
+  "name": "prompting related representation",
+  "cat": "learning",
+  "def": "Tutor asks the student to represent the idea in a different form.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "can you write that as an question"
+   },
+   {
+    "t": "cite",
+    "q": "draw that on the graph"
+   },
+   {
+    "t": "cite",
+    "q": "shall we try it using the place value chart as well?"
+   }
+  ],
+  "rung": 2
+ },
+ {
+  "code": "PROMPTING_EXPLANATION",
+  "name": "prompting explanation",
+  "cat": "learning",
+  "def": "Tutor prompts the student to explain actions or knowledge.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Why did you do that?"
+   },
+   {
+    "t": "cite",
+    "q": "What is this?"
+   },
+   {
+    "t": "cite",
+    "q": "What did you do?"
+   },
+   {
+    "t": "cite",
+    "q": "How did you get?"
+   },
+   {
+    "t": "cite",
+    "q": "So what do you know about what is shown so far?"
+   },
+   {
+    "t": "cite",
+    "q": "Please show your work"
+   },
+   {
+    "t": "cite",
+    "q": "Yeah. So, if we look at hundreds, tens and ones, can you tell me the relationship between those three?"
+   }
+  ],
+  "rung": 3
+ },
+ {
+  "code": "PROMPTING_ACTION",
+  "name": "prompting action",
+  "cat": "learning",
+  "def": "Tutor prompts the student to produce any problem-solving step without adding new information.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "what'd you get?"
+   },
+   {
+    "t": "cite",
+    "q": "Can you do the first step"
+   },
+   {
+    "t": "cite",
+    "q": "Do you remember?"
+   },
+   {
+    "t": "cite",
+    "q": "Could you try to solve it first? Please tell me when you get stuck. What are you going to do next?"
+   },
+   {
+    "t": "note",
+    "q": "Asking the student to read the question."
+   }
+  ],
+  "rung": 4
+ },
+ {
+  "code": "PROMPTING_CORRECTION",
+  "name": "prompting correction",
+  "cat": "learning",
+  "def": "Tutor prompts the student to correct their own mistakes without giving away the right way.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "can you recheck the first and third, middle one's right"
+   }
+  ],
+  "rung": 5
+ },
+ {
+  "code": "FEEDBACK_CORRECT",
+  "name": "feedback correct",
+  "cat": "learning",
+  "def": "Tutor indicates that the student has provided a correct response.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "That's right"
+   },
+   {
+    "t": "cite",
+    "q": "Second blue one looks good!"
+   }
+  ],
+  "rung": 6
+ },
+ {
+  "code": "FEEDBACK_INCORRECT",
+  "name": "feedback incorrect",
+  "cat": "learning",
+  "def": "Tutor indicates that the student has provided an incorrect response.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Hmm close"
+   },
+   {
+    "t": "cite",
+    "q": "not exactly"
+   }
+  ],
+  "rung": 7
+ },
+ {
+  "code": "FEEDBACK_NEUTRAL",
+  "name": "feedback neutral",
+  "cat": "learning",
+  "def": "Tutor comments without confirming accuracy or inaccuracy.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Don't worry about finding the actual number"
+   },
+   {
+    "t": "cite",
+    "q": "yes in a sense"
+   }
+  ],
+  "rung": 8
+ },
+ {
+  "code": "REVOICING",
+  "name": "revoicing",
+  "cat": "learning",
+  "def": "Tutor says what the student said in different ways.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "You stated earlier that we must add the like terms?"
+   }
+  ],
+  "rung": 9
+ },
+ {
+  "code": "RESTATING",
+  "name": "restating",
+  "cat": "learning",
+  "def": "Tutor says what the student said verbatim.",
+  "ex": [
+   {
+    "t": "dialog",
+    "lines": [
+     {
+      "who": "Student",
+      "say": "Well, I basically just got rid of the zero on the end."
+     },
+     {
+      "who": "Tutor",
+      "say": "Got rid of the zero. Okay. So, can you do the same from over here? Can you do the same in this question?"
+     }
+    ]
+   }
+  ],
+  "rung": 10
+ },
+ {
+  "code": "GIVING_HINT",
+  "name": "giving hint",
+  "cat": "learning",
+  "def": "Tutor provides a suggestion to guide the student toward a solution without revealing the answer.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "maybe use the line to help you fine the slop"
+   },
+   {
+    "t": "cite",
+    "q": "you can do that, but there might be a slightly easier way"
+   }
+  ],
+  "rung": 11
+ },
+ {
+  "code": "GIVING_EXAMPLE",
+  "name": "giving example",
+  "cat": "learning",
+  "def": "Tutor uses an example that is different from the student's problem.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Ok lets say instead of the diameter being 3 its 1"
+   }
+  ],
+  "rung": 12
+ },
+ {
+  "code": "EXPLAINING_CONCEPTUAL",
+  "name": "explaining conceptual",
+  "cat": "learning",
+  "def": "Tutor gives instruction on general concepts or facts.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "It's because between the two roots (one positive and one negative) - the slope has to change from positive to negative and to do that there as to be a turning point whcih is a local max or min"
+   }
+  ],
+  "rung": 13
+ },
+ {
+  "code": "EXPLAINING_PROCEDURAL",
+  "name": "explaining procedural",
+  "cat": "learning",
+  "def": "Tutor gives instructions about the context of the question and algorithmic process to solve the problem.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "substitute 1 in for r and 1 in for H"
+   },
+   {
+    "t": "cite",
+    "q": "we are supposed to make an equation that states how many people are unable to read after t years"
+   }
+  ],
+  "rung": 14
+ },
+ {
+  "code": "GIVING_ANSWER",
+  "name": "giving answer",
+  "cat": "learning",
+  "def": "Tutor provides a solution without including the solution steps.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "In this case it would be 10.5/14"
+   }
+  ],
+  "rung": 15
+ },
+ {
+  "code": "BUILDING_RAPPORT",
+  "name": "building rapport",
+  "cat": "social",
+  "def": "Tutor engages in relationship building conversation, including when the tutor humanizes themselves.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "excuse my poor drawings"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "ENCOURAGING",
+  "name": "encouraging",
+  "cat": "social",
+  "def": "Tutor makes encouraging statements to students.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Good question"
+   },
+   {
+    "t": "cite",
+    "q": "Take ur time!"
+   },
+   {
+    "t": "cite",
+    "q": "Um, just seem to be missing something. And I think you know what it is."
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "ASKING_FEELING",
+  "name": "asking feeling",
+  "cat": "social",
+  "def": "Tutor asks for the student's feelings.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Hi, how's it going?"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "VALIDATING_FEELING",
+  "name": "validating feeling",
+  "cat": "social",
+  "def": "Tutor validates the student's feelings.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Fair point"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PRAISING_PROCESS",
+  "name": "praising process",
+  "cat": "social",
+  "def": "Tutor praises the student's process of solving the problem.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Great job!"
+   },
+   {
+    "t": "cite",
+    "q": "Keep up the great work."
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PRAISING_OUTCOME",
+  "name": "praising outcome",
+  "cat": "social",
+  "def": "Tutor praises the student's outcome of student work.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "Great job on your success!"
+   },
+   {
+    "t": "cite",
+    "q": "Great work getting an A!"
+   },
+   {
+    "t": "cite",
+    "q": "which you've been acing on the past two questions"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "PRAISING_TRAIT",
+  "name": "praising trait",
+  "cat": "social",
+  "def": "Tutor praises the student's characteristic.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "You are so smart!"
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "TECHNICAL_ISSUES",
+  "name": "technical issues",
+  "cat": "logistical",
+  "def": "Tutor makes a comment related to technical problems of the tutoring context.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "I don't see anything on the whiteboard. Did you use a text box?"
+   },
+   {
+    "t": "cite",
+    "q": "Nice, I can see it"
+   },
+   {
+    "t": "cite",
+    "q": "Sure send a chat when u finsh."
+   }
+  ],
+  "rung": null
+ },
+ {
+  "code": "MANAGING",
+  "name": "managing",
+  "cat": "logistical",
+  "def": "Tutor announces rules, manages time, schedules next sessions, etc.",
+  "ex": [
+   {
+    "t": "cite",
+    "q": "we prefer students to solve on board so that we can check their solutions for any errors"
+   },
+   {
+    "t": "cite",
+    "q": "okay but i will not be allowed to totally answer them for you just assist you okay?"
+   }
+  ],
+  "rung": null
+ }
+]

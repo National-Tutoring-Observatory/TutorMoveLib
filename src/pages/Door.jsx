@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { stats } from "../data/corpus.js";
 import { moveGroups } from "../data/corpus.js";
 import { subjects } from "../data/subjects.js";
+import { AskBox, DictionaryButton, useDictionary } from "../components/Dictionary.jsx";
 import useFanOut from "../hooks/useFanOut.js";
 
 const icon = {
@@ -29,6 +30,14 @@ const Taxonomy = () => (
     <circle cx="6" cy="18.5" r="2.2" />
     <circle cx="18" cy="12" r="2.2" />
     <path d="M8.2 5.5H13a2 2 0 0 1 2 2v2.3M8.2 18.5H13a2 2 0 0 0 2-2v-2.3" />
+  </svg>
+);
+
+const Lexicon = () => (
+  <svg {...icon}>
+    <path d="M6 3.5h11.5A1.5 1.5 0 0 1 19 5v15.5H7.5A1.5 1.5 0 0 1 6 19V3.5Z" />
+    <path d="M6 17.5A1.5 1.5 0 0 1 7.5 16H19" />
+    <path d="M9.5 7.5h5M9.5 10.5h3.5" />
   </svg>
 );
 
@@ -60,10 +69,26 @@ const doors = [
       } groups`,
     action: "Open the taxonomy",
   },
+  {
+    id: "dictionary",
+    kicker: "For everyone",
+    name: "Look up a move",
+    blurb:
+      "A dictionary you can flip through. Every move on its own page, defined in a sentence and illustrated with the words tutors actually said.",
+    // Not a route: it opens the dictionary panel over whatever page you are on.
+    dictionary: true,
+    icon: Lexicon,
+    tint: { ink: "#1e3b32", wash: "#eef4f1", line: "#c3d6cd" },
+    // The dictionary uses the taxonomy paper's full vocabulary, which is
+    // wider than the 25 codes that occur in the corpus.
+    stat: () => "29 entries · 4 parts",
+    action: "Open the dictionary",
+  },
 ];
 
 export default function Door() {
   const navigate = useNavigate();
+  const dict = useDictionary();
   const { ref: gridRef, ready } = useFanOut(doors.length);
 
   return (
@@ -71,12 +96,15 @@ export default function Door() {
       <div className="topbar">
         <span className="org-mark" aria-hidden="true" />
         <span className="org">National Tutoring Observatory</span>
+        <DictionaryButton className="topbar-dict" />
       </div>
 
       <header className="landing-top">
         <h1>Tutoring Moves Library</h1>
-        <p className="door-sub">Two ways in. Both open on the same corpus.</p>
+        <p className="door-sub">Three ways in. All open on the same taxonomy.</p>
       </header>
+
+      <AskBox />
 
       <div className="landing-body">
         <div className={`grid grid-doors${ready ? " ready" : ""}`} ref={gridRef}>
@@ -91,7 +119,7 @@ export default function Door() {
                   "--wash": d.tint.wash,
                   "--line-tint": d.tint.line,
                 }}
-                onClick={() => navigate(d.path)}
+                onClick={() => (d.dictionary ? dict.openAt(null) : navigate(d.path))}
               >
                 <div className="icon">
                   <Icon />

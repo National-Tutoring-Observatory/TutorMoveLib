@@ -22,6 +22,7 @@ Other scripts:
 | `npm run build` | Production build into `dist/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run data` | Regenerate `src/data/corpus.json` from the source workbook |
+| `npm run dictionary` | Regenerate `src/data/dictionary.json` from the taxonomy definitions |
 
 ## The corpus
 
@@ -54,6 +55,30 @@ Two things about the data worth knowing:
   disagreed and never settled it, most often `STRATEGIZING` vs
   `EXPLAINING_PROCEDURAL` (16 times). The interface shows both readings rather
   than picking one and looking certain.
+
+## The dictionary
+
+The 29 moves of the taxonomy are available anywhere in the site as a sidebar,
+opened from the **Dictionary** button in the top bar or the third door on the
+landing page. Every move is listed under its part with its definition and
+example quotations. The search box at the top filters by name, and if you
+describe a situation instead ("my student is stuck and won't try the next
+step") it suggests the moves that fit, with a one-line tip for each.
+
+Move names elsewhere in the site (the tags on a session, the taxonomy list)
+are underlined; hovering or focusing one shows the definition in a small card
+at the top left, and clicking it opens the dictionary at that entry.
+
+The data is generated. `pipeline/dictionary_entries.json` holds the moves as
+parsed from the taxonomy's definitions sheet, including the near-miss /
+near-hit / non-example columns that are kept but not shown. Edit it, then:
+
+```bash
+npm run dictionary        # writes src/data/dictionary.json
+```
+
+The situation matcher lives in `src/data/askMoves.js`: a hand-written list of
+cue phrases and a tip per move, plus word overlap with the definitions.
 
 ## Deploying
 

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import { DictionaryButton } from "./Dictionary.jsx";
+
 // Math's colour from the landing page, carried through the subject section so
 // the subject keeps its identity once you are inside it.
 export const MATH_TINT = {
@@ -23,6 +25,7 @@ export default function Shell({ crumbs = [], tint = MATH_TINT, children }) {
           <span className="org-mark" aria-hidden="true" />
           <span className="org">National Tutoring Observatory</span>
         </Link>
+        <DictionaryButton className="topbar-dict" />
         <nav className="crumbs">
           <Link to="/">Home</Link>
           {crumbs.map((c) => (

@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "data": "python3 pipeline/build.py"
+    "data": "python3 pipeline/build.py",
+    "dictionary": "python3 pipeline/dictionary.py"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -978,12 +978,12 @@ button.said-btn:hover { border-color: var(--ink-tint); }
 /* ------------------------------------------------------------- the doors */
 .door-sub { margin: 8px 0 0; font-size: 13.5px; color: var(--ink-3); }
 .grid-doors {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 760px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1080px;
   gap: 18px;
 }
-@media (max-width: 720px) {
-  .grid-doors { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 900px) {
+  .grid-doors { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
 }
 .door {
   text-align: left;
@@ -1051,3 +1051,414 @@ button.said-btn:hover { border-color: var(--ink-tint); }
 /* Breadcrumbs navigate, so they should look like they do. */
 .crumbs a { border-bottom: 1px solid transparent; }
 .crumbs a:hover { border-bottom-color: currentColor; }
+
+/* ==========================================================================
+   The dictionary: a hover card for any move name, and a small centred panel
+   with every move, opened from the top bar or the landing page.
+   ========================================================================== */
+
+.topbar-dict { margin-left: 14px; }
+.dict-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  font-size: 12.5px;
+  color: var(--ink-2);
+  transition: border-color 0.14s ease, color 0.14s ease;
+}
+.dict-btn:hover { border-color: var(--ink-3); color: var(--ink); }
+
+/* A move name you can hover. */
+.move-term {
+  text-decoration: underline dotted;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
+  cursor: help;
+  border-radius: 3px;
+}
+.move-term[role="button"] { cursor: pointer; }
+.move-term:hover { text-decoration-style: solid; }
+
+/* The definition card, top left of the window. */
+.dict-peek {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 60;
+  width: min(320px, calc(100vw - 28px));
+  padding: 12px 14px 10px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cat, var(--ink-3));
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(22, 24, 26, 0.14);
+  pointer-events: none;
+  animation: peek 0.14s ease-out both;
+}
+@keyframes peek { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.dict-peek p { margin: 0; }
+.dict-peek-part { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cat, var(--ink-3)); }
+.dict-peek-name { font-size: 15px; font-weight: 600; margin-top: 2px; }
+.dict-peek-def { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); margin-top: 4px; }
+.dict-peek-hint { font-size: 11.5px; color: var(--ink-3); margin-top: 8px; }
+
+/* The panel. */
+.dict-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(22, 24, 26, 0.28);
+  animation: fade 0.16s ease-out both;
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.dict-drawer {
+  position: fixed;
+  z-index: 71;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(880px, calc(100vw - 32px));
+  height: min(640px, calc(100vh - 48px));
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(22, 24, 26, 0.22);
+  animation: rise 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes rise { from { opacity: 0; transform: translate(-50%, -48%); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.dict-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.dict-head h2 { font-size: 15px; }
+.dict-head p { margin: 2px 0 0; font-size: 12px; color: var(--ink-3); }
+.dict-close {
+  border: 0;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-3);
+  padding: 0 4px;
+  margin: -4px -6px 0 0;
+}
+.dict-close:hover { color: var(--ink); }
+.ask-egs button {
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.ask-egs button:hover { border-color: var(--ink-3); color: var(--ink); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.dict-suggest { padding: 8px 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+.dict-suggest h3, .ask-out h3 { font-size: 12px; font-weight: 600; color: var(--ink-2); margin: 0 0 6px; }
+.dict-sug, .ask-hit {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cat, var(--ink-3));
+  border-radius: 6px;
+  background: var(--white);
+  margin-bottom: 6px;
+}
+.dict-sug:hover, .ask-hit:hover { background: color-mix(in srgb, var(--cat) 6%, var(--white)); }
+.dict-sug span, .ask-hit span { display: block; }
+.dict-sug-name, .ask-hit-name { font-size: 13.5px; font-weight: 600; }
+.dict-sug-part, .ask-hit-part { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cat, var(--ink-3)); margin-top: 1px; }
+.dict-sug-tip, .ask-hit-tip { font-size: 12.5px; line-height: 1.45; color: var(--ink-2); margin-top: 4px; }
+.dict-sug-why, .ask-hit-why { font-size: 11.5px; color: var(--ink-3); margin-top: 3px; }
+.dict-none, .ask-none { font-size: 13px; color: var(--ink-2); padding: 10px 0; }
+
+/* The open book: spine, left page (the part's moves), right page (the move). */
+.dict-book {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1.3fr);
+}
+.dict-spine {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 10px;
+  border-right: 1px solid var(--line);
+  background: #fafbfb;
+  border-radius: 0 0 0 12px;
+}
+.dict-partbtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-left: 3px solid var(--cat);
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 1.3;
+}
+.dict-partbtn:hover { background: var(--white); color: var(--ink); }
+.dict-partbtn.on { background: var(--white); border-color: var(--line); border-left-color: var(--cat); color: var(--ink); font-weight: 600; }
+.dict-partbtn-n { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); font-weight: 400; }
+.dict-page { min-height: 0; overflow-y: auto; padding: 14px 18px 16px; scrollbar-width: thin; }
+.dict-list { border-right: 1px solid var(--line); }
+.dict-list h3 { font-size: 14px; font-weight: 600; color: var(--cat); }
+.dict-part-blurb { margin: 2px 0 8px; font-size: 12px; color: var(--ink-3); line-height: 1.45; }
+.dict-list ul { list-style: none; margin: 0; padding: 0; }
+.dict-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.dict-row:hover { background: color-mix(in srgb, var(--cat) 8%, var(--white)); }
+.dict-row.on { background: color-mix(in srgb, var(--cat) 12%, var(--white)); font-weight: 600; }
+.dict-row.on::before { content: "▸ "; color: var(--cat); }
+.dict-detail { background: #fcfcfb; border-radius: 0 0 12px 0; }
+.dict-empty { color: var(--ink-2); font-size: 13.5px; line-height: 1.55; padding-top: 30%; text-align: center; }
+.dict-empty-title { font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+.dict-def-page { animation: fade 0.16s ease-out both; }
+.dict-def-part { margin: 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cat); }
+.dict-def-name { font-size: 20px; font-weight: 600; margin-top: 2px; letter-spacing: -0.01em; }
+.dict-def-code { margin: 2px 0 10px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.dict-def { margin: 0; font-size: 14.5px; line-height: 1.55; }
+.dict-gauge { margin-top: 8px; }
+.dict-ticks { display: flex; gap: 2px; height: 8px; align-items: flex-end; }
+.dict-ticks i { flex: 1; height: 4px; background: var(--line); border-radius: 1px; }
+.dict-ticks i.on { height: 8px; background: var(--cat); }
+.dict-gauge-cap { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink-3); margin-top: 3px; }
+.dict-ex { margin-top: 8px; }
+.dict-ex-lbl { margin: 0 0 2px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.dict-cite, .dict-note { margin: 3px 0; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+.dict-note { font-style: italic; }
+.dict-dialog { margin: 4px 0; padding: 6px 8px; background: #f6f7f8; border-radius: 4px; font-size: 12.5px; line-height: 1.45; }
+.dict-sp { display: inline-block; width: 4.4em; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cat); }
+.dict-tip { margin: 8px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+.dict-tip b { font-weight: 600; color: var(--ink); margin-right: 4px; }
+.dict-link { margin-top: 8px; padding: 0; border: 0; background: none; font-size: 12.5px; color: var(--cat); text-decoration: underline; text-underline-offset: 3px; }
+
+/* The ask box on the landing page. */
+.ask {
+  width: min(640px, calc(100% - 56px));
+  margin: 22px auto 0;
+  animation: settle 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ask-row { display: flex; gap: 8px; }
+.ask-row input {
+  flex: 1;
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+}
+.ask-row input:focus { outline: none; border-color: var(--ink-3); }
+.ask-row button {
+  padding: 9px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.ask-lbl { margin: 0 0 6px; font-size: 13px; color: var(--ink-2); }
+.ask-egs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.ask-out { margin-top: 12px; display: grid; gap: 6px; }
+.ask-out h3 { margin-bottom: 0; }
+.ask-hit { margin-bottom: 0; }
+@media (max-width: 760px) {
+  .dict-drawer { width: calc(100vw - 24px); height: calc(100vh - 32px); }
+  .dict-book { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr) minmax(0, 1.3fr); }
+  .dict-spine { flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .dict-partbtn { flex: 1 1 40%; }
+  .dict-list { border-right: 0; border-bottom: 1px solid var(--line); }
+  .ask { width: calc(100% - 32px); }
+  .ask-row { flex-direction: column; }
+  .topbar-dict { margin-left: auto; }
+}
+
+/* ---------------------------------------------------------------- orchard */
+/* The grade picker is an illustrated scene inside the site's plain frame.
+   The tree is the one loud thing on the page; everything around it stays
+   quiet so the apples read as the controls they are. */
+.orchard { margin-top: 4px; }
+.orchard-scene {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #cfe0d2;
+  box-shadow: 0 1px 0 #fff inset, 0 18px 40px -28px rgba(31, 64, 34, 0.45);
+  background: #f6fbfd;
+}
+.apple-tree {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 72vh;
+  margin: 0 auto;
+}
+
+.apple.ripe { cursor: pointer; }
+.apple.unripe { opacity: 0.92; }
+.apple-drop { animation: apple-drop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--drop-delay, 0ms); }
+.apple-body {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* origin 0 0 in the apple's own user space = the centre of the apple */
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+.apple.ripe.hovered .apple-body { transform: scale(1.14) translateY(-2px); }
+.apple.ripe:focus-visible { outline: none; }
+.apple.ripe:focus-visible .apple-body path:nth-of-type(4) { stroke: #16181a; stroke-width: 3; }
+@keyframes apple-drop {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.orchard-card {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 240px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid #d5e2d8;
+  border-radius: 12px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 10px 24px -18px rgba(31, 64, 34, 0.6);
+  transition: border-color 180ms ease;
+}
+.orchard-card.live { border-color: #9ec98f; }
+.orchard-grade {
+  margin: 0 0 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.orchard-count { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; line-height: 1.15; }
+.orchard-strands { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.orchard-open {
+  margin-top: 14px;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: var(--apple, var(--red));
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+.orchard-open:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.orchard-legend {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.orchard-legend li { display: flex; align-items: center; gap: 8px; }
+.orchard-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50% 50% 46% 46%;
+  display: inline-block;
+  border: 1.5px solid rgba(20, 30, 10, 0.35);
+}
+.orchard-swatch.ripe { background: #c2521a; }
+.orchard-swatch.unripe { background: #dbe7a6; border-color: #93a862; width: 11px; height: 11px; }
+
+@media (max-width: 720px) {
+  .orchard-card {
+    position: static;
+    width: auto;
+    margin: 0;
+    border-radius: 0;
+    border-width: 1px 0 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background: #fff;
+  }
+  .apple-tree { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .apple-drop { animation: none; }
+  .apple-body, .orchard-open { transition: none; }
+}
+
+/* ------------------------------------------------- first-visit notice */
+/* Sits above the dictionary (70/71) so it is the first thing anyone reads. */
+.notice-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(22, 24, 26, 0.36);
+  animation: fade 0.16s ease-out both;
+}
+.notice-card {
+  position: fixed;
+  z-index: 81;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(460px, calc(100vw - 32px));
+  padding: 22px 24px 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--red);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(22, 24, 26, 0.22);
+  animation: rise 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.notice-kicker {
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.notice-card h2 { font-size: 18px; }
+.notice-body { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.notice-body p { margin: 0 0 8px; }
+.notice-foot { display: flex; justify-content: flex-end; margin-top: 14px; }
+.notice-ok {
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  background: var(--red);
+  color: var(--white);
+  font-weight: 500;
+  font-size: 14px;
+}
+.notice-ok:hover { background: var(--red-deep); }

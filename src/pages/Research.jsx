@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import NavRow from "../components/NavRow.jsx";
+import { MoveTerm } from "../components/Dictionary.jsx";
 import Shell, { RESEARCH_TINT } from "../components/Shell.jsx";
 import { categoryColor, moveGroups, stats } from "../data/corpus.js";
 
@@ -55,7 +56,7 @@ export default function Research() {
                   style={{ "--cat": categoryColor[group.category] }}
                   onClick={() => navigate(`/research/m/${m.code}`)}
                 >
-                  <span className="movename">{m.name}</span>
+                  <MoveTerm className="movename" code={m.code} clickable={false}>{m.name}</MoveTerm>
                   <span className="movebar">
                     <span
                       className="movebar-fill"
