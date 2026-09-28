@@ -13,6 +13,11 @@ TAXONOMY_RENAMES = {
     "PROMPTING_RELATED_CONCEPTS": "PROMPTING_RELATED_KNOWLEDGE",
 }
 
+# The coded transcript uses the paper's spellings; the corpus keeps the codes
+# the site was built on. Anything not listed is spelled the same in both.
+SOURCE_CODES = {new: old for old, new in TAXONOMY_RENAMES.items()}
+SOURCE_CODES["PRAISING_TRAIT"] = "PRAISING_TRAITS"
+
 # category: one of tutoring | learning | social | logistical
 # rung: position on the spectrum of cognitive responsibility, 1 = student holds
 # the most thinking, 6 = tutor has taken it over. Only learning-support moves
@@ -27,10 +32,20 @@ MOVES = {
         "name": "Prompting related concepts", "category": "learning", "rung": 1,
         "def": "Asks the student to connect this to something they already know.",
     },
+    "REVOICING": {
+        "name": "Revoicing", "category": "learning", "rung": 1,
+        "def": "Restates what the student said in different words, keeping "
+               "their idea at the centre.",
+    },
     "PROMPTING_NEXT_STEP": {
         "name": "Prompting next step", "category": "learning", "rung": 2,
         "def": "Asks the student to take the next step themselves, instead of "
                "being told what it is.",
+    },
+    "PROMPTING_CORRECTION": {
+        "name": "Prompting correction", "category": "learning", "rung": 2,
+        "def": "Points the student back at their own mistake to fix, without "
+               "showing the right way.",
     },
     "GIVING_HINT": {
         "name": "Giving a hint", "category": "learning", "rung": 3,

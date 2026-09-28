@@ -501,6 +501,21 @@ a { color: var(--red); }
   margin-bottom: 6px;
 }
 .question-text { margin: 0 0 9px; font-size: 14px; line-height: 1.5; }
+.question-options {
+  list-style: none;
+  margin: 0 0 9px;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.question-options b {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-tint);
+  margin-right: 6px;
+}
 .question-answer {
   margin: 0;
   font-size: 12.5px;

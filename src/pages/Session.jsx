@@ -190,6 +190,15 @@ export default function Session() {
             <div className="question">
               <div className="question-label">Question the student was stuck on</div>
               <p className="question-text">{session.question}</p>
+              {session.options?.length > 0 && (
+                <ol className="question-options">
+                  {session.options.map((o) => (
+                    <li key={o.k}>
+                      <b>{o.k}</b> {o.t}
+                    </li>
+                  ))}
+                </ol>
+              )}
               <p className="question-answer">
                 <b>Answer</b> {session.answer}
               </p>

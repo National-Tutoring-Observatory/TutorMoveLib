@@ -35,7 +35,7 @@ npm run data
 ```
 
 The pipeline lives in `pipeline/` and reads the consensus workbook from
-`../TutoringMoveTaxnomy/ExampleTranscript/`. It:
+`source/codedTranscript_Eedi.xlsx`. It:
 
 - reads the OOXML parts directly (openpyxl cannot open that workbook — it has a
   dangling `xl/drawings/drawing1.xml` relationship);

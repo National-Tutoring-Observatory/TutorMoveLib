@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Turn the NTO/Eedi consensus workbook into the corpus the site reads.
+"""Turn the NTO/Eedi coded transcript into the corpus the site reads.
 
     npm run data        (or: python3 pipeline/build.py)
 
-De-identifies every transcript, attaches a plain-language explanation to each
-classified tutor turn, and writes src/data/corpus.json for the React app to
-import. Re-run it whenever the workbook or the explanation copy changes.
+Reads source/codedTranscript_Eedi.xlsx (one sheet, one row per message), takes
+each session's question text and answer options from Eedi's published question
+metadata and its strand from Eedi's subject tags, de-identifies every
+transcript, attaches a plain-language explanation to each classified tutor
+turn, and writes src/data/corpus.json for the React app to import. Re-run it
+whenever the source files or the explanation copy change.
 
-openpyxl cannot open this workbook (dangling xl/drawings/drawing1.xml
-relationship), so the OOXML parts are read directly.
+The workbook's OOXML parts are read directly, so nothing beyond the standard
+library is needed.
 """
+import csv
 import json
 import re
 import sys
@@ -18,25 +22,27 @@ from collections import Counter
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from answers import ANSWERS
 from explanations import HERO
 from questions import GRADE_LABELS, QUESTIONS
-from moves import CATEGORIES, MOVES, SPECTRUM_RUNGS, TAXONOMY_RENAMES
+from moves import (CATEGORIES, MOVES, SOURCE_CODES, SPECTRUM_RUNGS,
+                   TAXONOMY_RENAMES)
+from subjects import PRIMARY_SUBTOPIC, SUBTOPICS
 
 NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 RNS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
 
-# When annotators never reached consensus, take the first annotator's label
-# rather than surfacing the disagreement. Set this False to go back to showing
-# both readings side by side — the alternates are still read from the workbook
-# either way, so nothing is lost by flipping it.
-COLLAPSE_CONTESTED = True
-
 HERE = Path(__file__).parent
 ROOT = HERE.parent
-SRC = (ROOT.parent / "TutoringMoveTaxnomy" / "ExampleTranscript" /
-       "Copy of Copy of Consensus_Transcripts_MultiTab_Eedi_R1 (1).xlsx")
+SOURCE = ROOT / "source"
+SRC = SOURCE / "codedTranscript_Eedi.xlsx"
+# From Eedi's Question-Anchored-Tutoring-Dialogues-2k release (CC BY-NC 4.0).
+QUESTION_META = SOURCE / "dq-question-metadata.csv"
+DIALOGUE_SUBJECTS = SOURCE / "dialogue-subjects.csv"
 OUT = ROOT / "src" / "data" / "corpus.json"
 
+# Topic titles for the sessions analysed by hand. Every other session is titled
+# with its Eedi subtopic.
 TOPICS = {
     "9956": "Arrays and inverse operations",
     "6213": "Number lines and intervals",
@@ -79,6 +85,10 @@ PSEUDONYMS = {
 # One sentence per move, written for a teacher. The specifics come from the
 # clues; this carries the shape of the move.
 WHY = {
+    "REVOICING": "The tutor says back what the student said in other words, "
+        "so the idea stays the student's.",
+    "PROMPTING_CORRECTION": "The tutor sends the student back to find and fix "
+        "their own mistake, without showing the right way.",
     "PROMPTING_NEXT_STEP": "The tutor puts a question to the student instead of "
         "supplying the step, so the work of answering stays with the student.",
     "PROMPTING_SELF_EXPLANATION": "The tutor asks the student to put their own "
@@ -171,7 +181,8 @@ def deidentify(text):
 def read_workbook(path):
     z = zipfile.ZipFile(path)
     shared = ["".join(t.text or "" for t in si.iter(NS + "t"))
-              for si in ET.fromstring(z.read("xl/sharedStrings.xml"))]
+              for si in ET.fromstring(z.read("xl/sharedStrings.xml"))] \
+        if "xl/sharedStrings.xml" in z.namelist() else []
     rels = {r.get("Id"): r.get("Target")
             for r in ET.fromstring(z.read("xl/_rels/workbook.xml.rels"))}
     book = ET.fromstring(z.read("xl/workbook.xml"))
@@ -196,7 +207,116 @@ def read_workbook(path):
             out.append(cells)
         return out
 
-    return {name: rows(target)[1:] for name, target in sheets}
+    return {name: rows(target) for name, target in sheets}
+
+
+def read_transcript(path):
+    """Every message row, keyed by the header names, grouped by session."""
+    sheet = next(iter(read_workbook(path).values()))
+    header = sheet[0]
+    by_session = {}
+    for cells in sheet[1:]:
+        row = {name: cells.get(col) for col, name in header.items()}
+        if row["provider"] != "Eedi":
+            continue
+        by_session.setdefault(str(int(float(row["session_id"]))), []).append(row)
+    for rows in by_session.values():
+        rows.sort(key=lambda r: int(float(r["sequence_id"])))
+    return by_session
+
+
+def plain_math(text):
+    """Eedi's LaTeX, flattened to something readable as plain text."""
+    t = text.replace("\\(", "").replace("\\)", "")
+    t = t.replace("\\[", "").replace("\\]", "")
+    t = re.sub(r"\\(?:begin|end)\{(?:array|tabular)\}(\{[^}]*\})?|\\hline", " ", t)
+    t = re.sub(r"\\(?:mathrm|mathbf|boldsymbol|text)\{([^{}]*)\}", r"\1", t)
+    t = re.sub(r"\^\{?([0-9])\}?", lambda m: "⁰¹²³⁴⁵⁶⁷⁸⁹"[int(m.group(1))], t)
+    t = re.sub(r"\^\{([^{}]*)\}", r"^\1", t)
+    t = re.sub(r"_\{([^{}]*)\}", r"\1", t)
+    t = re.sub(r"\\sqrt\[3\]\{([^{}]*)\}", r"∛\1", t)
+    t = re.sub(r"\\sqrt\{([^{}]*)\}", r"√\1", t)
+    t = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"(\1)/\2", t)
+    t = re.sub(r"\(([^()\s+\-]*)\)/", r"\1/", t)   # (3)/4 -> 3/4
+    for cmd, sym in (("times", "×"), ("div", "÷"), ("pi", "π"), ("degree", "°"),
+                     ("leq", "≤"), ("geq", "≥"), ("equiv", "≡"), ("ldots", "…"),
+                     ("bigstar", "★"), ("quad", " "), ("left", ""), ("right", "")):
+        t = re.sub(r"\\" + cmd + r"(?![a-zA-Z])", sym, t)
+    t = t.replace("\\\\", " ").replace("\\%", "%").replace("\\ ", " ")
+    t = re.sub(r"\\sqrt", "√", t)
+    t = t.replace("&", " ").replace("|", " ").replace("\\", " ")
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def read_questions(path):
+    """Question text and answer options per session, from Eedi's metadata.
+
+    Where the question or an option was an image, Eedi supplies a description
+    of it instead; that is kept, marked as an image.
+    """
+    parts = {}
+    with open(path, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            parts.setdefault(r["InterventionId"], []).append(r)
+    out = {}
+    for sid, rows in parts.items():
+        rows.sort(key=lambda r: int(r["Sequence"]))
+        pieces = {}
+        for r in rows:
+            label = r["Label"]
+            text = plain_math(r["Text"])
+            if label.endswith("Image"):
+                text = f"[Image: {text}]"
+            key = label.rsplit(" ", 1)[0]   # "Question", "Answer A", ...
+            pieces.setdefault(key, []).append(text)
+        options = []
+        for k in ("Answer A", "Answer B", "Answer C", "Answer D"):
+            if k in pieces:
+                letter, text = k[-1], " ".join(pieces[k])
+                # Some options repeat their own letter ("A 3.77").
+                if text.startswith(letter + " "):
+                    text = text[2:]
+                options.append({"k": letter, "t": text})
+        out[sid] = {"question": " ".join(pieces.get("Question", [])),
+                    "options": options}
+    return out
+
+
+def read_subjects(path):
+    """Each session's Eedi subtopics, as a list of names."""
+    out = {}
+    with open(path, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r["SubjectType"] == "Subtopic":
+                out.setdefault(r["InterventionId"], []).append(r["SubjectName"])
+    return out
+
+
+def option_answer(sid, options):
+    """The worked-out correct option, as "C) its text"."""
+    if sid not in ANSWERS:
+        return "Not recorded in the source data."
+    k = ANSWERS[sid]
+    return f"{k}) " + next(o["t"] for o in options if o["k"] == k)
+
+
+def placement(sid, subtopics):
+    """(topic, strand, grade) — hand analysis first, else the Eedi subtopic.
+
+    A session tagged with several subtopics is placed by PRIMARY_SUBTOPIC.
+    """
+    if sid in QUESTIONS:
+        q = QUESTIONS[sid]
+        return TOPICS[sid], q["strand"], q["grade"]
+    if len(subtopics) == 1:
+        name = subtopics[0]
+    else:
+        assert sid in PRIMARY_SUBTOPIC, \
+            f"session {sid} has tags {subtopics}: pick one in PRIMARY_SUBTOPIC"
+        name = PRIMARY_SUBTOPIC[sid]
+    assert name in SUBTOPICS, f"session {sid}: add to subjects.py: {name}"
+    strand, grade = SUBTOPICS[name]
+    return name, strand, grade
 
 
 def find_cues(text):
@@ -248,74 +368,64 @@ def main():
     if not SRC.exists():
         sys.exit(f"cannot find workbook: {SRC}")
 
-    raw = read_workbook(SRC)
+    raw = read_transcript(SRC)
+    questions = read_questions(QUESTION_META)
+    subjects = read_subjects(DIALOGUE_SUBJECTS)
     sessions, excluded, labels = [], [], Counter()
-    tutor = student = total = contested = classified = 0
+    tutor = student = total = classified = 0
 
     for sid, body in raw.items():
         msgs = []
         for r in body:
-            annotation = r.get("D")
-            is_tutor = r.get("B") == "1"
-            text = deidentify(r.get("C") or "")
-            codes = ([] if not annotation or annotation in ("None", "DISAGREEMENT")
-                     else [p.strip() for p in annotation.split(",") if p.strip()])
+            is_tutor = r["speaker"] == "tutor"
+            text = deidentify(r["content"] or "")
+            # Primary then secondary agreed label, in the site's spelling.
+            codes = []
+            for col in ("p_agreed_annotation", "s_agreed_annotation"):
+                for code in (r[col] or "").split(","):
+                    code = SOURCE_CODES.get(code.strip(), code.strip())
+                    if code and code not in codes:
+                        codes.append(code)
+                        labels[code] += 1
 
-            msg = {"n": int(r.get("A")), "t": 1 if is_tutor else 0,
+            msg = {"n": int(float(r["sequence_id"])), "t": 1 if is_tutor else 0,
                    "s": text, "m": codes}
 
-            alts = None
-            was_contested = annotation == "DISAGREEMENT"
-            if was_contested:
-                # The annotators' primary labels, in workbook column order.
-                alts = []
-                for col in ("E", "G"):
-                    v = r.get(col)
-                    if v and v != "None" and v not in alts:
-                        alts.append(v)
-                if COLLAPSE_CONTESTED:
-                    # Take the first label and treat the turn as settled. A turn
-                    # both annotators left blank stays unlabelled.
-                    codes = alts[:1]
-                    msg["m"] = codes
-                    alts = None
-                else:
-                    msg["c"] = 1
-                    msg["alt"] = alts
-                contested += 1
-
-            if codes or alts is not None:
-                # A hand-written explanation for a contested turn is written
-                # about the disagreement, so it does not apply once the turn
-                # has been collapsed to a single label.
-                hand = None if (was_contested and COLLAPSE_CONTESTED) else \
-                    HERO.get(sid, {}).get(msg["n"])
+            if codes:
+                hand = HERO.get(sid, {}).get(msg["n"])
+                # Written about a disagreement between annotators, which the
+                # agreed labels in this source no longer carry.
+                if hand and "readings" in hand:
+                    hand = None
                 if hand:
                     msg["x"] = hand
                     msg["hand"] = 1
                 else:
-                    msg["x"] = generate_explanation(text, codes, alts)
+                    msg["x"] = generate_explanation(text, codes, None)
                 classified += 1
 
             msgs.append(msg)
             total += 1
             tutor += is_tutor
             student += not is_tutor
-            labels[annotation] += 1
 
-        q = QUESTIONS[sid]
-        if not q["exemplar"]:
-            excluded.append((sid, TOPICS[sid], q["excluded_because"]))
+        topic, strand, grade = placement(sid, subjects.get(sid, []))
+        q = QUESTIONS.get(sid, {})
+        if q and not q["exemplar"]:
+            excluded.append((sid, topic, q["excluded_because"]))
             continue
+        eedi = questions[sid]
         sessions.append({
             "id": sid,
-            "topic": TOPICS[sid],
-            "question": q["question"],
-            "answer": q["answer"],
-            "strand": q["strand"],
-            "grade": q["grade"],
-            "ukYear": q["uk_year"],
-            "confidence": q["confidence"],
+            "topic": topic,
+            "question": eedi["question"],
+            "options": eedi["options"],
+            "answer": q.get("answer") or option_answer(sid, eedi["options"]),
+            "strand": strand,
+            "grade": grade,
+            "ukYear": q.get("uk_year", grade + 1),
+            # The question is Eedi's own text now, not a reconstruction.
+            "confidence": "high",
             "msgs": msgs,
         })
 
@@ -339,7 +449,7 @@ def main():
         "categories": CATEGORIES,
         "spectrum": {str(k): v for k, v in SPECTRUM_RUNGS.items()},
         "renames": TAXONOMY_RENAMES,
-        "grades": {str(g): GRADE_LABELS[g] for g in sorted(
+        "grades": {str(g): GRADE_LABELS.get(g, f"Grade {g}") for g in sorted(
             {s["grade"] for s in sessions})},
         "stats": stats,
     }
@@ -351,13 +461,13 @@ def main():
     leaked = sorted({n for s in sessions for m in s["msgs"] for n in PSEUDONYMS
                      if re.search(r"\b" + n + r"s?\b", m["s"], re.I)})
     assert not leaked, f"original names survived: {leaked}"
-    assert (total, tutor, student, contested) == (668, 402, 266, 82), \
-        f"corpus changed: {total}/{tutor}/{student}/{contested}"
+    assert (len(raw), total, tutor, student) == (76, 2665, 1597, 1068), \
+        f"corpus changed: {len(raw)}/{total}/{tutor}/{student}"
     unknown = {c for s in sessions for m in s["msgs"] for c in m["m"]
                if c not in MOVES}
     assert not unknown, f"moves missing from moves.py: {unknown}"
-    missing = {s["id"] for s in sessions} - set(QUESTIONS)
-    assert not missing, f"sessions with no question analysis: {missing}"
+    missing = {s["id"] for s in sessions if not s["question"]}
+    assert not missing, f"sessions with no Eedi question text: {missing}"
     for s in sessions:
         for m in s["msgs"]:
             for cue in m.get("x", {}).get("clues", []):
@@ -371,7 +481,7 @@ def main():
 
     hand = sum(1 for s in sessions for m in s["msgs"] if m.get("hand"))
     size = OUT.stat().st_size
-    print(f"read          {len(QUESTIONS)} sessions, {total} messages "
+    print(f"read          {len(raw)} sessions, {total} messages "
           f"({tutor} tutor / {student} student)")
     print(f"shipped       {stats['sessions']} sessions, "
           f"{stats['messages']} messages")
