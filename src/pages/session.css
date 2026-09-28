@@ -599,6 +599,7 @@
   overflow-wrap: anywhere;
 }
 .ss-quote.student { background: var(--student-bg); border-color: var(--student-line); }
+.ss-quote + .ss-quote { margin-top: 6px; }
 .ss-quote p { margin: 0; white-space: pre-line; }
 .ss-quote footer {
   margin-top: 4px;

@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { MoveTerm, MoveTerms } from "../components/Dictionary.jsx";
 import Shell, { MATH_TINT, RESEARCH_TINT } from "../components/Shell.jsx";
+import Tour from "../components/Tour.jsx";
 import {
   findMove,
   findSession,
@@ -18,6 +19,7 @@ import {
   framing,
   keyMoments,
   situationFor,
+  studentRun,
   turnRung,
   whatNext,
 } from "../data/moments.js";
@@ -366,7 +368,10 @@ function Detail({
       <section className="ss-sec">
         <h3 className="ss-sec-h">The situation</h3>
         <p className="ss-situation">{situation.label}</p>
-        {situation.cue && <Quote who="student" n={situation.cue.n}>{situation.cue.s.trim()}</Quote>}
+        {situation.cue &&
+          studentRun(session, situation.cue.n).map((m) => (
+            <Quote who="student" n={m.n} key={m.n}>{m.s.trim()}</Quote>
+          ))}
       </section>
 
       {trying ? (
@@ -429,8 +434,10 @@ function Detail({
 
           <section className="ss-sec">
             <h3 className="ss-sec-h">What happened next</h3>
-            {next.reply ? (
-              <Quote who="student" n={next.reply.n}>{next.reply.s.trim()}</Quote>
+            {next.replies.length ? (
+              next.replies.map((r) => (
+                <Quote who="student" n={r.n} key={r.n}>{r.s.trim()}</Quote>
+              ))
             ) : (
               <p className="ss-none">
                 The session ended here — the student did not reply.
@@ -496,11 +503,121 @@ function Detail({
   );
 }
 
+/* ------------------------------------------------------------ guided tour */
+
+// The walk-through shown when someone arrives from "Start here": one stop per
+// part of the page, in reading order, each saying what the part is and what
+// it is there to show. Parts that are not on the page are skipped, and on a
+// phone the side panel is the one shown inline under the chosen turn.
+function tourSteps(session, moments, focus) {
+  const n = moments.length;
+  const at = moments.find((m) => m.n === focus)?.num;
+  return [
+    {
+      target: ".ss-head",
+      title: "The question",
+      text: (
+        <p>
+          The math problem the student was working on, with its answer choices.
+          The correct answer is marked, so you can tell straight away when the
+          student is right and when they are wrong.
+        </p>
+      ),
+      why: "You can only judge a tutor's reply once you know where the student went wrong.",
+    },
+    {
+      target: ".ss-watch",
+      title: "What to watch for",
+      text: <p>One thing to keep in mind as you read this session.</p>,
+      why: "Reading with a question in mind helps you notice the tutor's choices, not only the chat.",
+    },
+    {
+      target: ".ss-moments-row",
+      title: "Key moments",
+      text: (
+        <p>
+          The {n} {n === 1 ? "turn" : "turns"} worth pausing on, picked from the
+          moments just after the student speaks: when they are stuck, give a
+          wrong answer, or have a go. Click one to jump straight to it.
+        </p>
+      ),
+      why: "A whole transcript is a lot to take in. These are the points where the tutor's next move matters most.",
+    },
+    {
+      target: ".ss-strip",
+      title: "Who's doing the thinking",
+      text: (
+        <p>
+          One mark per message, left to right. Bars above the line are the
+          tutor: short and light when the student was left to think, tall and
+          dark when the tutor took the thinking over. Marks below the line are
+          the student. Dots mark the key moments.
+        </p>
+      ),
+      why: "It shows at a glance where the tutor stepped in and where the student carried the work.",
+    },
+    {
+      target: ".ss-convo",
+      title: "The conversation",
+      text: (
+        <p>
+          The whole chat, with names changed. Tutor messages are on the left,
+          the student's on the right, and a numbered badge marks each key
+          moment. Click any tutor message to see how it was labelled.
+        </p>
+      ),
+      why: "The real words, so you can read each moment in the context it happened in.",
+    },
+    {
+      target: ".ss-side, .ss-inline",
+      title: "What this moment shows",
+      text: (
+        <>
+          <p>
+            For the chosen moment: what the student said, what the tutor did,
+            the name of that teaching move, and what the student did next.
+          </p>
+          <p>
+            Underlined move names open the dictionary. Use Previous and Next at
+            the bottom to step through the moments.
+          </p>
+        </>
+      ),
+      why: "Seeing the move alongside what happened next is how you learn which moves keep the student thinking.",
+    },
+    {
+      target: ".ss-switch",
+      title: "Try it yourself",
+      text: (
+        <p>
+          Turn this on and the conversation stops just after the student speaks.
+          Write what you would say, then reveal what the tutor did and compare.
+        </p>
+      ),
+      why: "Deciding for yourself first is the practice. Reading the answer straight away is easier but teaches less.",
+    },
+    {
+      title: "That's the tour",
+      text: (
+        <p>
+          {at === 1
+            ? `You're on key moment 1 of ${n}. Read it, then use Next moment to step through the rest, or turn on Try it yourself and have a go first.`
+            : at
+              ? `You're on key moment ${at} of ${n}. Read what happens next, then go back to moment 1 and read from the start.`
+              : "Pick a key moment above to begin, or turn on Try it yourself and have a go first."}{" "}
+          Every session in the library works the same way.
+        </p>
+      ),
+      done: "Start reading",
+    },
+  ];
+}
+
 /* ------------------------------------------------------------------ page */
 
 export default function Session() {
   const { id } = useParams();
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   if (!findSession(id)) {
     return (
       <Shell crumbs={[{ label: "Math", to: "/subjects" }]}>
@@ -512,10 +629,25 @@ export default function Session() {
   }
   // Keyed so that moving to another session (or another deep-linked turn)
   // starts fresh, rather than carrying the old selection across.
-  return <SessionScreen key={`${id}:${params.get("turn") ?? ""}`} id={id} params={params} />;
+  // ?tour=1 comes only from the front door's "Start here" card. Ending the
+  // tour drops it, so a refresh or a shared link opens the plain session.
+  const endTour = () => {
+    const next = new URLSearchParams(params);
+    next.delete("tour");
+    setParams(next, { replace: true });
+  };
+  return (
+    <SessionScreen
+      key={`${id}:${params.get("turn") ?? ""}`}
+      id={id}
+      params={params}
+      tour={params.get("tour") === "1"}
+      endTour={endTour}
+    />
+  );
 }
 
-function SessionScreen({ id, params }) {
+function SessionScreen({ id, params, tour, endTour }) {
   const session = findSession(id);
   const narrow = useNarrow();
 
@@ -884,6 +1016,7 @@ function SessionScreen({ id, params }) {
           )}
         </div>
       </main>
+      {tour && <Tour steps={tourSteps(session, moments, focus)} onClose={endTour} />}
     </Shell>
   );
 }

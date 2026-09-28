@@ -14,6 +14,7 @@ The workbook's OOXML parts are read directly, so nothing beyond the standard
 library is needed.
 """
 import csv
+import datetime
 import json
 import re
 import sys
@@ -178,8 +179,40 @@ def deidentify(text):
     return text
 
 
+class DateSerial(str):
+    """A cell Excel stored as a date. It reads as the serial number, like any
+    other cell, but can say what was typed."""
+
+    def typed(self):
+        # A message of just "3/15" was taken by Excel as 15 March and stored
+        # as 46096. Students and tutors type fractions, never dates, so the
+        # month and day are the numerator and denominator.
+        day = datetime.date(1899, 12, 30) + datetime.timedelta(days=int(float(self)))
+        return f"{day.month}/{day.day}"
+
+
+def date_styles(z):
+    """Indices of the cell styles whose number format is a date."""
+    if "xl/styles.xml" not in z.namelist():
+        return set()
+    root = ET.fromstring(z.read("xl/styles.xml"))
+    custom = {int(f.get("numFmtId")): f.get("formatCode", "")
+              for f in root.iter(NS + "numFmt")}
+
+    def is_date(fid):
+        if 14 <= fid <= 22 or 45 <= fid <= 47:
+            return True
+        code = re.sub(r'"[^"]*"|\[[^]]*\]', "", custom.get(fid, "")).lower()
+        return bool(re.search(r"[dy]", code) and "m" in code)
+
+    xfs = root.find(NS + "cellXfs")
+    return {i for i, xf in enumerate(xfs if xfs is not None else [])
+            if is_date(int(xf.get("numFmtId", 0)))}
+
+
 def read_workbook(path):
     z = zipfile.ZipFile(path)
+    dates = date_styles(z)
     shared = ["".join(t.text or "" for t in si.iter(NS + "t"))
               for si in ET.fromstring(z.read("xl/sharedStrings.xml"))] \
         if "xl/sharedStrings.xml" in z.namelist() else []
@@ -203,6 +236,8 @@ def read_workbook(path):
                            if inline is not None else None)
                 else:
                     val = shared[int(v.text)] if c.get("t") == "s" else v.text
+                    if c.get("t") in (None, "n") and int(c.get("s", 0)) in dates:
+                        val = DateSerial(val)
                 cells[col] = val
             out.append(cells)
         return out
@@ -380,7 +415,10 @@ def main():
         msgs = []
         for r in body:
             is_tutor = r["speaker"] == "tutor"
-            text = deidentify(r["content"] or "")
+            content = r["content"]
+            if isinstance(content, DateSerial):
+                content = content.typed()
+            text = deidentify(content or "")
             # Primary then secondary agreed label, in the site's spelling.
             codes = []
             for col in ("p_agreed_annotation", "s_agreed_annotation"):

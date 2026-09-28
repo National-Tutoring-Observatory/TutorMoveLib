@@ -1,0 +1,147 @@
+/* The guided tour. The grey is the lit box's own shadow, spread over the
+   whole window, so the part being explained is the one clear hole in it. */
+
+.tour {
+  --tour-grey: rgba(22, 24, 26, 0.58);
+  --tour-accent: #2f6f73;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+/* Catches clicks everywhere; the grey itself is drawn by .tour-light. */
+.tour-scrim {
+  position: fixed;
+  inset: 0;
+  cursor: pointer;
+}
+
+.tour-light {
+  position: fixed;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 9999px var(--tour-grey);
+  pointer-events: none;
+  transition: top 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tour-shade {
+  position: fixed;
+  inset: 0;
+  background: var(--tour-grey);
+  pointer-events: none;
+}
+
+/* The line from the card to the part, with a dot where it lands. */
+.tour-line {
+  position: fixed;
+  background: var(--white);
+  pointer-events: none;
+}
+.tour-line.is-v { width: 2px; margin-left: -1px; }
+.tour-line.is-h { height: 2px; margin-top: -1px; }
+.tour-line::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+}
+.tour-line.is-v::before { left: -3px; top: -4px; }
+.tour-line.is-h::before { top: -3px; left: -4px; }
+
+.tour-card {
+  position: fixed;
+  padding: 16px 18px 12px;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 12px 36px rgba(22, 24, 26, 0.28);
+  animation: tour-in 0.22s ease both;
+}
+.tour-card.is-center { padding: 22px 24px 16px; }
+@keyframes tour-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.tour-count {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tour-accent);
+}
+.tour-card h2 { font-size: 16px; line-height: 1.35; }
+.tour-card.is-center h2 { font-size: 18px; }
+.tour-text { margin-top: 6px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.tour-text p { margin: 0 0 6px; }
+.tour-text p:last-child { margin-bottom: 0; }
+
+.tour-why {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--tour-accent) 8%, var(--white));
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.tour-why-lbl {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tour-accent);
+}
+
+.tour-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tour-foot-nav { display: flex; gap: 6px; margin-left: auto; }
+
+.tour-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+.tour-btn:hover { border-color: var(--ink-3); }
+.tour-btn.is-main {
+  border-color: var(--tour-accent);
+  background: var(--tour-accent);
+  color: var(--white);
+}
+.tour-btn.is-main:hover { background: color-mix(in srgb, var(--tour-accent) 85%, black); }
+.tour-btn.is-quiet {
+  padding-left: 0;
+  padding-right: 0;
+  border-color: transparent;
+  background: none;
+  color: var(--ink-2);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tour-btn.is-quiet:hover { color: var(--ink); }
+
+.tour-hint {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-light { transition: none; }
+  .tour-card { animation: none; }
+}

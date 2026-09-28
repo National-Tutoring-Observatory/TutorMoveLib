@@ -128,7 +128,7 @@ QUESTIONS = {
     },
     "9407": {
         "question": "Which is larger, 5% of 20 or 20% of 5?",
-        "answer": "They are equal (both 1)",
+        "answer": "C (both are 1)",
         "strand": "Percentages",
         "grade": 6, "uk_year": 7, "confidence": "high",
         "exemplar": True,

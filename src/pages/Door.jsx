@@ -109,21 +109,29 @@ const steps = [
   },
 ];
 
-// The first session we point newcomers to. Its explanations were written by
-// hand rather than generated, so it shows the library at its best. If the
-// corpus ever loses it, fall back to any session with hand-written notes.
-const START_ID = "9956";
+// The first session we point newcomers to, and the one the guided tour runs
+// on. Chosen by scoring every session on who does the thinking and whether
+// the tutor gives the answer away, then keeping those long enough to show a
+// whole approach and with a question anyone can read in a second. Here the
+// tutor never gives the answer: the student works out 10% then 5% of 20,
+// jumps ahead to "ahh so 20% is 1", and sees the two are the same; then the
+// tutor asks what they notice, to draw out why. If the corpus ever loses the
+// session, fall back to any session with hand-written notes.
+const START_ID = "9407";
+const START_BLURB =
+  "The student works out both percentages step by step, and finds they are the same.";
 const start =
   findSession(START_ID) ||
   sessions.find((s) => s.msgs.some((m) => m.hand)) ||
   sessions[0];
+const isChosen = start?.id === START_ID;
 
 const startFacts = start && {
   turns: start.msgs.length,
+  blurb: isChosen ? START_BLURB : null,
   // The student's own first words, so the card shows a real person, not a pitch.
   opener: start.msgs.find((m) => m.t === 0)?.s,
 };
-
 
 const doors = [
   {
@@ -175,25 +183,37 @@ function StartHere() {
   return (
     <Link
       className="door-start"
-      to={`/mathematics/s/${start.id}`}
+      // ?tour=1 opens the session with a guided walk through each part of
+      // the page. Only this card starts it.
+      to={`/mathematics/s/${start.id}?tour=1`}
       style={{ "--ink-tint": gradeColor[start.grade] || "var(--red)" }}
     >
-      <p className="door-label">Start here</p>
+      <p className="door-start-top">
+        <span className="door-label">Start here</span>
+        <span className="door-start-tag">Guided tour</span>
+      </p>
       <h2>{start.topic}</h2>
       <p className="door-start-meta">
         {gradeLabel(start.grade)} · {start.strand}
       </p>
-      {startFacts.opener && (
-        <p className="door-start-quote">
-          The student opens with “{startFacts.opener.trim()}”
-        </p>
+      {startFacts.blurb ? (
+        <p className="door-start-quote">{startFacts.blurb}</p>
+      ) : (
+        startFacts.opener && (
+          <p className="door-start-quote">
+            The student opens with “{startFacts.opener.trim()}”
+          </p>
+        )
       )}
+      <p className="door-start-why">
+        We'll walk you through each part of the page as you read it.
+      </p>
       <span className="door-start-foot">
         <span className="stat">
           {startFacts.turns} turns
         </span>
         <span className="go">
-          Open this session <span className="arrow">→</span>
+          Take the tour <span className="arrow">→</span>
         </span>
       </span>
     </Link>

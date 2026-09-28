@@ -256,10 +256,30 @@ export function whatNext(session, n) {
   const i = msgs.findIndex((m) => m.n === n);
   let between = 0;
   for (let j = i + 1; j < msgs.length; j++) {
-    if (!msgs[j].t) return { reply: msgs[j], between };
+    if (!msgs[j].t) {
+      // Students answer in several short lines too ("20÷3!!", then "Wait
+      // 3-1=2 so 20÷2 instead!!"), so keep the whole run, up to three lines.
+      const replies = [];
+      for (let k = j; k < msgs.length && !msgs[k].t && replies.length < 3; k++) {
+        if (msgs[k].s.trim()) replies.push(msgs[k]);
+      }
+      return { reply: msgs[j], replies, between };
+    }
     between++;
   }
-  return { reply: null, between };
+  return { reply: null, replies: [], between };
+}
+
+/** The student's lines that end at message n: "/10" then "no 20" is one
+    answer, typed as two messages. Up to three, oldest first. */
+export function studentRun(session, n) {
+  const msgs = session.msgs;
+  const i = msgs.findIndex((m) => m.n === n);
+  const run = [];
+  for (let j = i; j >= 0 && !msgs[j].t && run.length < 3; j--) {
+    if (msgs[j].s.trim()) run.unshift(msgs[j]);
+  }
+  return run;
 }
 
 /** The tutor messages from n up to the student's next message — the whole of
