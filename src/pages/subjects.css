@@ -1,0 +1,147 @@
+/* Choose a subject. Prefixed sp- throughout. The one bold thing on the page
+   is Math's grade row: each grade with sessions carries its own colour and
+   goes straight to that grade. Everything else stays quiet. */
+
+.sp-wrap {
+  width: min(960px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+/* ------------------------------------------------------------------ head */
+.sp-head { margin-bottom: 22px; }
+.sp-head h1 { font-size: 26px; letter-spacing: -0.02em; }
+.sp-head p { margin: 4px 0 0; font-size: 15px; color: var(--ink-2); }
+
+/* ---------------------------------------------------------- the feature */
+.sp-feature {
+  padding: 22px 24px 18px;
+  border: 1px solid var(--line-tint);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, var(--wash), var(--white) 58%);
+  box-shadow: 0 1px 2px rgba(22, 24, 26, 0.04),
+    0 18px 40px color-mix(in srgb, var(--ink-tint) 10%, transparent);
+}
+.sp-feature-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+.sp-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--ink-tint);
+  color: var(--white);
+}
+.sp-feature-icon svg { width: 24px; height: 24px; }
+.sp-feature-title h2 { font-size: 24px; color: var(--ink); }
+.sp-feature-title p { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); }
+
+.sp-feature-ask { margin: 22px 0 10px; font-size: 14px; font-weight: 600; color: var(--ink); }
+
+/* ------------------------------------------------------------ grade row */
+/* Twelve cells, one per grade, in order. Open grades are coloured and lift
+   on hover; the rest keep their place so the gap in coverage is visible. */
+.sp-grades {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 6px;
+}
+.sp-grade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  padding: 10px 2px 9px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.sp-grade-n {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.sp-grade-count { font-size: 11px; line-height: 1.3; text-align: center; }
+.sp-grade:not(.is-open) .sp-grade-n { font-weight: 400; color: #b3bac0; }
+
+.sp-grade.is-open {
+  border: 1px solid color-mix(in srgb, var(--g) 35%, var(--white));
+  border-top: 4px solid var(--g);
+  padding-top: 7px;
+  background: color-mix(in srgb, var(--g) 7%, var(--white));
+  color: var(--g);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+}
+.sp-grade.is-open .sp-grade-count { color: var(--ink-2); }
+.sp-grade.is-open:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--g) 13%, var(--white));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--g) 22%, transparent);
+}
+.sp-grade.is-open:focus-visible { outline-color: var(--g); }
+
+.sp-feature-foot { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-3); }
+
+/* ----------------------------------------------------------- the rest */
+.sp-later { margin-top: 30px; }
+.sp-later h2 { font-size: 14px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
+.sp-later ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.sp-later li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fafbfb;
+  cursor: default;
+}
+.sp-later-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ink-tint) 9%, var(--white));
+  color: color-mix(in srgb, var(--ink-tint) 75%, var(--white));
+}
+.sp-later-icon svg { width: 16px; height: 16px; }
+.sp-later-name { font-size: 13px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-grade.is-open { transition: none; }
+  .sp-grade.is-open:hover { transform: none; }
+}
+
+/* ----------------------------------------------------------------- narrow */
+@media (max-width: 820px) {
+  .sp-grades { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .sp-later ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .sp-wrap { width: calc(100% - 32px); padding-top: 26px; }
+  .sp-feature { padding: 18px 16px 16px; }
+    .sp-grades { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sp-later ul { grid-template-columns: minmax(0, 1fr); }
+}

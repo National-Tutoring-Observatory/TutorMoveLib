@@ -273,8 +273,10 @@ def read_questions(path):
         for k in ("Answer A", "Answer B", "Answer C", "Answer D"):
             if k in pieces:
                 letter, text = k[-1], " ".join(pieces[k])
-                # Some options repeat their own letter ("A 3.77").
-                if text.startswith(letter + " "):
+                # Some options repeat their own letter ("A 3.77"), but in
+                # others the letter is the answer ("A and B C and D").
+                if text.startswith(letter + " ") and not re.match(
+                        r"(and|or)\b", text[2:]):
                     text = text[2:]
                 options.append({"k": letter, "t": text})
         out[sid] = {"question": " ".join(pieces.get("Question", [])),

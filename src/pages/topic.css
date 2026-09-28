@@ -1,0 +1,77 @@
+/* The grade page's two-column layout and its left panel, which lists every
+   question in the grade by topic and kind. Cards and headings are in
+   grade.css. (The tp- prefix is from the topic page this panel began on.) */
+
+.tp-page {
+  width: min(1180px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 22px 0 60px;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.tp-main { min-width: 0; }
+
+/* ------------------------------------------------------------ the panel */
+/* Stays in view while the questions scroll; scrolls itself if it is taller
+   than the window. */
+.tp-panel {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 12px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fafbfb;
+}
+.tp-panel-h { margin: 0 8px 6px; font-size: 12.5px; font-weight: 600; color: var(--ink-3); }
+.tp-topics, .tp-kinds { list-style: none; margin: 0; padding: 0; }
+.tp-n { font-size: 12px; font-weight: 400; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+.tp-topic,
+.tp-kind {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.tp-topic { padding: 6px 8px; font-size: 13.5px; color: var(--ink-2); }
+.tp-topic:hover { background: #eef0f1; color: var(--ink); }
+.tp-topics > li.is-open > .tp-topic { color: var(--ink); font-weight: 600; }
+.tp-topic[aria-current] { background: color-mix(in srgb, var(--g) 12%, var(--white)); color: var(--ink); }
+
+/* The open topic's kinds hang from a line in the topic colour. */
+.tp-kinds {
+  margin: 2px 0 8px 10px;
+  padding-left: 8px;
+  border-left: 2px solid color-mix(in srgb, var(--g) 35%, var(--white));
+}
+.tp-kind { padding: 5px 8px; font-size: 13px; line-height: 1.35; color: var(--ink-2); }
+.tp-kind:hover { background: color-mix(in srgb, var(--g) 8%, var(--white)); color: var(--ink); }
+.tp-kind[aria-current] { background: var(--g); color: var(--white); font-weight: 600; }
+.tp-kind[aria-current] .tp-n { color: rgba(255, 255, 255, 0.75); }
+
+.tp-main .gr-strand:first-of-type { margin-top: 18px; }
+
+/* ----------------------------------------------------------------- narrow */
+/* The panel moves above the questions and its topics wrap into a few rows;
+   the open topic takes a row of its own with its kinds beneath. */
+@media (max-width: 900px) {
+  .tp-page { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .tp-panel { position: static; max-height: none; }
+  .tp-topics { display: flex; flex-wrap: wrap; gap: 2px; }
+  .tp-topics > li.is-open { flex-basis: 100%; }
+  .tp-topic { gap: 6px; }
+  .tp-kinds { display: flex; flex-wrap: wrap; gap: 2px; margin-left: 0; }
+  /* Only the chosen topic opens into its kinds, so the list stays short. */
+  .tp-topics > li:not(.is-open) > .tp-kinds { display: none; }
+}
+@media (max-width: 560px) {
+  .tp-page { width: calc(100% - 32px); padding-top: 16px; }
+}

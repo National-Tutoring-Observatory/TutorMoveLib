@@ -17,7 +17,8 @@ export const RESEARCH_TINT = {
   "--line-tint": "#c6daf1",
 };
 
-export default function Shell({ crumbs = [], tint = MATH_TINT, children }) {
+// `aside` is optional page navigation, drawn at the right end of the top bar.
+export default function Shell({ crumbs = [], tint = MATH_TINT, aside = null, children }) {
   return (
     <div className="shell" style={tint}>
       <div className="topbar">
@@ -35,6 +36,7 @@ export default function Shell({ crumbs = [], tint = MATH_TINT, children }) {
             </span>
           ))}
         </nav>
+        {aside && <div className="topbar-aside">{aside}</div>}
       </div>
       {children}
     </div>

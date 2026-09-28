@@ -1,0 +1,302 @@
+/* "Bring your own session" preview. Every class is prefixed ys- so nothing
+   here can collide with the library's other pages. Same quiet language as
+   the session screen: thin lines, small-caps kickers, colour only where it
+   carries meaning (the thinking scale, and the two moment flags). */
+
+.ys-page {
+  --student-bg: #f4f2ed;
+  --student-line: #e4dfd4;
+  --again: #b3541e;
+  --again-wash: #fdf3ec;
+  --well: #2e7d32;
+  --well-wash: #eef7ef;
+  max-width: 1080px;
+}
+
+.ys-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 6px;
+}
+.ys-kicker-file { text-transform: none; letter-spacing: 0; }
+.ys-note { margin: 0; font-size: 12.5px; color: var(--ink-3); }
+.ys-lede { margin: 0 0 18px; max-width: 70ch; font-size: 14px; color: var(--ink-2); }
+.ys-h { font-size: 18px; margin: 34px 0 6px; }
+
+.ys-link {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-tint);
+  text-decoration: none;
+}
+.ys-link:hover { text-decoration: underline; }
+
+.ys-primary {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ink-tint);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.ys-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(40, 20, 100, 0.18); }
+
+.ys-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  padding: 18px 20px;
+}
+
+/* ------------------------------------------------------------------ head */
+.ys-head { margin-bottom: 22px; }
+.ys-badge {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 3px 8px;
+  border: 1px dashed var(--line-tint);
+  border-radius: 999px;
+  background: var(--wash);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-tint);
+}
+.ys-head h1 { font-size: 27px; margin-bottom: 8px; }
+.ys-intro { margin: 0; max-width: 68ch; font-size: 14.5px; color: var(--ink-2); }
+
+/* ----------------------------------------------------------------- steps */
+.ys-steps {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.ys-step { flex: 1 1 0; min-width: 0; }
+.ys-step button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-top: 3px solid var(--line);
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.ys-step button:disabled { cursor: default; }
+.ys-step.is-done button { border-top-color: var(--line-tint); color: var(--ink-2); }
+.ys-step.is-done button:not(:disabled):hover { color: var(--ink-tint); }
+.ys-step.is-now button { border-top-color: var(--ink-tint); color: var(--ink); font-weight: 600; }
+.ys-step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+.ys-step.is-now .ys-step-num { background: var(--ink-tint); border-color: var(--ink-tint); color: var(--white); }
+.ys-step-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------------------------------------------------------------- upload */
+.ys-upload { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.ys-drop {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 40px 20px;
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius);
+  background: #fafbfb;
+  text-align: center;
+  color: var(--ink-3);
+}
+.ys-drop { cursor: pointer; transition: border-color 0.14s ease, background 0.14s ease; }
+.ys-drop:hover, .ys-drop.is-over { border-color: var(--ink-tint); background: var(--wash); color: var(--ink-tint); }
+.ys-drop:focus-within { outline: 2px solid var(--ink-tint); outline-offset: 2px; }
+.ys-drop-browse { color: var(--ink-tint); font-weight: 600; text-decoration: underline; }
+.ys-file {
+  margin: -6px 0 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+.ys-drop-title { margin: 6px 0 0; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.ys-drop-note { margin: 0; font-size: 12.5px; }
+.ys-upload-side h2 { font-size: 17px; margin-bottom: 6px; }
+.ys-upload-side p { margin: 0 0 14px; font-size: 13.5px; color: var(--ink-2); }
+
+/* -------------------------------------------------------------- annotate */
+.ys-annotate h2 { font-size: 17px; margin-bottom: 12px; }
+.ys-work { margin: 0 0 14px; padding: 0; list-style: none; }
+.ys-work li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: var(--ink-3);
+  transition: color 0.2s ease;
+}
+.ys-work li.is-now, .ys-work li.is-done { color: var(--ink); }
+.ys-work-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+}
+.ys-work li.is-now .ys-work-dot { border-color: var(--ink-tint); animation: ys-pulse 0.9s ease-in-out infinite; }
+.ys-work li.is-done .ys-work-dot { border-color: var(--ink-tint); background: var(--ink-tint); }
+@keyframes ys-pulse { 50% { transform: scale(1.35); } }
+@media (prefers-reduced-motion: reduce) {
+  .ys-work li.is-now .ys-work-dot { animation: none; }
+}
+
+/* --------------------------------------------------------------- summary */
+.ys-summary { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; }
+.ys-summary h2 { font-size: 21px; margin-bottom: 4px; }
+.ys-meta { margin: 0 0 10px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+.ys-q { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.ys-q span {
+  margin-right: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-tint);
+}
+.ys-split-bar { display: flex; gap: 2px; height: 10px; margin: 4px 0 8px; border-radius: 3px; overflow: hidden; }
+.ys-split-bar i { display: block; min-width: 2px; }
+.ys-split-cap { margin: 0 0 10px; font-size: 13px; color: var(--ink-2); }
+
+/* --------------------------------------------------------------- moments */
+.ys-moments { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ys-moment { border-left-width: 3px; }
+.ys-moment.is-again { border-left-color: var(--again); }
+.ys-moment.is-well { border-left-color: var(--well); }
+.ys-moment-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 12px; }
+.ys-moment-head h3 { font-size: 15px; }
+.ys-num {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--ink-tint);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+.ys-flag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.ys-flag.is-again { background: var(--again-wash); color: var(--again); }
+.ys-flag.is-well { background: var(--well-wash); color: var(--well); }
+.ys-moment-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.ys-said {
+  margin: 0 0 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.ys-said p { margin: 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.ys-said footer { margin-top: 3px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.ys-said.is-student { background: var(--student-bg); border-color: var(--student-line); }
+.ys-said.is-you { border-color: var(--line-tint); }
+.ys-move { margin: 0 0 6px; font-size: 13.5px; font-weight: 600; }
+
+.ys-meter { display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); }
+.ys-meter-bar { display: flex; gap: 2px; }
+.ys-meter-bar i { display: block; flex: 1; height: 5px; border-radius: 1px; background: var(--line); }
+.ys-meter-none { margin: 0; font-size: 12px; color: var(--ink-3); }
+
+.ys-verdict, .ys-verdict-done {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.ys-verdict button {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+.ys-verdict button:hover { border-color: var(--ink-tint); color: var(--ink-tint); }
+.ys-verdict-done .ys-link { font-size: 12.5px; }
+
+.ys-next { margin-top: 22px; }
+
+/* ----------------------------------------------------------------- learn */
+.ys-own { margin-bottom: 26px; border-left: 3px solid var(--well); background: var(--well-wash); }
+.ys-own p:not(.ys-kicker) { margin: 0; font-size: 14px; }
+.ys-own .ys-kicker { color: var(--well); }
+
+.ys-group { margin-bottom: 30px; }
+.ys-group-head { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+.ys-group-head .ys-num { background: var(--again); margin-top: 2px; }
+.ys-group-head h3 { font-size: 16px; margin-bottom: 2px; }
+.ys-group-head p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+.ys-examples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ys-example { display: flex; flex-direction: column; padding: 14px 16px; }
+.ys-example .ys-meter { margin-bottom: 12px; }
+.ys-example .ys-link { margin-top: auto; padding-top: 6px; }
+.ys-example-src { margin: 0 0 8px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+
+/* ----------------------------------------------------------------- phone */
+@media (max-width: 900px) {
+  .ys-upload, .ys-summary { grid-template-columns: minmax(0, 1fr); }
+  .ys-moment-body { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .ys-examples { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .ys-step-label { display: none; }
+  .ys-step.is-now .ys-step-label { display: inline; }
+  .ys-card { padding: 14px 14px; }
+}

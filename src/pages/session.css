@@ -1,0 +1,801 @@
+/* Session screen. Everything here is prefixed ss- so it cannot collide with
+   the rest of the library. The page stays quiet on purpose: the only colour
+   in the transcript is on the turn you have chosen and on the few key
+   moments; the rung ramp appears only where it carries meaning (the strip
+   and the "who held the thinking" meter). */
+
+.ss-page {
+  --student-bg: #f4f2ed;
+  --student-line: #e4dfd4;
+  --student-mark: #b9b1a1;
+  --tick: #c5cbd0;
+}
+
+.ss-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 6px;
+}
+
+.ss-knum {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink-tint);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------ the question */
+.ss-head { margin-bottom: 12px; }
+/* With answer options, the header runs in two columns: the question on the
+   left, the options in the space to its right. */
+.ss-head.has-opts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+  gap: 8px 28px;
+  align-items: start;
+}
+.ss-head-main { min-width: 0; }
+.ss-opts ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+.ss-opts li {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.ss-opts li b {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.ss-opts li.is-answer {
+  border-color: #b7dcbc;
+  background: #f1f8f2;
+  color: var(--ink);
+}
+.ss-opts li.is-answer b { color: #2e7d32; }
+.ss-opt-tag {
+  margin-left: auto;
+  padding-left: 6px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2e7d32;
+  white-space: nowrap;
+}
+.ss-opts-note { margin: 5px 0 0; font-size: 12px; color: var(--ink-3); }
+.ss-head .ss-kicker { margin-bottom: 2px; }
+.ss-title { font-size: 22px; margin-bottom: 6px; }
+.ss-q-row { display: flex; align-items: baseline; gap: 12px; }
+.ss-q-row .ss-q-text { flex: 1; min-width: 0; }
+.ss-q-row .ss-linkbtn { flex-shrink: 0; }
+.ss-q {
+  border-left: 2px solid var(--line-tint);
+  padding-left: 12px;
+  max-width: 88ch;
+}
+.ss-q-text {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  /* One line until opened: enough to recognise the task without pushing
+     the conversation down. */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ss-q.open .ss-q-text { display: block; overflow: visible; }
+.ss-q-lbl {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-tint);
+  margin-right: 8px;
+}
+.ss-q-options {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.ss-q-options b,
+.ss-q-answer b {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-tint);
+  margin-right: 6px;
+}
+.ss-q-answer b { font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; }
+.ss-q-answer { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); }
+.ss-q-note { margin: 6px 0 0; font-size: 11.5px; font-style: italic; color: var(--ink-3); }
+.ss-meta {
+  margin: 9px 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 7px;
+  row-gap: 2px;
+}
+.ss-dot { color: var(--line); }
+.ss-linkbtn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-tint);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.ss-linkbtn:hover { text-decoration-style: solid; }
+
+/* ------------------------------------------------ what to watch for */
+.ss-frame {
+  background: var(--wash);
+  border: 1px solid var(--line-tint);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+.ss-frame-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+}
+.ss-watch { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); max-width: 80ch; }
+/* Inline, so the line reads as one sentence: "Watch for how the tutor…" */
+.ss-watch-lbl {
+  margin-right: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-tint);
+}
+.ss-try-note { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-2); max-width: 72ch; }
+
+.ss-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 6px;
+  border: 1px solid var(--line-tint);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 12.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ss-switch:hover { border-color: var(--ink-tint); color: var(--ink); }
+.ss-switch-track {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: background 0.15s ease;
+}
+.ss-switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(22, 24, 26, 0.25);
+  transition: transform 0.15s ease;
+}
+.ss-switch[aria-checked="true"] { color: var(--ink-tint); font-weight: 600; }
+.ss-switch[aria-checked="true"] .ss-switch-track { background: var(--ink-tint); }
+.ss-switch[aria-checked="true"] .ss-switch-knob { transform: translateX(12px); }
+
+/* Key moments: one row of small pills after a label. The student's words
+   are in each pill's tooltip, not on the page. */
+.ss-moments-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.ss-moments-lbl { margin: 0; font-size: 13px; font-weight: 600; color: var(--ink); }
+.ss-moments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ss-moment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--line-tint);
+  border-radius: 999px;
+  padding: 3px 10px 3px 4px;
+  transition: border-color 0.14s ease;
+}
+.ss-moment:hover { border-color: var(--ink-tint); }
+.ss-moment.on { border-color: var(--ink-tint); box-shadow: 0 0 0 1px var(--ink-tint); }
+.ss-moment-sit { font-size: 12px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+
+/* ----------------------------------------------- who's doing the thinking */
+.ss-strip { margin-bottom: 10px; }
+.ss-strip-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin-bottom: 4px;
+}
+.ss-strip-head .ss-kicker { margin: 0; }
+
+/* Sideways scroll lives here, never on the page. */
+.ss-track {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 2px 1px;
+  scrollbar-width: thin;
+}
+/* Each mark is a button 40px tall with the baseline at 28px: tutor bars
+   stand on it, student marks hang from it. */
+.ss-seg {
+  position: relative;
+  flex: 1 0 8px;
+  min-width: 8px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: linear-gradient(var(--line), var(--line)) 0 28px / 100% 1px no-repeat;
+}
+.ss-seg:hover:not(:disabled) { background-color: var(--wash); }
+.ss-seg:disabled { cursor: default; }
+.ss-seg-mark { position: absolute; left: 1px; right: 1px; }
+.ss-seg.is-rung .ss-seg-mark {
+  bottom: 12px;
+  height: var(--h);
+  background: var(--c);
+  border-radius: 2px 2px 0 0;
+}
+.ss-seg.is-tick .ss-seg-mark { bottom: 12px; height: 4px; background: var(--tick); }
+.ss-seg.is-student .ss-seg-mark {
+  top: 29px;
+  height: 6px;
+  background: var(--student-mark);
+  border-radius: 0 0 2px 2px;
+}
+.ss-seg.is-hidden { opacity: 0.5; background-image: none; }
+.ss-seg.is-hidden .ss-seg-mark { top: 27px; height: 2px; background: var(--line); }
+/* A key moment carries a dot above its bar. */
+.ss-seg.is-key::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--ink-tint);
+}
+/* The chosen turn is underlined, and the column washed. */
+.ss-seg.is-on { background-color: var(--wash); }
+.ss-seg.is-on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ink-tint);
+}
+.ss-seg:focus-visible { outline-offset: 1px; }
+
+.ss-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.ss-ramp { display: inline-flex; gap: 2px; }
+.ss-ramp i { display: block; width: 10px; height: 7px; border-radius: 1px; }
+
+/* ---------------------------------------------------------- two panes */
+.ss-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: 24px;
+  /* Tall enough to read, short enough that the whole working area fits on
+     one screen. Both panes scroll inside it. */
+  height: clamp(440px, calc(100vh - 48px), 980px);
+}
+.ss-convo { min-height: 0; display: flex; }
+.ss-script {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 14px 18px;
+}
+.ss-script:focus-visible { outline-offset: 0; }
+.ss-side {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 18px 16px;
+}
+
+/* ------------------------------------------------------ the conversation */
+.ss-msg { display: flex; flex-direction: column; margin-top: 4px; }
+.ss-msg.first { margin-top: 16px; }
+.ss-msg.tutor { align-items: flex-start; }
+.ss-msg.student { align-items: flex-end; }
+.ss-who {
+  margin: 0 0 3px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ss-msg.tutor .ss-who { padding-left: 26px; }
+.ss-msg.student .ss-who { padding-right: 26px; }
+.ss-kbadge { align-self: center; cursor: default; }
+.ss-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: min(88%, 640px);
+}
+.ss-msg.tutor .ss-row { flex-direction: row-reverse; }
+.ss-seq {
+  min-width: 18px;
+  padding-top: 9px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+.ss-msg.tutor .ss-seq { text-align: right; }
+
+.ss-bubble {
+  display: block;
+  min-width: 0;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+  transition: border-color 0.14s ease, background 0.14s ease;
+}
+.ss-said { white-space: pre-line; }
+.ss-msg.tutor .ss-bubble {
+  background: #f8f9f9;
+  color: var(--ink-2);
+  border-top-left-radius: 3px;
+}
+/* A labelled tutor turn opens in the side pane: it wears a hairline border at
+   rest, and takes the section colour on hover. Unlabelled turns (greetings,
+   sign-offs) have neither. */
+.ss-msg.tutor.labelled .ss-bubble {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--line);
+  cursor: pointer;
+}
+.ss-msg.tutor.labelled .ss-bubble:hover { border-color: var(--ink-tint); }
+.ss-msg.student .ss-bubble {
+  background: var(--student-bg);
+  border-color: var(--student-line);
+  border-top-right-radius: 3px;
+}
+.ss-msg.key .ss-bubble { border-color: var(--line-tint); }
+.ss-msg.on .ss-bubble,
+.ss-msg.on.labelled .ss-bubble:hover {
+  background: var(--wash);
+  border-color: var(--ink-tint);
+  box-shadow: 0 0 0 1px var(--ink-tint);
+}
+.ss-msg.on .ss-seq { color: var(--ink-tint); font-weight: 500; }
+.ss-msg.flash .ss-bubble { animation: ss-flash 1.4s ease-out; }
+@keyframes ss-flash {
+  from { box-shadow: 0 0 0 3px var(--line-tint); }
+  to { box-shadow: 0 0 0 3px transparent; }
+}
+
+.ss-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.ss-chip.move-term {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 1px 6px;
+  border: 1px solid var(--line-tint);
+  border-radius: 3px;
+  background: var(--white);
+  color: var(--ink-tint);
+  text-decoration: none;
+}
+
+.ss-mark {
+  background: color-mix(in srgb, var(--ink-tint) 12%, var(--white));
+  color: var(--ink-tint);
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.ss-mark.lit { background: var(--ink-tint); color: var(--white); }
+
+.ss-cut {
+  margin: 18px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line-tint);
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+/* ---------------------------------------------------------- side pane */
+.ss-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.ss-detail-head .ss-kicker { display: flex; align-items: center; gap: 7px; margin: 0; }
+.ss-stepper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.ss-try .ss-stepper { margin-top: 18px; }
+.ss-mode {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.ss-mode button {
+  border: 0;
+  background: var(--white);
+  padding: 3px 9px;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.ss-mode button + button { border-left: 1px solid var(--line); }
+.ss-mode button[aria-pressed="true"] {
+  background: var(--wash);
+  color: var(--ink-tint);
+  font-weight: 600;
+}
+.ss-steps { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: space-between; }
+.ss-stepbtn {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.ss-stepbtn:hover:not(:disabled) { border-color: var(--ink-tint); color: var(--ink-tint); }
+.ss-stepbtn:disabled { opacity: 0.45; cursor: default; }
+/* The one obvious thing to do next. */
+.ss-stepbtn.ss-next {
+  border-color: var(--ink-tint);
+  background: var(--ink-tint);
+  color: var(--white);
+  font-weight: 600;
+}
+.ss-stepbtn.ss-next:hover:not(:disabled) { color: var(--white); filter: brightness(1.12); }
+.ss-stepbtn.ss-next:disabled { background: var(--white); color: var(--ink-3); border-color: var(--line); font-weight: 400; opacity: 1; }
+
+/* ------------------------------------------------------ top-bar navigation */
+.ss-topnav { display: flex; align-items: center; gap: 6px; }
+.ss-topnav-back {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ss-topnav-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.ss-topnav-back:hover, .ss-topnav-btn:hover { border-color: var(--ink-tint); color: var(--ink-tint); }
+.ss-topnav-btn.is-off { opacity: 0.35; }
+.ss-topnav-btn.is-off:hover { border-color: var(--line); color: var(--ink-2); }
+
+.ss-sec { padding: 14px 0 4px; }
+.ss-sec + .ss-sec { border-top: 1px solid var(--line); }
+.ss-sec-h {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ss-situation { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+
+.ss-quote {
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.ss-quote.student { background: var(--student-bg); border-color: var(--student-line); }
+.ss-quote p { margin: 0; white-space: pre-line; }
+.ss-quote footer {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.ss-move { margin: 10px 0 3px; font-size: 14px; font-weight: 600; }
+/* The thinking-scale position, folded into the move line. The dot matches
+   the move's bar in the timeline. */
+.ss-move-rung {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+.ss-move-rung i { display: block; width: 8px; height: 8px; border-radius: 2px; }
+.ss-def { margin: 0; font-size: 13px; color: var(--ink-2); }
+
+.ss-clue-lbl,
+.ss-compare-lbl {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ss-compare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.ss-compare > div {
+  border: 1px solid var(--line-tint);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.ss-compare > div:first-child { background: var(--wash); }
+.ss-compare-lbl { color: var(--ink-tint); }
+.ss-compare-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+
+.ss-none { margin: 0; font-size: 13.5px; font-style: italic; color: var(--ink-2); }
+
+/* How the label was reached: there for the research reader, folded away. */
+.ss-how {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.ss-how summary {
+  cursor: pointer;
+  width: fit-content;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ss-how summary:hover { color: var(--ink-tint); }
+.ss-how[open] summary { margin-bottom: 10px; }
+.ss-why { margin: 0 0 12px; font-size: 13.5px; }
+.ss-clues { list-style: none; margin: 0; padding: 0; }
+.ss-clues li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ss-clues li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--ink-tint);
+  border-radius: 50%;
+}
+.ss-clues li.hot::before { background: var(--ink-tint); }
+.ss-cuephrase {
+  background: color-mix(in srgb, var(--ink-tint) 12%, var(--white));
+  color: var(--ink-tint);
+  padding: 0 3px;
+  border-radius: 2px;
+}
+.ss-unc {
+  background: #f7f0dc;
+  border: 1px solid #8a6a1f;
+  color: #5e4711;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  margin-bottom: 12px;
+}
+.ss-unc b {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.ss-reading {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.ss-reading p { margin: 5px 0 0; }
+
+/* ---------------------------------------------------------- try it */
+.ss-try-lbl { display: block; margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.ss-try-box {
+  display: block;
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding: 8px 10px;
+  border: 1px solid var(--line-tint);
+  border-radius: 6px;
+  background: var(--white);
+}
+.ss-try-box:focus { outline: 2px solid var(--ink-tint); outline-offset: 0; }
+.ss-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ink-tint);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+.ss-btn:hover { filter: brightness(1.12); }
+
+.ss-empty { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+/* ---------------------------------------------------- one screen, desktop */
+/* The page fills the window under the top bar and never scrolls itself:
+   the conversation and the side panel each scroll in their own box. */
+@media (min-width: 901px) {
+  .page.ss-page {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--topbar-h, 60px));
+    min-height: 560px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .ss-page .ss-body { flex: 1; height: auto; min-height: 0; }
+}
+
+/* ------------------------------------------------------------ narrow */
+@media (max-width: 900px) {
+  .ss-head.has-opts { grid-template-columns: minmax(0, 1fr); }
+  .ss-body { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .ss-script { height: 72vh; padding: 2px 10px 14px; }
+  /* The side pane's contents, drawn under the chosen turn instead. */
+  .ss-inline {
+    margin: 10px 0 16px;
+    padding: 12px 14px 14px;
+    background: var(--white);
+    border: 1px solid var(--line-tint);
+    border-radius: 6px;
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-tint) 10%, transparent);
+  }
+  .ss-row { max-width: 94%; }
+}
+@media (max-width: 620px) {
+  .ss-title { font-size: 21px; }
+  .ss-q-text { -webkit-line-clamp: 2; }
+  .ss-frame { padding: 12px 12px; }
+  .ss-watch { font-size: 14px; }
+  .ss-compare { grid-template-columns: minmax(0, 1fr); }
+  .ss-msg.tutor .ss-who { padding-left: 0; margin-left: 0; }
+  .ss-msg.student .ss-who { padding-right: 0; }
+  .ss-seq { display: none; }
+  .ss-row { max-width: 92%; }
+}

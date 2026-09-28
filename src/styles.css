@@ -403,259 +403,12 @@ a { color: var(--red); }
   border-top: 1px solid color-mix(in srgb, var(--ink-tint) 22%, var(--white));
 }
 
-/* --------------------------------------------------------- question list */
-.qlist { display: grid; gap: 10px; max-width: 780px; }
-.qcard {
-  width: 100%;
-  text-align: left;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 15px 18px;
-  transition: border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
-}
-.qcard:hover {
-  transform: translateY(-1px);
-  border-color: var(--ink-tint);
-  box-shadow: 0 10px 26px color-mix(in srgb, var(--ink-tint) 15%, transparent);
-}
-.qcard-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.strand {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-tint);
-  background: var(--wash);
-  border: 1px solid var(--line-tint);
-  border-radius: 3px;
-  padding: 2px 7px;
-}
-.badge {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8a6a1f;
-  background: #f7f0dc;
-  border: 1px solid #e2cf9f;
-  border-radius: 3px;
-  padding: 2px 7px;
-}
-.qtext { margin: 0 0 10px; font-size: 14.5px; line-height: 1.5; }
-.qcard-foot {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--ink-3);
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
-}
+/* The old question-list styles moved with the grade page to src/pages/grade.css. */
 .dotsep { color: var(--line); }
-.qcard-foot .open { margin-left: auto; color: var(--ink-tint); font-weight: 600; }
 
-/* -------------------------------------------------------- session screen */
-.split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
-  gap: 0;
-  background: var(--white);
-  border: 1px solid #bcc7cc;
-  border-radius: 4px;
-  align-items: start;
-}
-.pane { padding: 18px 20px 20px; min-width: 0; }
-.pane + .pane { border-left: 1px solid var(--line); }
-.pane-kicker {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 0 0 7px;
-}
-.pane h2 { font-size: 17px; margin-bottom: 5px; }
-.meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-3);
-  margin: 0 0 15px;
-}
-.meta.top-gap { margin-top: 20px; }
-
-/* The clip slot from the wireframe, now carrying the question. */
-.question {
-  background: var(--wash);
-  border: 1px solid var(--line-tint);
-  border-radius: 4px;
-  padding: 13px 15px;
-  margin-bottom: 16px;
-}
-.question-label {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-tint);
-  margin-bottom: 6px;
-}
-.question-text { margin: 0 0 9px; font-size: 14px; line-height: 1.5; }
-.question-options {
-  list-style: none;
-  margin: 0 0 9px;
-  padding: 0;
-  display: grid;
-  gap: 4px;
-  font-size: 13.5px;
-  line-height: 1.45;
-}
-.question-options b {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-tint);
-  margin-right: 6px;
-}
-.question-answer {
-  margin: 0;
-  font-size: 12.5px;
-  color: var(--ink-2);
-  border-top: 1px solid var(--line-tint);
-  padding-top: 8px;
-}
-.question-answer b {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-tint);
-  margin-right: 7px;
-}
-.question-note {
-  margin: 8px 0 0;
-  font-size: 11.5px;
-  font-style: italic;
-  color: var(--ink-3);
-}
-
-/* The conversation scrolls in place. */
-.script {
-  max-height: 460px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 12px 12px 4px;
-  scrollbar-width: thin;
-}
-.turn { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 8px; margin-bottom: 10px; }
-.seq { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); padding-top: 8px; text-align: right; }
-.said-btn {
-  width: 100%;
-  text-align: left;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 8px 10px;
-  display: block;
-}
-.said-btn.static { cursor: default; }
-button.said-btn:hover { border-color: var(--ink-tint); }
-.turn.student .said-btn { background: #f4f6f7; color: var(--ink-2); }
-.said { font-size: 13.5px; line-height: 1.5; }
-.turn.focus .seq { color: var(--ink-tint); font-weight: 500; }
-.turn.focus .said-btn {
-  background: var(--wash);
-  border-color: var(--ink-tint);
-  box-shadow: 0 0 0 1px var(--ink-tint);
-}
-.tagline { margin-top: 6px; display: flex; gap: 5px; flex-wrap: wrap; }
-.tag {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.02em;
-  padding: 2px 6px;
-  border-radius: 2px;
-}
-.tag.move { background: #e7f0eb; color: #3d6b57; }
-.tag.unc { background: #f7f0dc; color: #8a6a1f; }
-.tag.none { color: var(--ink-3); padding-left: 0; }
-
-.mark {
-  background: var(--wash);
-  color: var(--ink-tint);
-  padding: 0 2px;
-  border-radius: 2px;
-  transition: background 0.12s ease, color 0.12s ease;
-}
-.mark.lit { background: var(--ink-tint); color: var(--white); }
-
-/* ------------------------------------------------------ why this label */
-.why { font-size: 13.5px; margin: 0 0 14px; }
-.defn {
-  font-size: 12.5px;
-  color: var(--ink-2);
-  border-left: 2px solid var(--line-tint);
-  padding-left: 10px;
-  margin: 0;
-}
-.cue {
-  display: grid;
-  grid-template-columns: 14px minmax(0, 1fr);
-  gap: 9px;
-  margin-bottom: 9px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-.cue .dot {
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--ink-tint);
-  border-radius: 50%;
-  margin-top: 7px;
-}
-.cue.hot .dot { background: var(--ink-tint); }
-.cuephrase { background: var(--wash); color: var(--ink-tint); padding: 0 3px; border-radius: 2px; }
-.reading { border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; }
-.reading p { margin: 5px 0 0; }
-.uncbox {
-  background: #f7f0dc;
-  border: 1px solid #8a6a1f;
-  color: #5e4711;
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-size: 12.5px;
-  margin-bottom: 13px;
-}
-.uncbox b {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.spec { margin: 0 0 15px; }
-.spec-lbl {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-}
-.spec-bar { display: flex; gap: 3px; margin-bottom: 5px; }
-.spec-seg { height: 5px; flex: 1; border-radius: 1px; background: var(--line); }
-.spec-seg.fill { background: var(--ink-tint); }
-.spec-cap { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-3); }
-.spec-now { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+/* The session screen's own styles live in src/pages/session.css. */
 
 @media (max-width: 900px) {
-  .split { grid-template-columns: minmax(0, 1fr); }
-  .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
   .topbar { flex-wrap: wrap; }
   .crumbs { width: 100%; margin: 6px 0 0; flex-wrap: wrap; row-gap: 2px; }
   .crumbs > span { white-space: nowrap; }
@@ -669,12 +422,15 @@ button.said-btn:hover { border-color: var(--ink-tint); }
   margin-bottom: 22px;
   flex-wrap: wrap;
 }
-.navpair { margin-left: auto; display: flex; gap: 8px; }
+/* min-width 0 lets two long question titles shrink to an ellipsis on a phone
+   instead of pushing the page sideways. */
+.navpair { margin-left: auto; display: flex; gap: 8px; min-width: 0; max-width: 100%; }
 .navbtn {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   max-width: 260px;
+  min-width: 0;
   padding: 7px 12px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -699,111 +455,6 @@ button.said-btn:hover { border-color: var(--ink-tint); }
 .navbtn .chev { font-size: 14px; line-height: 1; flex-shrink: 0; }
 .navlabel { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ----------------------------------------------- what can be clicked open */
-.legend {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin: 0 0 10px;
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--ink-3);
-}
-.legend-key {
-  width: 3px;
-  height: 16px;
-  border-radius: 2px;
-  background: var(--ink-tint);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* An openable turn wears a coloured edge and names what it will do. A turn
-   that cannot be opened has neither, so the difference is visible at rest —
-   not only on hover. */
-.said-btn.openable {
-  position: relative;
-  padding-left: 13px;
-  border-left: 3px solid color-mix(in srgb, var(--ink-tint) 40%, var(--white));
-}
-.said-btn.openable:hover { border-left-color: var(--ink-tint); }
-/* Keep the corner clear so wrapped text never runs under the hint chip. */
-.said-btn.openable .said { padding-right: 54px; }
-/* Parked in the corner rather than in the flow, so revealing it on hover
-   never changes the height of a turn. */
-.openhint {
-  position: absolute;
-  top: 7px;
-  right: 9px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: var(--white);
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  opacity: 0;
-  transition: opacity 0.14s ease;
-  pointer-events: none;
-}
-.said-btn.openable:hover .openhint,
-.said-btn.openable:focus-visible .openhint { opacity: 1; }
-.turn.focus .said-btn.openable { border-left-color: var(--ink-tint); }
-.turn.focus .openhint {
-  opacity: 1;
-  color: var(--ink-tint);
-  background: transparent;
-}
-.said-btn.static { padding-left: 13px; border-left: 3px solid transparent; }
-
-/* ------------------------------------------------ stepping between turns */
-.pane-head { display: flex; align-items: flex-start; gap: 12px; }
-.pane-head .stepper { margin-left: auto; flex-shrink: 0; }
-.stepper { display: flex; align-items: center; gap: 4px; }
-.stepbtn {
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  background: var(--white);
-  font-size: 13px;
-  color: var(--ink-2);
-}
-.stepbtn:hover:not(:disabled) { border-color: var(--ink-tint); color: var(--ink-tint); }
-.stepbtn:disabled { opacity: 0.35; cursor: not-allowed; }
-.stepcount {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  color: var(--ink-3);
-  min-width: 40px;
-  text-align: center;
-}
-
-/* --------------------------------------------- strand headings in a grade */
-.strand-group { margin-bottom: 34px; max-width: 780px; }
-.strand-head {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding-bottom: 9px;
-  margin-bottom: 13px;
-  border-bottom: 2px solid var(--ink-tint);
-}
-.strand-head h2 {
-  font-size: 22px;
-  letter-spacing: -0.02em;
-  color: var(--ink-tint);
-}
-.strand-count {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-3);
-}
-.qcard-top:empty { display: none; }
 
 /* ==========================================================================
    Researcher view — the taxonomy browsed by group, and one page per move
@@ -1084,6 +735,7 @@ button.said-btn:hover { border-color: var(--ink-tint); }
    ========================================================================== */
 
 .topbar-dict { margin-left: 14px; }
+.topbar-aside { margin-left: 16px; display: flex; align-items: center; }
 .dict-btn {
   display: inline-flex;
   align-items: center;

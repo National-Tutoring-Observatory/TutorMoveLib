@@ -1,0 +1,172 @@
+/* Choose a question. Prefixed gr-. Quiet headings and cards; the one
+   distinctive thing is each card's thinking strip, a preview of how the
+   session went. The grade's own colour marks the page. */
+
+.gr-page {
+  width: min(1080px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 26px 0 60px;
+}
+
+.gr-back {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.gr-back:hover { border-color: var(--ink-tint); color: var(--ink-tint); }
+
+/* ------------------------------------------------------------------ head */
+.gr-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--g);
+}
+.gr-head h1 { font-size: 26px; letter-spacing: -0.02em; }
+.gr-head p { margin: 4px 0 0; font-size: 14.5px; color: var(--ink-2); }
+
+.gr-switch { display: flex; gap: 4px; }
+.gr-switch-g {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--g) 35%, var(--white));
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--g) 6%, var(--white));
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--g);
+  text-decoration: none;
+}
+.gr-switch-g:hover { background: color-mix(in srgb, var(--g) 14%, var(--white)); }
+.gr-switch-g.is-on { background: var(--g); border-color: var(--g); color: var(--white); }
+
+.gr-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.gr-legend-strip { display: inline-flex; align-items: flex-end; gap: 2px; height: 18px; }
+.gr-legend-strip i { display: block; width: 4px; border-radius: 1px; }
+
+/* -------------------------------------------------------------- strands */
+.gr-strand { margin-top: 26px; }
+.gr-strand h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.gr-strand h2 span { font-size: 13px; font-weight: 400; color: var(--ink-3); }
+/* "Show all grade N questions", once a topic or kind is chosen. */
+.gr-strand h2 .gr-all {
+  margin-left: auto;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--g);
+  text-decoration: none;
+}
+.gr-strand h2 .gr-all:hover { text-decoration: underline; }
+
+.gr-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.gr-cards li { display: flex; }
+
+/* ----------------------------------------------------------------- card */
+.gr-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.14s ease, box-shadow 0.14s ease;
+}
+.gr-card:hover {
+  border-color: color-mix(in srgb, var(--g) 55%, var(--white));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--g) 12%, transparent);
+}
+.gr-card:focus-visible { outline-color: var(--g); }
+.gr-topic { font-size: 12.5px; font-weight: 600; color: var(--g); }
+.gr-q {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* One mark per message: tutor marks stand on the line, taller and darker
+   where the tutor took the thinking over; student marks sit just under it. */
+.gr-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 22px;
+  margin-top: auto;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.gr-strip i { display: block; flex: 1 1 0; min-width: 1px; max-width: 8px; border-radius: 1px 1px 0 0; }
+/* A long session on a narrow card: the gaps go first, and nothing spills. */
+.gr-strip { overflow: hidden; }
+@media (max-width: 560px) {
+  .gr-strip { gap: 0; }
+}
+.gr-strip i.is-tick { height: 3px; background: #c5cbd0; }
+.gr-strip i.is-student { height: 3px; margin-bottom: -4px; background: #cfc8ba; }
+
+.gr-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.gr-kinds { display: flex; flex-wrap: wrap; gap: 4px; }
+.gr-kind {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #f3f4f5;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.gr-len { margin-left: auto; font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+.gr-note { font-size: 11.5px; font-style: italic; color: var(--ink-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gr-card { transition: none; }
+}
+
+/* ----------------------------------------------------------------- narrow */
+@media (max-width: 760px) {
+  .gr-cards { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .gr-page { width: calc(100% - 32px); padding-top: 18px; }
+  .gr-switch { flex-wrap: wrap; }
+  .gr-legend { align-items: flex-start; }
+}

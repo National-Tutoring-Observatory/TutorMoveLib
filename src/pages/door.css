@@ -1,0 +1,248 @@
+/* The front door's orientation: what this is, where to start, how to read a
+   session, then the ways in. Sized so the whole page fits one laptop screen.
+   New classes only, plus a few overrides scoped under .door-page. */
+
+.door-page .landing-top { padding-left: 28px; padding-right: 28px; }
+
+.door-intro {
+  max-width: 640px;
+  margin: 14px auto 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* The small-caps label every block on this page starts with. */
+.door-label {
+  margin: 0 0 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------ start here + how-to-read */
+.door-orient {
+  width: min(1080px, calc(100% - 56px));
+  margin: 32px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 18px;
+  animation: settle 0.6s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.door-start {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 22px 16px;
+  border: 1px solid color-mix(in srgb, var(--ink-tint) 40%, var(--white));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-tint) 5%, var(--white));
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(22, 24, 26, 0.05),
+    0 10px 26px color-mix(in srgb, var(--ink-tint) 14%, transparent);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.door-start:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-tint);
+  box-shadow: 0 2px 6px rgba(22, 24, 26, 0.07),
+    0 18px 40px color-mix(in srgb, var(--ink-tint) 24%, transparent);
+}
+.door-start:hover .arrow { transform: translateX(3px); }
+.door-start .door-label { color: var(--ink-tint); margin-bottom: 4px; }
+.door-start h2 { font-size: 19px; line-height: 1.3; }
+.door-start-meta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-tint);
+}
+.door-start-quote {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.door-start-why { margin: 0 0 8px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+.door-start-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  border-top: 1px solid color-mix(in srgb, var(--ink-tint) 22%, var(--white));
+}
+
+.door-howto {
+  padding: 20px 22px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+}
+.door-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+}
+.door-steps li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.door-step-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--ink-2);
+}
+.door-step-body { display: block; font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
+.door-step-body b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.door-step-n {
+  margin-right: 7px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+/* -------------------------------------------------------------- the doors */
+/* Prefixed with .door-page throughout: styles.css loads after this file, so a
+   bare class would lose to its rules of equal weight. */
+.door-page .door-body { padding-top: 44px; padding-bottom: 34px; }
+.doors-head { text-align: center; margin-bottom: 18px; }
+.doors-head .door-label { margin-bottom: 2px; }
+.doors-head p:not(.door-label) { margin: 0; font-size: 13.5px; color: var(--ink-3); }
+.door-page .ask { margin-top: 0; }
+
+/* ----------------------------------------------------------------- narrow */
+@media (max-width: 900px) {
+  .door-orient {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 520px;
+  }
+}
+@media (max-width: 620px) {
+  .door-page .landing-top { padding-left: 16px; padding-right: 16px; }
+  .door-intro { font-size: 15px; }
+  .door-orient { width: calc(100% - 32px); }
+  .door-orient { margin-top: 26px; }
+  .door-start, .door-howto { padding: 18px 16px 14px; }
+  .door-page .door-body { padding-top: 36px; }
+}
+@media (max-width: 520px) {
+  .door-steps { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+}
+
+/* ------------------------------------------- bring your own session (preview) */
+.door-page .door-own {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  width: 100%;
+  max-width: 1080px; /* the door grid's width, so the two line up */
+  margin-top: 16px;
+  padding: 14px 18px;
+  border: 1px dashed #d2c7ed;
+  border-radius: var(--radius);
+  background: #f7f5fd;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.14s ease, transform 0.14s ease;
+}
+.door-page .door-own:hover { border-color: #4527a0; transform: translateY(-1px); }
+.door-page .door-own:hover .arrow { transform: translateX(3px); }
+.door-own-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ece7fa;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4527a0;
+  white-space: nowrap;
+}
+.door-own-text { flex: 1 1 320px; min-width: 0; font-size: 13.5px; color: var(--ink-2); }
+.door-own-text b { color: var(--ink); }
+.door-own-go { font-size: 13px; font-weight: 600; color: #4527a0; white-space: nowrap; }
+.door-own-go .arrow { display: inline-block; transition: transform 0.14s ease; }
+
+/* ------------------------------------------------- one screen on a laptop */
+/* Everything above, tightened so the page reads without scrolling. Scoped
+   under .door-page so it wins over styles.css, which loads later. */
+.door-page .landing-top { padding-top: 22px; }
+.door-page .door-intro {
+  max-width: 860px;
+  margin-top: 6px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.door-page .door-orient { margin-top: 18px; gap: 14px; }
+.door-page .door-start { padding: 14px 18px 12px; gap: 4px; }
+.door-page .door-start h2 { font-size: 17px; }
+.door-page .door-start-quote { margin-top: 2px; font-size: 13px; }
+.door-page .door-start-foot { padding-top: 8px; margin-top: 8px; flex-wrap: nowrap; justify-content: space-between; }
+.door-page .door-start-foot .stat { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.door-page .door-start-foot .go { white-space: nowrap; }
+.door-page .door-howto { padding: 14px 18px; }
+.door-page .door-howto .door-label { margin-bottom: 10px; }
+.door-page .door-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+/* The numbers carry the order; the icons would only take width from the text. */
+.door-page .door-steps li { display: block; }
+.door-page .door-step-icon { display: none; }
+.door-page .door-orient { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); }
+
+/* Sized to its content: stretched to fill a tall window, its rows drift apart. */
+.door-page .door-body { flex: none; align-content: start; padding-top: 22px; padding-bottom: 10px; }
+.door-page .doors-head { margin-bottom: 10px; }
+.door-page .door {
+  position: relative;
+  min-height: 0;
+  gap: 6px;
+  padding: 16px 18px 12px;
+}
+/* The icon moves to the corner, out of the flow. */
+.door-page .door .icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+.door-page .door .icon svg { width: 18px; height: 18px; }
+.door-page .door h2 { font-size: 17px; padding-right: 40px; }
+.door-page .door-blurb { font-size: 13px; line-height: 1.5; }
+.door-page .door .foot { padding-top: 10px; }
+.door-page .door-own { margin-top: 12px; padding: 9px 16px; }
+.door-page .ask { margin-top: 6px; width: min(940px, calc(100% - 56px)); }
+@media (max-width: 1100px) {
+  .door-page .door-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .door-page .door-orient { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .door-page .door-steps { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}

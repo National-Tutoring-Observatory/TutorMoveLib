@@ -1,10 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { stats } from "../data/corpus.js";
-import { moveGroups } from "../data/corpus.js";
+import {
+  findSession,
+  gradeColor,
+  gradeLabel,
+  moveGroups,
+  sessions,
+  stats,
+} from "../data/corpus.js";
+import { entries, parts } from "../data/dictionary.js";
 import { subjects } from "../data/subjects.js";
-import { AskBox, DictionaryButton, useDictionary } from "../components/Dictionary.jsx";
+import { AskBox, DictionaryButton, MoveTerm, useDictionary } from "../components/Dictionary.jsx";
 import useFanOut from "../hooks/useFanOut.js";
+import "./door.css";
 
 const icon = {
   width: 26,
@@ -16,6 +24,9 @@ const icon = {
   strokeLinecap: "round",
   strokeLinejoin: "round",
 };
+
+// The same stroke style, drawn smaller for the how-to-read steps.
+const small = { ...icon, width: 20, height: 20 };
 
 const Classroom = () => (
   <svg {...icon}>
@@ -41,13 +52,86 @@ const Lexicon = () => (
   </svg>
 );
 
+// A question card: the problem the student was stuck on.
+const Question = () => (
+  <svg {...small}>
+    <rect x="4" y="3.5" width="16" height="17" rx="2" />
+    <path d="M9.6 9.6a2.4 2.4 0 1 1 3.3 2.2c-.6.3-.9.8-.9 1.4v.6" />
+    <path d="M12 16.9h.01" />
+  </svg>
+);
+
+// A line that rises and falls over a baseline: who holds the thinking, turn by turn.
+const Timeline = () => (
+  <svg {...small}>
+    <path d="M3.5 20h17" />
+    <path d="M4 15.5l4-4.5 3.5 3 4.5-7 4 4.5" />
+    <circle cx="16" cy="7" r="1.3" />
+  </svg>
+);
+
+// A speech bubble: one turn of the conversation, opened up.
+const Moment = () => (
+  <svg {...small}>
+    <path d="M5 4.5h14A1.5 1.5 0 0 1 20.5 6v8.5A1.5 1.5 0 0 1 19 16h-8l-4.5 3.5V16H5a1.5 1.5 0 0 1-1.5-1.5V6A1.5 1.5 0 0 1 5 4.5Z" />
+    <path d="M7.5 8.8h9M7.5 11.8h5.5" />
+  </svg>
+);
+
+// A pencil: your own reply, written before you see the tutor's.
+const Pencil = () => (
+  <svg {...small}>
+    <path d="M15.8 4.2l4 4L9 19H5v-4L15.8 4.2Z" />
+    <path d="M13.5 6.5l4 4" />
+  </svg>
+);
+
+const steps = [
+  {
+    icon: Question,
+    title: "The question",
+    text: "The math question the student was stuck on.",
+  },
+  {
+    icon: Timeline,
+    title: "Who's doing the thinking",
+    text: "A timeline of when the student, or the tutor, carries the thinking.",
+  },
+  {
+    icon: Moment,
+    title: "Key moments",
+    text: "What the student said, the tutor's move, and what happened next.",
+  },
+  {
+    icon: Pencil,
+    title: "Try it yourself",
+    text: "Write your reply, then see what the tutor did.",
+  },
+];
+
+// The first session we point newcomers to. Its explanations were written by
+// hand rather than generated, so it shows the library at its best. If the
+// corpus ever loses it, fall back to any session with hand-written notes.
+const START_ID = "9956";
+const start =
+  findSession(START_ID) ||
+  sessions.find((s) => s.msgs.some((m) => m.hand)) ||
+  sessions[0];
+
+const startFacts = start && {
+  turns: start.msgs.length,
+  // The student's own first words, so the card shows a real person, not a pitch.
+  opener: start.msgs.find((m) => m.t === 0)?.s,
+};
+
+
 const doors = [
   {
     id: "library",
     kicker: "For teachers and tutors",
     name: "Browse the library",
     blurb:
-      "Start from a subject and a grade level, find a question a student got stuck on, and read the conversation that followed — with every tutoring move explained in plain language.",
+      "Pick a grade and a question, then read the tutoring conversation with every move explained.",
     path: "/subjects",
     icon: Classroom,
     tint: { ink: "#c8102e", wash: "#fff1f3", line: "#f4c6cd" },
@@ -59,7 +143,7 @@ const doors = [
     kicker: "For researchers",
     name: "Work from the taxonomy",
     blurb:
-      "Start from the moves themselves. Every move in its group, everywhere it is demonstrated across the corpus, and every turn where trained annotators read it two different ways.",
+      "Every move in its group, and every place it shows up across the sessions.",
     path: "/research",
     icon: Taxonomy,
     tint: { ink: "#2a78d6", wash: "#eef4fd", line: "#c6daf1" },
@@ -74,17 +158,76 @@ const doors = [
     kicker: "For everyone",
     name: "Look up a move",
     blurb:
-      "A dictionary you can flip through. Every move on its own page, defined in a sentence and illustrated with the words tutors actually said.",
+      "Each move defined in a sentence, with the words tutors actually said.",
     // Not a route: it opens the dictionary panel over whatever page you are on.
     dictionary: true,
     icon: Lexicon,
     tint: { ink: "#1e3b32", wash: "#eef4f1", line: "#c3d6cd" },
     // The dictionary uses the taxonomy paper's full vocabulary, which is
-    // wider than the 25 codes that occur in the corpus.
-    stat: () => "29 entries · 4 parts",
+    // wider than the set of codes that occur in the corpus.
+    stat: () => `${entries.length} entries · ${Object.keys(parts).length} parts`,
     action: "Open the dictionary",
   },
 ];
+
+function StartHere() {
+  if (!start) return null;
+  return (
+    <Link
+      className="door-start"
+      to={`/mathematics/s/${start.id}`}
+      style={{ "--ink-tint": gradeColor[start.grade] || "var(--red)" }}
+    >
+      <p className="door-label">Start here</p>
+      <h2>{start.topic}</h2>
+      <p className="door-start-meta">
+        {gradeLabel(start.grade)} · {start.strand}
+      </p>
+      {startFacts.opener && (
+        <p className="door-start-quote">
+          The student opens with “{startFacts.opener.trim()}”
+        </p>
+      )}
+      <span className="door-start-foot">
+        <span className="stat">
+          {startFacts.turns} turns
+        </span>
+        <span className="go">
+          Open this session <span className="arrow">→</span>
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+function HowToRead() {
+  return (
+    <section className="door-howto" aria-labelledby="howto-h">
+      <h2 className="door-label" id="howto-h">
+        How to read a session
+      </h2>
+      <ol className="door-steps">
+        {steps.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <li key={s.title}>
+              <span className="door-step-icon" aria-hidden="true">
+                <Icon />
+              </span>
+              <span className="door-step-body">
+                <b>
+                  <span className="door-step-n">{i + 1}</span>
+                  {s.title}
+                </b>
+                <span>{s.text}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+}
 
 export default function Door() {
   const navigate = useNavigate();
@@ -92,7 +235,7 @@ export default function Door() {
   const { ref: gridRef, ready } = useFanOut(doors.length);
 
   return (
-    <main className="landing">
+    <main className="landing door-page">
       <div className="topbar">
         <span className="org-mark" aria-hidden="true" />
         <span className="org">National Tutoring Observatory</span>
@@ -101,12 +244,26 @@ export default function Door() {
 
       <header className="landing-top">
         <h1>Tutoring Moves Library</h1>
-        <p className="door-sub">Three ways in. All open on the same taxonomy.</p>
+        <p className="door-intro">
+          This is a library of real online math tutoring conversations. Every tutor turn
+          is labelled with the teaching move it shows, like{" "}
+          <MoveTerm code="GIVING_HINT">giving a hint</MoveTerm> or{" "}
+          <MoveTerm code="GIVING_ANSWER">giving the answer</MoveTerm>, and
+          explained in plain language. It is for teachers, tutors and the people
+          who train them: a place to practise noticing what a good tutor does in
+          the moment a student is stuck.
+        </p>
       </header>
 
-      <AskBox />
+      <div className="door-orient">
+        <StartHere />
+        <HowToRead />
+      </div>
 
-      <div className="landing-body">
+      <div className="landing-body door-body">
+        <div className="doors-head">
+          <h2 className="door-label">Three ways in</h2>
+        </div>
         <div className={`grid grid-doors${ready ? " ready" : ""}`} ref={gridRef}>
           {doors.map((d) => {
             const Icon = d.icon;
@@ -137,7 +294,22 @@ export default function Door() {
             );
           })}
         </div>
+
+        {/* Where the library is headed: the same reading, applied to a
+            session the tutor taught. A walk-through with a sample for now. */}
+        <Link className="door-own" to="/your-session">
+          <span className="door-own-badge">Preview · sample case</span>
+          <span className="door-own-text">
+            <b>Bring your own session.</b> Upload a transcript and see your key
+            moments, with examples from other tutors.
+          </span>
+          <span className="door-own-go">
+            See how it would work <span className="arrow">→</span>
+          </span>
+        </Link>
       </div>
+
+      <AskBox />
     </main>
   );
 }
