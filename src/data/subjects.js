@@ -28,7 +28,7 @@ export const subjects = [
     id: "math",
     blurb: "Number and place value, operations, ratio, percentages and algebra.",
     name: "Math",
-    tint: { ink: "#4527a0", wash: "#f1eefb", line: "#d2c7ed" },
+    tint: { ink: "#1a6768", wash: "#ebf4f1", line: "#bcd8d1" },
     icon: Mathematics,
     available: true,
     path: "/mathematics",

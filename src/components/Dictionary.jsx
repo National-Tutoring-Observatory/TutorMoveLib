@@ -3,6 +3,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -70,14 +71,22 @@ export function DictionaryProvider({ children }) {
 
 /* --------------------------------------------------------------- MoveTerm
    Wrap a move name anywhere in the site. Hover or focus shows the definition
-   in a small card at the top left; a click opens the dictionary at the move.
+   in a small card beside the name; a click opens the dictionary at the move.
    `clickable={false}` keeps only the hover, for names inside another button. */
 export function MoveTerm({ code, children, className = "", clickable = true }) {
   const dict = useDictionary();
   const entry = findEntry(code);
   if (!entry || !dict) return <span className={className}>{children}</span>;
 
-  const show = () => dict.setPeek({ code: entry.code, clickable });
+  // The card is placed against the name itself, so it is read where you look.
+  const show = (ev) => {
+    const r = ev.currentTarget.getBoundingClientRect();
+    dict.setPeek({
+      code: entry.code,
+      clickable,
+      rect: { top: r.top, bottom: r.bottom, left: r.left, width: r.width },
+    });
+  };
   const hide = () => dict.setPeek((p) => (p?.code === entry.code ? null : p));
   const open = (ev) => {
     ev.stopPropagation();
@@ -141,6 +150,7 @@ export function AskBox() {
       <form className="ask-row" onSubmit={submit}>
         <input
           id="ask-input"
+          aria-labelledby="ask-lbl"
           type="text"
           autoComplete="off"
           placeholder="e.g. my student is stuck and won't try the next step"
@@ -150,7 +160,7 @@ export function AskBox() {
         <button type="submit">Find moves</button>
       </form>
       {!asked && (
-        <div className="ask-egs">
+        <div className="ask-egs" role="group" aria-label="Or start from one of these">
           {[
             "student gave a wrong answer",
             "student is frustrated and says they are bad at math",
@@ -230,19 +240,50 @@ const BookIcon = () => (
 );
 
 /* ---------------------------------------------------------- DefinitionPeek
-   The small card at the top left of the window. */
+   A small dark card next to the hovered name: below it, or above when there
+   is no room below, and kept inside the window. */
+const PEEK_W = 320;
+const PEEK_GAP = 8;
+
 function DefinitionPeek() {
   const dict = useDictionary();
+  const ref = useRef(null);
   const entry = dict.peek && !dict.open ? findEntry(dict.peek.code) : null;
+  const rect = dict.peek?.rect;
+  const [pos, setPos] = useState(null);
+
+  useLayoutEffect(() => {
+    if (!entry || !rect || !ref.current) return setPos(null);
+    const h = ref.current.offsetHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const w = Math.min(PEEK_W, vw - 24);
+    const left = Math.max(12, Math.min(rect.left + rect.width / 2 - w / 2, vw - w - 12));
+    const below = rect.bottom + PEEK_GAP;
+    const above = rect.top - PEEK_GAP - h;
+    const top = below + h <= vh - 12 || above < 12 ? below : above;
+    setPos({ top, left, w, up: top !== below });
+  }, [entry?.code, rect?.top, rect?.left]);
+
   if (!entry) return null;
   return (
-    <div className="dict-peek" style={{ "--cat": categoryColor[entry.cat] }} role="status">
+    <div
+      ref={ref}
+      className={`dict-peek${pos?.up ? " up" : ""}`}
+      style={{
+        "--cat": categoryColor[entry.cat],
+        top: pos ? pos.top : -9999,
+        left: pos ? pos.left : -9999,
+        width: pos ? pos.w : PEEK_W,
+      }}
+      role="status"
+    >
       <p className="dict-peek-part">{parts[entry.cat].name}</p>
       <p className="dict-peek-name">{entry.name}</p>
       <p className="dict-peek-def">{entry.def}</p>
       <p className="dict-peek-hint">
         {dict.peek.clickable
-          ? "Click the term to open it in the dictionary"
+          ? "Click the name to open it in the dictionary"
           : "Open the dictionary from the top bar for examples"}
       </p>
     </div>
@@ -263,6 +304,9 @@ function DictionaryDrawer() {
     if (!dict.open) return;
     const e = dict.selected ? findEntry(dict.selected) : null;
     if (e) setPart(e.cat);
+    // Opened with nothing chosen: turn to the first move of the open part,
+    // so the right page is never blank.
+    else dict.setSelected(entriesIn(part)[0]?.code ?? null);
   }, [dict.open, dict.selected]);
 
   // Focus the panel on open; Escape closes.
@@ -290,9 +334,9 @@ function DictionaryDrawer() {
       <aside className="dict-drawer" role="dialog" aria-modal="true" aria-labelledby="dict-title">
         <header className="dict-head">
           <div>
-            <h2 id="dict-title">Dictionary of tutoring moves</h2>
+            <h2 id="dict-title">The Starling dictionary</h2>
             <p>
-              {entries.length} moves in {partOrder.length} parts
+              {entries.length} tutoring moves in {partOrder.length} parts
             </p>
           </div>
           <button type="button" className="dict-close" ref={closeRef} onClick={dict.close} aria-label="Close the dictionary">
@@ -308,7 +352,10 @@ function DictionaryDrawer() {
                 key={cat}
                 className={`dict-partbtn${cat === part ? " on" : ""}`}
                 style={{ "--cat": categoryColor[cat] }}
-                onClick={() => setPart(cat)}
+                onClick={() => {
+                  setPart(cat);
+                  dict.setSelected(entriesIn(cat)[0]?.code ?? null);
+                }}
                 aria-pressed={cat === part}
               >
                 <span className="dict-partbtn-name">{parts[cat].name}</span>
@@ -400,7 +447,7 @@ function Definition({ entry: e, onCorpus }) {
       </p>
       {inCorpus && (
         <button type="button" className="dict-link" onClick={onCorpus}>
-          See where it is demonstrated in the corpus →
+          See where it is demonstrated in the corpus
         </button>
       )}
     </article>

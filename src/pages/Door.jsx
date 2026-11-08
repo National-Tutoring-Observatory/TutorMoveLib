@@ -6,13 +6,15 @@ import {
   gradeLabel,
   moveGroups,
   sessions,
-  stats,
 } from "../data/corpus.js";
 import { entries, parts } from "../data/dictionary.js";
 import { subjects } from "../data/subjects.js";
 import { AskBox, DictionaryButton, MoveTerm, useDictionary } from "../components/Dictionary.jsx";
 import useFanOut from "../hooks/useFanOut.js";
 import "./door.css";
+import Brand from "../components/Brand.jsx";
+import SiteFooter from "../components/SiteFooter.jsx";
+import useTitle from "../hooks/useTitle.js";
 
 const icon = {
   width: 26,
@@ -29,14 +31,14 @@ const icon = {
 const small = { ...icon, width: 20, height: 20 };
 
 const Classroom = () => (
-  <svg {...icon}>
+  <svg {...icon} aria-hidden="true" focusable="false">
     <path d="M12 6.6C10.4 5.1 8.3 4.5 4.5 4.5v13c3.8 0 5.9.6 7.5 2.1 1.6-1.5 3.7-2.1 7.5-2.1v-13C15.7 4.5 13.6 5.1 12 6.6Z" />
     <path d="M12 6.6v13" />
   </svg>
 );
 
 const Taxonomy = () => (
-  <svg {...icon}>
+  <svg {...icon} aria-hidden="true" focusable="false">
     <circle cx="6" cy="5.5" r="2.2" />
     <circle cx="6" cy="18.5" r="2.2" />
     <circle cx="18" cy="12" r="2.2" />
@@ -45,7 +47,7 @@ const Taxonomy = () => (
 );
 
 const Lexicon = () => (
-  <svg {...icon}>
+  <svg {...icon} aria-hidden="true" focusable="false">
     <path d="M6 3.5h11.5A1.5 1.5 0 0 1 19 5v15.5H7.5A1.5 1.5 0 0 1 6 19V3.5Z" />
     <path d="M6 17.5A1.5 1.5 0 0 1 7.5 16H19" />
     <path d="M9.5 7.5h5M9.5 10.5h3.5" />
@@ -54,7 +56,7 @@ const Lexicon = () => (
 
 // A question card: the problem the student was stuck on.
 const Question = () => (
-  <svg {...small}>
+  <svg {...small} aria-hidden="true" focusable="false">
     <rect x="4" y="3.5" width="16" height="17" rx="2" />
     <path d="M9.6 9.6a2.4 2.4 0 1 1 3.3 2.2c-.6.3-.9.8-.9 1.4v.6" />
     <path d="M12 16.9h.01" />
@@ -63,7 +65,7 @@ const Question = () => (
 
 // A line that rises and falls over a baseline: who holds the thinking, turn by turn.
 const Timeline = () => (
-  <svg {...small}>
+  <svg {...small} aria-hidden="true" focusable="false">
     <path d="M3.5 20h17" />
     <path d="M4 15.5l4-4.5 3.5 3 4.5-7 4 4.5" />
     <circle cx="16" cy="7" r="1.3" />
@@ -72,7 +74,7 @@ const Timeline = () => (
 
 // A speech bubble: one turn of the conversation, opened up.
 const Moment = () => (
-  <svg {...small}>
+  <svg {...small} aria-hidden="true" focusable="false">
     <path d="M5 4.5h14A1.5 1.5 0 0 1 20.5 6v8.5A1.5 1.5 0 0 1 19 16h-8l-4.5 3.5V16H5a1.5 1.5 0 0 1-1.5-1.5V6A1.5 1.5 0 0 1 5 4.5Z" />
     <path d="M7.5 8.8h9M7.5 11.8h5.5" />
   </svg>
@@ -80,7 +82,7 @@ const Moment = () => (
 
 // A pencil: your own reply, written before you see the tutor's.
 const Pencil = () => (
-  <svg {...small}>
+  <svg {...small} aria-hidden="true" focusable="false">
     <path d="M15.8 4.2l4 4L9 19H5v-4L15.8 4.2Z" />
     <path d="M13.5 6.5l4 4" />
   </svg>
@@ -142,8 +144,8 @@ const doors = [
       "Pick a grade and a question, then read the tutoring conversation with every move explained.",
     path: "/subjects",
     icon: Classroom,
-    tint: { ink: "#c8102e", wash: "#fff1f3", line: "#f4c6cd" },
-    stat: () => `${subjects.length} subjects · ${stats.sessions} sessions`,
+    tint: { ink: "#0f5d60", wash: "#ebf4f1", line: "#bcd8d1" },
+    stat: () => `${subjects.length} subjects`,
     action: "Choose a subject",
   },
   {
@@ -186,7 +188,7 @@ function StartHere() {
       // ?tour=1 opens the session with a guided walk through each part of
       // the page. Only this card starts it.
       to={`/mathematics/s/${start.id}?tour=1`}
-      style={{ "--ink-tint": gradeColor[start.grade] || "var(--red)" }}
+      style={{ "--ink-tint": gradeColor[start.grade] || "var(--accent)" }}
     >
       <p className="door-start-top">
         <span className="door-label">Start here</span>
@@ -253,12 +255,12 @@ export default function Door() {
   const navigate = useNavigate();
   const dict = useDictionary();
   const { ref: gridRef, ready } = useFanOut(doors.length);
+  useTitle("Previous front door");
 
   return (
     <main className="landing door-page">
       <div className="topbar">
-        <span className="org-mark" aria-hidden="true" />
-        <span className="org">National Tutoring Observatory</span>
+        <Brand />
         <DictionaryButton className="topbar-dict" />
       </div>
 
@@ -330,6 +332,7 @@ export default function Door() {
       </div>
 
       <AskBox />
+      <SiteFooter />
     </main>
   );
 }

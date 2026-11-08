@@ -4,8 +4,8 @@
    carries meaning (the thinking scale, and the two moment flags). */
 
 .ys-page {
-  --student-bg: #f4f2ed;
-  --student-line: #e4dfd4;
+  --student-bg: var(--sheet-3);
+  --student-line: var(--line);
   --again: #b3541e;
   --again-wash: #fdf3ec;
   --well: #2e7d32;
@@ -23,7 +23,7 @@
 }
 .ys-kicker-file { text-transform: none; letter-spacing: 0; }
 .ys-note { margin: 0; font-size: 12.5px; color: var(--ink-3); }
-.ys-lede { margin: 0 0 18px; max-width: 70ch; font-size: 14px; color: var(--ink-2); }
+.ys-lede { margin: 0 0 18px; max-width: calc(70 * 0.6em); font-size: 14px; color: var(--ink-2); }
 .ys-h { font-size: 18px; margin: 34px 0 6px; }
 
 .ys-link {
@@ -41,14 +41,14 @@
 .ys-primary {
   padding: 10px 16px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--ink-tint);
   color: var(--white);
   font-size: 14px;
   font-weight: 600;
   transition: transform 0.14s ease, box-shadow 0.14s ease;
 }
-.ys-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(40, 20, 100, 0.18); }
+.ys-primary:hover { transform: none; box-shadow: none; }
 
 .ys-card {
   border: 1px solid var(--line);
@@ -64,7 +64,7 @@
   margin: 0 0 10px;
   padding: 3px 8px;
   border: 1px dashed var(--line-tint);
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--wash);
   font-family: var(--mono);
   font-size: 10.5px;
@@ -73,7 +73,7 @@
   color: var(--ink-tint);
 }
 .ys-head h1 { font-size: 27px; margin-bottom: 8px; }
-.ys-intro { margin: 0; max-width: 68ch; font-size: 14.5px; color: var(--ink-2); }
+.ys-intro { margin: 0; max-width: calc(68 * 0.6em); font-size: 14.5px; color: var(--ink-2); }
 
 /* ----------------------------------------------------------------- steps */
 .ys-steps {
@@ -125,7 +125,7 @@
   padding: 40px 20px;
   border: 1.5px dashed var(--line);
   border-radius: var(--radius);
-  background: #fafbfb;
+  background: var(--sheet-2);
   text-align: center;
   color: var(--ink-3);
 }
@@ -185,7 +185,7 @@
   text-transform: uppercase;
   color: var(--ink-tint);
 }
-.ys-split-bar { display: flex; gap: 2px; height: 10px; margin: 4px 0 8px; border-radius: 3px; overflow: hidden; }
+.ys-split-bar { display: flex; gap: 2px; height: 10px; margin: 4px 0 8px; border-radius: 2px; overflow: hidden; }
 .ys-split-bar i { display: block; min-width: 2px; }
 .ys-split-cap { margin: 0 0 10px; font-size: 13px; color: var(--ink-2); }
 
@@ -210,7 +210,7 @@
 }
 .ys-flag {
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: 2px;
   font-size: 11.5px;
   font-weight: 600;
 }
@@ -238,7 +238,7 @@
 
 .ys-meter { display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); }
 .ys-meter-bar { display: flex; gap: 2px; }
-.ys-meter-bar i { display: block; flex: 1; height: 5px; border-radius: 1px; background: var(--line); }
+.ys-meter-bar i { display: block; flex: 1; height: 5px; border-radius: 2px; background: var(--line); }
 .ys-meter-none { margin: 0; font-size: 12px; color: var(--ink-3); }
 
 .ys-verdict, .ys-verdict-done {
@@ -255,7 +255,7 @@
 .ys-verdict button {
   padding: 4px 10px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--white);
   font-size: 12.5px;
   color: var(--ink-2);

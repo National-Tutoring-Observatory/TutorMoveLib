@@ -5,10 +5,10 @@
    and the "who held the thinking" meter). */
 
 .ss-page {
-  --student-bg: #f4f2ed;
-  --student-line: #e4dfd4;
-  --student-mark: #b9b1a1;
-  --tick: #c5cbd0;
+  --student-bg: var(--sheet-3);
+  --student-line: var(--line);
+  --student-mark: var(--line-2);
+  --tick: var(--line-2);
 }
 
 .ss-kicker {
@@ -36,73 +36,31 @@
 }
 
 /* ------------------------------------------------------------ the question */
+/* One block, one column: the title with where it sits, then the question
+   with its options directly beneath, the right one marked. Sentence-case
+   labels in the body face. */
 .ss-head { margin-bottom: 12px; }
-/* With answer options, the header runs in two columns: the question on the
-   left, the options in the space to its right. */
-.ss-head.has-opts {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
-  gap: 8px 28px;
-  align-items: start;
-}
-.ss-head-main { min-width: 0; }
-.ss-opts ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px;
-}
-.ss-opts li {
+.ss-title-row {
   display: flex;
   align-items: baseline;
-  gap: 7px;
-  padding: 5px 9px;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  font-size: 13px;
-  line-height: 1.35;
-  color: var(--ink-2);
-  overflow-wrap: anywhere;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-bottom: 4px;
 }
-.ss-opts li b {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink-3);
+.ss-title { font-size: 23px; line-height: 1.1; letter-spacing: -0.025em; margin: 0; }
+.ss-place { margin: 0; font-size: 13px; color: var(--ink-3); }
+.ss-q {
+  border-left: 2px solid var(--ink-tint);
+  padding-left: 12px;
 }
-.ss-opts li.is-answer {
-  border-color: #b7dcbc;
-  background: #f1f8f2;
-  color: var(--ink);
-}
-.ss-opts li.is-answer b { color: #2e7d32; }
-.ss-opt-tag {
-  margin-left: auto;
-  padding-left: 6px;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #2e7d32;
-  white-space: nowrap;
-}
-.ss-opts-note { margin: 5px 0 0; font-size: 12px; color: var(--ink-3); }
-.ss-head .ss-kicker { margin-bottom: 2px; }
-.ss-title { font-size: 22px; margin-bottom: 6px; }
-.ss-q-row { display: flex; align-items: baseline; gap: 12px; }
+.ss-q-row { display: flex; align-items: baseline; gap: 12px; max-width: calc(110 * 0.6em); }
 .ss-q-row .ss-q-text { flex: 1; min-width: 0; }
 .ss-q-row .ss-linkbtn { flex-shrink: 0; }
-.ss-q {
-  border-left: 2px solid var(--line-tint);
-  padding-left: 12px;
-  max-width: 88ch;
-}
 .ss-q-text {
   margin: 0;
-  font-size: 14.5px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
   /* One line until opened: enough to recognise the task without pushing
      the conversation down. */
   display: -webkit-box;
@@ -112,12 +70,53 @@
 }
 .ss-q.open .ss-q-text { display: block; overflow: visible; }
 .ss-q-lbl {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-tint);
   margin-right: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-tint);
+}
+
+/* The options, one compact row under the question. */
+.ss-opts {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.ss-opts li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.ss-opts li b {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.ss-opts li.is-answer {
+  border-color: color-mix(in srgb, var(--green) 45%, var(--sheet));
+  background: color-mix(in srgb, var(--green) 9%, var(--sheet));
+  color: var(--ink);
+}
+.ss-opts li.is-answer b { color: var(--green); }
+.ss-opt-note { color: var(--ink-2); }
+.ss-opt-tag {
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  white-space: nowrap;
 }
 .ss-q-options {
   list-style: none;
@@ -135,8 +134,8 @@
   color: var(--ink-tint);
   margin-right: 6px;
 }
-.ss-q-answer b { font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; }
-.ss-q-answer { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); }
+.ss-q-answer b { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--green); }
+.ss-q-answer { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
 .ss-q-note { margin: 6px 0 0; font-size: 11.5px; font-style: italic; color: var(--ink-3); }
 .ss-meta {
   margin: 9px 0 0;
@@ -166,7 +165,7 @@
 .ss-frame {
   background: var(--wash);
   border: 1px solid var(--line-tint);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 8px 12px;
   margin-bottom: 10px;
 }
@@ -177,17 +176,15 @@
   gap: 10px 18px;
   flex-wrap: wrap;
 }
-.ss-watch { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); max-width: 80ch; }
+.ss-watch { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); max-width: calc(80 * 0.6em); }
 /* Inline, so the line reads as one sentence: "Watch for how the tutor…" */
 .ss-watch-lbl {
   margin-right: 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ink-tint);
 }
-.ss-try-note { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-2); max-width: 72ch; }
+.ss-try-note { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-2); max-width: calc(72 * 0.6em); }
 
 .ss-switch {
   display: inline-flex;
@@ -219,7 +216,7 @@
   height: 12px;
   border-radius: 50%;
   background: var(--white);
-  box-shadow: 0 1px 2px rgba(22, 24, 26, 0.25);
+  box-shadow: none;
   transition: transform 0.15s ease;
 }
 .ss-switch[aria-checked="true"] { color: var(--ink-tint); font-weight: 600; }
@@ -250,7 +247,7 @@
   text-align: left;
   background: var(--white);
   border: 1px solid var(--line-tint);
-  border-radius: 999px;
+  border-radius: 2px;
   padding: 3px 10px 3px 4px;
   transition: border-color 0.14s ease;
 }
@@ -342,7 +339,7 @@
   color: var(--ink-3);
 }
 .ss-ramp { display: inline-flex; gap: 2px; }
-.ss-ramp i { display: block; width: 10px; height: 7px; border-radius: 1px; }
+.ss-ramp i { display: block; width: 10px; height: 7px; border-radius: 2px; }
 
 /* ---------------------------------------------------------- two panes */
 .ss-body {
@@ -361,7 +358,7 @@
   overscroll-behavior: contain;
   scrollbar-width: thin;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 2px 14px 18px;
 }
 .ss-script:focus-visible { outline-offset: 0; }
@@ -372,7 +369,7 @@
   scrollbar-width: thin;
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 14px 18px 16px;
 }
 
@@ -417,13 +414,13 @@
   color: var(--ink);
   padding: 8px 12px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 0;
   overflow-wrap: anywhere;
   transition: border-color 0.14s ease, background 0.14s ease;
 }
 .ss-said { white-space: pre-line; }
 .ss-msg.tutor .ss-bubble {
-  background: #f8f9f9;
+  background: var(--sheet-2);
   color: var(--ink-2);
   border-top-left-radius: 3px;
 }
@@ -463,7 +460,7 @@
   line-height: 1.5;
   padding: 1px 6px;
   border: 1px solid var(--line-tint);
-  border-radius: 3px;
+  border-radius: 2px;
   background: var(--white);
   color: var(--ink-tint);
   text-decoration: none;
@@ -498,6 +495,7 @@
   border-bottom: 1px solid var(--line);
 }
 .ss-detail-head .ss-kicker { display: flex; align-items: center; gap: 7px; margin: 0; }
+.ss-detail-kicker { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); }
 .ss-stepper {
   display: flex;
   align-items: center;
@@ -511,7 +509,7 @@
 .ss-mode {
   display: inline-flex;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
   overflow: hidden;
 }
 .ss-mode button {
@@ -531,7 +529,7 @@
 .ss-stepbtn {
   padding: 7px 12px;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--white);
   font-size: 13px;
   color: var(--ink-2);
@@ -553,7 +551,7 @@
 .ss-topnav-back {
   padding: 4px 10px;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
   font-size: 12.5px;
   font-weight: 600;
   color: var(--ink);
@@ -566,7 +564,7 @@
   width: 28px;
   height: 28px;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
   font-size: 13px;
   color: var(--ink-2);
   text-decoration: none;
@@ -578,12 +576,9 @@
 .ss-sec { padding: 14px 0 4px; }
 .ss-sec + .ss-sec { border-top: 1px solid var(--line); }
 .ss-sec-h {
-  margin: 0 0 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ink-3);
 }
 .ss-situation { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
@@ -592,7 +587,7 @@
   margin: 0;
   padding: 8px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--white);
   font-size: 14px;
   line-height: 1.5;
@@ -603,8 +598,7 @@
 .ss-quote p { margin: 0; white-space: pre-line; }
 .ss-quote footer {
   margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--ink-3);
 }
 
@@ -641,7 +635,7 @@
 }
 .ss-compare > div {
   border: 1px solid var(--line-tint);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 8px 10px;
 }
 .ss-compare > div:first-child { background: var(--wash); }
@@ -704,7 +698,7 @@
   background: #f7f0dc;
   border: 1px solid #8a6a1f;
   color: #5e4711;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 10px 12px;
   font-size: 12.5px;
   margin-bottom: 12px;
@@ -720,7 +714,7 @@
 }
 .ss-reading {
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 10px 12px;
   margin-bottom: 8px;
   font-size: 13px;
@@ -740,7 +734,7 @@
   color: var(--ink);
   padding: 8px 10px;
   border: 1px solid var(--line-tint);
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--white);
 }
 .ss-try-box:focus { outline: 2px solid var(--ink-tint); outline-offset: 0; }
@@ -748,7 +742,7 @@
   margin-top: 10px;
   padding: 8px 14px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--ink-tint);
   color: var(--white);
   font-size: 13px;
@@ -765,7 +759,7 @@
   .page.ss-page {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - var(--topbar-h, 60px));
+    height: calc(100vh - var(--topbar-h, 68px));
     min-height: 560px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -775,7 +769,6 @@
 
 /* ------------------------------------------------------------ narrow */
 @media (max-width: 900px) {
-  .ss-head.has-opts { grid-template-columns: minmax(0, 1fr); }
   .ss-body { grid-template-columns: minmax(0, 1fr); height: auto; }
   .ss-script { height: 72vh; padding: 2px 10px 14px; }
   /* The side pane's contents, drawn under the chosen turn instead. */
@@ -784,13 +777,14 @@
     padding: 12px 14px 14px;
     background: var(--white);
     border: 1px solid var(--line-tint);
-    border-radius: 6px;
-    box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-tint) 10%, transparent);
+    border-radius: 0;
+    box-shadow: none;
   }
   .ss-row { max-width: 94%; }
 }
 @media (max-width: 620px) {
   .ss-title { font-size: 21px; }
+  .ss-title-row { margin-bottom: 6px; }
   .ss-q-text { -webkit-line-clamp: 2; }
   .ss-frame { padding: 12px 12px; }
   .ss-watch { font-size: 14px; }
@@ -800,3 +794,59 @@
   .ss-seq { display: none; }
   .ss-row { max-width: 92%; }
 }
+
+/* ------------------------------------------------ the moment, in three steps */
+/* The student, the tutor's move, what happened next, all on one left edge.
+   The move is the point, so it is the one tinted block, with the tutor's
+   words set large inside it and the move as a big tag; the student's words
+   around it are quiet quotes. */
+.ss-sec.ss-step + .ss-sec.ss-step { border-top: 0; }
+.ss-step.is-said { padding-top: 14px; }
+.ss-step.is-said .ss-situation { margin: 0 0 8px; font-size: 16px; font-weight: 600; color: var(--ink); }
+
+/* the student's words, quiet */
+.ss-step .ss-quote.student {
+  padding: 8px 12px;
+  border: 0;
+  background: var(--sheet-2);
+  font-size: 14.5px;
+}
+
+/* the tutor's move: the one block that carries weight */
+.ss-step.is-move {
+  margin: 12px 0;
+  padding: 14px 16px 16px;
+  border: 1px solid color-mix(in srgb, var(--ink-tint) 26%, var(--sheet));
+  background: color-mix(in srgb, var(--ink-tint) 6%, var(--sheet));
+}
+.ss-step.is-move .ss-sec-h { color: var(--ink-tint); }
+.ss-step.is-move .ss-quote {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.ss-step.is-move .ss-move {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 12px 0 6px;
+}
+.ss-movetag {
+  display: inline-flex;
+  padding: 4px 12px;
+  border: 1px solid color-mix(in srgb, var(--cat) 50%, var(--sheet));
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--cat) 13%, var(--sheet));
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ss-movetag .move-term { color: color-mix(in srgb, var(--cat) 55%, var(--ink)); text-decoration: none; }
+.ss-movetag .move-term:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.ss-step.is-move .ss-move-rung { margin-left: 0; font-size: 13px; }
+.ss-step.is-move .ss-def { font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.ss-step.is-next { padding-top: 4px; }

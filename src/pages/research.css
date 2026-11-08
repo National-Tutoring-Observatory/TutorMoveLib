@@ -1,0 +1,144 @@
+/* Hallmark · v2.0.0 · page: research (/#/research) · theme: almanac on Starling's paper · genre: editorial · redesign: restyle · signature: one bar splitting every label across the four groups, then the groups side by side on one scale */
+/* critique: compare first (the split), then read (the panels); no dotted underlines or empty tracks, numbers in mono, labels in sentence case */
+
+.rs-page { max-width: 1180px; }
+
+/* ------------------------------------------------------- the four shares */
+/* One card per group: its name, its share of every label, and a share bar
+   drawn on the same 0 to 100% scale, so the cards compare at a glance. */
+.rs-overview { margin: 8px 0 40px; }
+.rs-keys {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.rs-keys a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--sheet);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+.rs-keys a:hover {
+  border-color: color-mix(in srgb, var(--cat) 55%, var(--sheet));
+  background: color-mix(in srgb, var(--cat) 5%, var(--sheet));
+}
+.rs-keys a:focus-visible { outline: 2px solid var(--cat); outline-offset: 2px; }
+.rs-key-name { font-size: 15px; font-weight: 600; color: color-mix(in srgb, var(--cat) 70%, var(--ink)); }
+.rs-key-share {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.rs-key-bar { display: block; height: 8px; margin: 12px 0 8px; background: var(--sheet-3); }
+.rs-key-bar span { display: block; height: 100%; min-width: 3px; background: var(--cat); }
+.rs-key-meta { font-size: 13px; color: var(--ink-3); }
+.rs-note { margin: 12px 0 0; font-size: 13.5px; color: var(--ink-3); }
+@media (prefers-reduced-motion: reduce) { .rs-keys a { transition: none; } }
+
+/* ------------------------------------------------------------- the groups */
+.rs-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.rs-col { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.rs-group {
+  padding: 20px 20px 12px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--cat);
+  background: var(--sheet);
+  scroll-margin-top: 24px;
+}
+.rs-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.rs-group-head h2 {
+  font-size: 22px;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  color: color-mix(in srgb, var(--cat) 70%, var(--ink));
+}
+.rs-group-meta { font-size: 13.5px; color: var(--ink-3); }
+
+.rs-rows { list-style: none; margin: 0; padding: 0; }
+.rs-rows li + li .rs-row { border-top: 1px solid var(--line); }
+.rs-row {
+  display: grid;
+  grid-template-columns: minmax(0, 13em) minmax(0, 1fr) 3.5em;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 8px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+  color: var(--ink);
+  transition: background-color 0.12s ease;
+}
+.rs-row:hover { background: color-mix(in srgb, var(--cat) 7%, var(--sheet)); }
+.rs-row:active { background: color-mix(in srgb, var(--cat) 12%, var(--sheet)); }
+.rs-row:disabled { opacity: 0.5; cursor: not-allowed; }
+.rs-row:focus-visible { outline: 2px solid var(--cat); outline-offset: -2px; }
+
+/* The name is plain until hovered: the row is the link, the hover card the definition. */
+.rs-row .rs-name {
+  font-size: 15px;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.rs-row:hover .rs-name { text-decoration: underline; text-decoration-style: solid; text-underline-offset: 0.2em; }
+
+.rs-bar { display: block; height: 12px; }
+.rs-bar span { display: block; height: 100%; min-width: 3px; background: var(--cat); }
+.rs-count {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--ink);
+}
+.rs-contested {
+  grid-column: 1 / -1;
+  font-size: 12.5px;
+  color: var(--ochre);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-row { transition: none; }
+}
+
+/* ----------------------------------------------------------------- narrow */
+@media (max-width: 980px) {
+  /* one column, back in the page's order */
+  .rs-groups { display: flex; flex-direction: column; }
+  .rs-col { display: contents; }
+  .rs-keys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .rs-group { padding: 16px 12px 8px; }
+  .rs-row { grid-template-columns: minmax(0, 1fr) 30% 3em; gap: 12px; }
+  .rs-key-share { font-size: 24px; }
+}

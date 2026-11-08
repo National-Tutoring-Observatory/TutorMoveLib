@@ -1,0 +1,453 @@
+/* Hallmark · v2.0.0 · page: front door (/#/) · theme: almanac on the project's light paper · genre: editorial · job: land, then send people in · shape: Settled hero over an index · hero: the practice round from session 9956 beside the head · signature: try it yourself, your reply beside the tutor's · type: Hanken Grotesk, IBM Plex Mono for figures only · material: real: the corpus, its labels, its counts · absent: quotes, logos, metrics nobody measured */
+/* colour: teal for every primary action, terracotta for the practice round's button; the practice round in its grade's teal; move tags in their group's colour; each way in marked in its door's ink; the footer under a red rule */
+/* critique: a landing page, not a tour of the features: what it is, one real moment to try, where to start. One column gap (48px). */
+/* waive 39b · the Dictionary button is shared app chrome at 32px, the size it has on every other page; move names are inline terms, not buttons */
+/* waive 75 · .notice-kicker belongs to the site-wide prototype notice, whose spaced capitals the owner chose to keep */
+/* waive 77 · a landing that sends people in: hero, where to start, footer; the features live on their own pages, at the owner's request */
+
+.nl {
+  --nl-gap: 48px;
+  --nl-section: 64px;
+  --c-accent: var(--accent);
+  --c-accent-deep: var(--accent-deep);
+  --c-blue: var(--blue);
+  --c-green: var(--green);
+  --c-sage: var(--sage-deep);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+}
+
+.nl-wrap {
+  width: min(1180px, calc(100% - 56px));
+  margin: 0 auto;
+}
+.nl-grow { flex: 1; }
+
+/* --------------------------------------------------------------- top bar */
+.nl-top { gap: 12px; }
+.nl-dict { margin-left: auto; }
+
+/* ------------------------------------------------------------------ hero */
+.nl-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--nl-gap);
+  align-items: center;
+  min-height: min(calc(100svh - 60px), 680px);
+  padding: 48px 0;
+}
+.nl-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(44px, 6vw, 84px);
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.nl-lede {
+  max-width: 28em;
+  margin: 24px 0 0;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.nl-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.nl-actions-break { flex-basis: 100%; height: 0; }
+/* Who Starling belongs to, quietly, under the actions. */
+.nl-from { display: flex; align-items: center; gap: 12px; margin: 32px 0 0; font-size: 14px; color: var(--ink-3); }
+.nl-from img { display: block; width: auto; height: 36px; }
+/* Once the practice round opens it grows tall: the head stops centring on it
+   and stays in view while the reader scrolls the tutor's turns. */
+.nl-hero:has(.nl-reveal:not([hidden])) { align-items: start; }
+.nl-hero:has(.nl-reveal:not([hidden])) .nl-hero-text { position: sticky; top: 96px; padding-top: 56px; }
+
+/* One button system: red fill for the primary action, a hairline in ink. */
+.nl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 15px/1.2 var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+}
+.nl-btn:hover { background: var(--sheet); }
+.nl-btn:active { background: var(--sheet-3); }
+.nl-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nl-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.nl-btn-primary { background: var(--c-accent); border-color: var(--c-accent); color: var(--on-ink); }
+.nl-btn-primary:hover { background: var(--c-accent-deep); border-color: var(--c-accent-deep); }
+.nl-btn-primary:active { background: var(--c-accent); }
+.nl-btn-primary:focus-visible { outline-color: var(--ink); }
+
+/* ------------------------------------------------------ the practice round */
+.nl-practice {
+  margin: 0;
+  padding: 24px 28px 28px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--grade);
+  background: var(--sheet);
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--grade) 16%, var(--paper));
+}
+.nl-practice-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+.nl-practice-title { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.nl-grade {
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--grade) 12%, var(--sheet));
+  color: color-mix(in srgb, var(--grade) 80%, var(--ink));
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nl-turns { list-style: none; margin: 0; padding: 0; }
+.nl-turn {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.nl-who { margin-top: 4px; font-size: 12.5px; font-weight: 500; color: var(--ink-3); }
+.nl-said p { margin: 0; }
+.nl-said > p:first-child { font-size: 17px; line-height: 1.45; color: var(--ink); }
+.nl-turn.is-student .nl-said > p:first-child {
+  display: inline;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--sage) 34%, transparent);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.nl-said > .nl-label { margin-top: 8px; }
+.nl-why { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.nl-reveal .nl-turn.is-student .nl-said > p:first-child { display: block; padding: 0; background: none; }
+
+.nl-question { margin: 0 0 4px; font-size: 18px; line-height: 1.45; color: var(--ink); }
+/* The four answer choices, one row; the right one is marked after the reveal. */
+.nl-opts { list-style: none; margin: 8px 0 12px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.nl-opts li {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.nl-opts li b { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--ink-3); }
+.nl-opts li.is-answer {
+  border-color: color-mix(in srgb, var(--green) 50%, var(--sheet));
+  background: color-mix(in srgb, var(--green) 10%, var(--sheet));
+}
+.nl-opts li.is-answer b, .nl-opt-tag { color: var(--green); }
+.nl-opt-tag { font-size: 12px; font-weight: 600; }
+@media (max-width: 620px) {
+  .nl-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.nl-question-lbl { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 600; color: var(--ink); }
+
+.nl-reply {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 2px solid var(--grade);
+}
+.nl-reply label { font-size: 16px; font-weight: 600; color: var(--ink); }
+.nl-reply textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--ink-3);
+  border-radius: 2px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: 16px/1.45 var(--sans);
+}
+.nl-reply textarea::placeholder { color: var(--ink-3); }
+.nl-reply textarea:hover { border-color: var(--ink-2); }
+.nl-reply textarea:focus-visible { outline: 2px solid var(--grade); outline-offset: 1px; border-color: var(--grade); }
+.nl-reply .nl-btn { justify-self: start; }
+/* The practice round's own action, in terracotta, so it is never mistaken
+   for the page's main action (the teal "Take the guided tour"). */
+.nl-btn-grade { background: var(--warm); border-color: var(--warm); color: var(--on-ink); }
+.nl-btn-grade:hover { background: var(--warm-deep); border-color: var(--warm-deep); }
+.nl-btn-grade:active { background: var(--warm); }
+.nl-btn-grade:focus-visible { outline-color: var(--ink); }
+
+.nl-reveal { margin-top: 20px; }
+.nl-yours {
+  margin: 0 0 4px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--sage) 55%, var(--sheet));
+  background: color-mix(in srgb, var(--sage) 14%, var(--sheet));
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.nl-yours .nl-who { display: block; margin: 0 0 4px; }
+.nl-next { margin: 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.nl-next .nl-who { display: block; margin: 0 0 4px; }
+
+/* Move tags, coloured by the move's group. */
+.nl-tag {
+  display: inline-block;
+  margin: 0 8px 4px 0;
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--cat) 45%, var(--sheet));
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--cat) 12%, var(--sheet));
+  font-size: 13px;
+}
+.nl-tag .move-term { font-weight: 600; color: color-mix(in srgb, var(--cat) 55%, var(--ink)); }
+
+.nl-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+.nl-link:hover { text-decoration-thickness: 2px; }
+
+/* --------------------------------------------------- describe your situation */
+/* A full-width sage band under the hero: the head on the left, the search
+   on the right, results as cards with a rule in the move group's colour. */
+.nl-band-ask {
+  padding: 56px 0;
+  border-top: 1px solid color-mix(in srgb, var(--sage) 45%, var(--paper));
+  border-bottom: 1px solid color-mix(in srgb, var(--sage) 45%, var(--paper));
+  background: color-mix(in srgb, var(--sage) 14%, var(--paper));
+}
+.nl-ask {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--nl-gap);
+  align-items: start;
+}
+.nl-ask-head .nl-h2 { margin-bottom: 12px; }
+.nl-ask-head p { margin: 0; max-width: 28em; font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+/* The heading says it; the box's own label stays for screen readers only. */
+.nl-ask .ask { width: 100%; margin: 0; animation: none; }
+.nl-ask .ask-lbl {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.nl-ask .ask-row { gap: 8px; }
+.nl-ask .ask-row input {
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1px solid var(--ink-3);
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 16px;
+}
+.nl-ask .ask-row input:hover { border-color: var(--ink-2); }
+.nl-ask .ask-row button {
+  min-height: 52px;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--accent);
+  color: var(--on-ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+.nl-ask .ask-row button:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.nl-ask .ask-egs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.nl-ask .ask-egs button {
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--sage) 50%, var(--sheet));
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 13.5px;
+  text-align: left;
+  color: var(--ink-2);
+}
+.nl-ask .ask-egs button:hover { border-color: var(--accent); color: var(--ink); }
+.nl-ask .ask-out { margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.nl-ask .ask-out h3 { grid-column: 1 / -1; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); }
+.nl-ask .ask-out .ask-none { grid-column: 1 / -1; }
+.nl-ask .ask-hit {
+  display: block;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cat);
+  border-radius: 2px;
+  background: var(--sheet);
+  text-align: left;
+}
+.nl-ask .ask-hit:hover { background: color-mix(in srgb, var(--cat) 6%, var(--sheet)); }
+.nl-ask .ask-hit-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+.nl-ask .ask-hit-name::first-letter { text-transform: uppercase; }
+.nl-ask .ask-hit-part {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: color-mix(in srgb, var(--cat) 60%, var(--ink));
+}
+.nl-ask .ask-hit-tip { font-size: 13.5px; color: var(--ink-2); }
+.nl-ask .ask-hit-why { font-size: 12.5px; color: var(--ink-3); }
+
+/* ------------------------------------------------------------ ways in */
+.nl-section {
+  padding: var(--nl-section) 0;
+  border-top: 2px solid var(--rule-2);
+}
+.nl-h2 {
+  margin: 0 0 24px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.nl-ways { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.nl-way {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 4fr) 112px;
+  gap: var(--nl-gap);
+  align-items: baseline;
+  width: 100%;
+  padding: 24px 8px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  color: var(--ink);
+  transition: background-color 0.14s ease;
+}
+.nl-way:hover { background: color-mix(in srgb, var(--way) 6%, var(--sheet)); }
+.nl-way:active { background: color-mix(in srgb, var(--way) 10%, var(--sheet)); }
+.nl-way-who { font-size: 14px; color: var(--ink-3); }
+.nl-way-name {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: color-mix(in srgb, var(--way) 82%, var(--ink));
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.14s ease;
+}
+.nl-way-name::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  vertical-align: 0.08em;
+  background: var(--way);
+}
+.nl-way:hover .nl-way-name { text-decoration-color: currentColor; }
+.nl-way-what { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.nl-way-count {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--way) 82%, var(--ink));
+  text-align: right;
+}
+
+/* Bring your own session: one quiet line, the purple kept to its badge. */
+.nl-preview {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.nl-preview-badge {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 0 8px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--c-sage) 16%, var(--sheet));
+  color: color-mix(in srgb, var(--c-sage) 60%, var(--ink));
+  font-size: 13px;
+  font-weight: 600;
+}
+.nl-preview .nl-link { margin: 0 0 0 4px; }
+
+/* ---------------------------------------------------------------- footer */
+.nl-foot {
+  padding: 48px 0 64px;
+  border-top: 4px solid var(--c-accent);
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.nl-foot-inner {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--nl-gap);
+  align-items: start;
+}
+.nl-foot-logo { width: 140px; height: auto; filter: invert(1); }
+.nl-foot p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--on-ink); opacity: 0.84; }
+.nl-foot-links { grid-column: 2 / -1; }
+.nl-foot a { color: var(--on-ink); text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+.nl-foot a:hover { text-decoration-thickness: 2px; }
+.nl-foot a:focus-visible { outline: 2px solid var(--on-ink); outline-offset: 2px; }
+
+/* ---------------------------------------------------------------- narrow */
+@media (max-width: 980px) {
+  .nl { --nl-gap: 32px; --nl-section: 48px; }
+  .nl-ask { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .nl-band-ask { padding: 40px 0; }
+  .nl-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 40px 0 56px; }
+  .nl-hero:has(.nl-reveal:not([hidden])) .nl-hero-text { position: static; padding-top: 0; }
+  .nl-way { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; }
+  .nl-way-who { grid-column: 1 / -1; }
+  .nl-way-what { grid-column: 1 / -1; grid-row: 3; }
+  .nl-way-count { grid-row: 2; grid-column: 2; }
+  .nl-foot-inner { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .nl-foot-links { grid-column: auto; }
+}
+@media (max-width: 620px) {
+  .nl-wrap { width: calc(100% - 32px); }
+  .nl-ask .ask-row { flex-direction: column; }
+  .nl-ask .ask-egs, .nl-ask .ask-out { grid-template-columns: minmax(0, 1fr); }
+  .nl-practice { padding: 20px 16px; box-shadow: none; }
+  .nl-turn { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nl-btn, .nl-way, .nl-way-name { transition: none; }
+}

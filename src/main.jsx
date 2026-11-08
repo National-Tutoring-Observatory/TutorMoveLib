@@ -9,6 +9,7 @@ import Door from "./pages/Door.jsx";
 import Grade from "./pages/Grade.jsx";
 import Landing from "./pages/Landing.jsx";
 import Move from "./pages/Move.jsx";
+import NewLanding from "./pages/NewLanding.jsx";
 import Research from "./pages/Research.jsx";
 import Session from "./pages/Session.jsx";
 import YourSession from "./pages/YourSession.jsx";
@@ -24,7 +25,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <PrototypeNotice />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Door />} />
+        <Route path="/" element={<NewLanding />} />
+        {/* The previous front door, kept reachable. To switch back, swap the
+            element on "/" for <Door />. */}
+        <Route path="/classic" element={<Door />} />
+        <Route path="/new" element={<Navigate to="/" replace />} />
         <Route path="/subjects" element={<Landing />} />
         {/* The grades now live on the subject page, so the old grade picker
             sends people there; old links and bookmarks keep working. */}

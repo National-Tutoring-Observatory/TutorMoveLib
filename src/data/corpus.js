@@ -38,31 +38,30 @@ export const gradeTiers = Object.keys(grades)
     };
   });
 
-// One colour per grade, ramping blue to crimson so the sequence itself reads
-// as level ascending. Only the ink is stored; the card surface and border are
-// derived from it in CSS with color-mix.
 // The span the library is meant to cover. Only some of it is populated; the
 // grade page shows the whole range so the gap is visible rather than implied.
 export const GRADE_SPAN = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export const availableGrades = new Set(gradeTiers.map((t) => t.grade));
 
-// A colour for every level in the span, ramping violet through to plum so
-// the sequence itself reads as level ascending. Grades with no questions yet
-// still carry their hue — they just sit dark, the way unbuilt subjects do.
+// A colour for every level in the span: one teal ramp taken from the Starling
+// mark, light sage for the early grades deepening to the mark's darkest teal,
+// so the sequence reads as level ascending and stays inside the site's
+// palette. Each step is 4px of lightness apart in OKLCH; grades 3 and up
+// clear 3:1 on the paper for the large numerals that carry them.
 export const gradeColor = {
-  1: "#4a4fb5",
-  2: "#1f5fa8",
-  3: "#1976d2",
-  4: "#0f7a86",
-  5: "#2e7d32",
-  6: "#827717",
-  7: "#b06a00",
-  8: "#c2521a",
-  9: "#c2185b",
-  10: "#a8226b",
-  11: "#7b1fa2",
-  12: "#5b3fa8",
+  1: "#6c9880",
+  2: "#5a9077",
+  3: "#478770",
+  4: "#327f6a",
+  5: "#1a7664",
+  6: "#006d5f",
+  7: "#00635a",
+  8: "#005954",
+  9: "#004f4e",
+  10: "#004547",
+  11: "#003b3f",
+  12: "#003137",
 };
 
 export const gradeLabel = (g) => `Grade ${g}`;

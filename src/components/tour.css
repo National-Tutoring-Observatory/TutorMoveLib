@@ -18,13 +18,10 @@
 
 .tour-light {
   position: fixed;
-  border-radius: 10px;
+  border-radius: 0;
   box-shadow: 0 0 0 2px var(--white), 0 0 0 9999px var(--tour-grey);
   pointer-events: none;
-  transition: top 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    left 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.2s ease;
 }
 .tour-shade {
   position: fixed;
@@ -55,10 +52,10 @@
 .tour-card {
   position: fixed;
   padding: 16px 18px 12px;
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--white);
   color: var(--ink);
-  box-shadow: 0 12px 36px rgba(22, 24, 26, 0.28);
+  box-shadow: none;
   animation: tour-in 0.22s ease both;
 }
 .tour-card.is-center { padding: 22px 24px 16px; }
@@ -84,7 +81,7 @@
 .tour-why {
   margin: 10px 0 0;
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: 0;
   background: color-mix(in srgb, var(--tour-accent) 8%, var(--white));
   font-size: 13px;
   line-height: 1.5;
@@ -111,7 +108,7 @@
 .tour-btn {
   padding: 6px 12px;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--white);
   font-size: 13px;
   font-weight: 600;

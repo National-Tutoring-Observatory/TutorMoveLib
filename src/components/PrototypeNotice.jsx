@@ -50,10 +50,11 @@ export default function PrototypeNotice() {
         aria-describedby="notice-body"
       >
         <p className="notice-kicker">Early prototype · Testing in progress</p>
-        <h2 id="notice-title">Thanks for taking a look</h2>
+        <h2 id="notice-title">Welcome to Starling</h2>
         <div id="notice-body" className="notice-body">
           <p>
-            This is a very early prototype of the Tutoring Moves Library, and we
+            This is a very early prototype of Starling, the Tutoring Moves Library from
+            the National Tutoring Observatory, and we
             are still testing it.
           </p>
           <p>

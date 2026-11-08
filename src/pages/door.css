@@ -40,21 +40,19 @@
   gap: 6px;
   padding: 20px 22px 16px;
   border: 1px solid color-mix(in srgb, var(--ink-tint) 40%, var(--white));
-  border-radius: 10px;
+  border-radius: 0;
   background: color-mix(in srgb, var(--ink-tint) 5%, var(--white));
   color: var(--ink);
   text-decoration: none;
-  box-shadow: 0 1px 2px rgba(22, 24, 26, 0.05),
-    0 10px 26px color-mix(in srgb, var(--ink-tint) 14%, transparent);
+  box-shadow: none;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
 }
 .door-start:hover {
-  transform: translateY(-2px);
+  transform: none;
   border-color: var(--ink-tint);
-  box-shadow: 0 2px 6px rgba(22, 24, 26, 0.07),
-    0 18px 40px color-mix(in srgb, var(--ink-tint) 24%, transparent);
+  box-shadow: none;
 }
-.door-start:hover .arrow { transform: translateX(3px); }
+.door-start:hover .arrow { transform: none; }
 .door-start .door-label { color: var(--ink-tint); margin: 0; }
 .door-start-top {
   display: flex;
@@ -66,7 +64,7 @@
 .door-start-tag {
   padding: 2px 8px;
   border: 1px solid color-mix(in srgb, var(--ink-tint) 35%, var(--white));
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--white);
   font-family: var(--mono);
   font-size: 10.5px;
@@ -100,7 +98,7 @@
 .door-howto {
   padding: 20px 22px 20px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--white);
 }
 .door-steps {
@@ -180,29 +178,29 @@
   max-width: 1080px; /* the door grid's width, so the two line up */
   margin-top: 16px;
   padding: 14px 18px;
-  border: 1px dashed #d2c7ed;
+  border: 1px dashed var(--line-tint, var(--line));
   border-radius: var(--radius);
-  background: #f7f5fd;
+  background: var(--sheet-2);
   color: var(--ink);
   text-decoration: none;
   transition: border-color 0.14s ease, transform 0.14s ease;
 }
-.door-page .door-own:hover { border-color: #4527a0; transform: translateY(-1px); }
-.door-page .door-own:hover .arrow { transform: translateX(3px); }
+.door-page .door-own:hover { border-color: var(--accent); transform: none; }
+.door-page .door-own:hover .arrow { transform: none; }
 .door-own-badge {
   padding: 2px 8px;
-  border-radius: 999px;
-  background: #ece7fa;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--sheet));
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #4527a0;
+  color: var(--accent);
   white-space: nowrap;
 }
 .door-own-text { flex: 1 1 320px; min-width: 0; font-size: 13.5px; color: var(--ink-2); }
 .door-own-text b { color: var(--ink); }
-.door-own-go { font-size: 13px; font-weight: 600; color: #4527a0; white-space: nowrap; }
+.door-own-go { font-size: 13px; font-weight: 600; color: var(--accent); white-space: nowrap; }
 .door-own-go .arrow { display: inline-block; transition: transform 0.14s ease; }
 
 /* ------------------------------------------------- one screen on a laptop */
@@ -263,3 +261,100 @@
 @media (max-width: 520px) {
   .door-page .door-steps { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
+
+/* ============================================================== Hallmark
+   Landing, restyled in Almanac: a real headline, the how-to-read steps as a
+   ruled four-column table with mono numerals, and the three doors as printed
+   sheets with a firm rule in their own colour. Same blocks, same order. */
+
+/* The headline is the page's one loud thing. */
+.door-page .landing-top { padding-top: 30px; }
+.door-page .landing-top h1 {
+  font-size: 38px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.door-page .door-intro {
+  max-width: 760px;
+  margin-top: 12px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+.door-page .door-intro .move-term { color: var(--ink); }
+
+/* Start here: the one tinted sheet, a firm rule in the grade's colour. */
+.door-page .door-start {
+  background: color-mix(in srgb, var(--ink-tint) 6%, var(--sheet));
+  border-color: color-mix(in srgb, var(--ink-tint) 30%, var(--sheet));
+  box-shadow: inset 0 2px 0 var(--ink-tint);
+}
+.door-page .door-start:hover {
+  border-color: var(--ink-tint);
+  background: color-mix(in srgb, var(--ink-tint) 10%, var(--sheet));
+}
+.door-page .door-start h2 { font-size: 19px; letter-spacing: -0.02em; }
+
+/* How to read: four ruled columns, numerals set large in mono. */
+.door-page .door-howto { display: flex; flex-direction: column; }
+.door-page .door-steps {
+  flex: 1;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.door-page .door-steps li {
+  padding: 14px 16px 4px 0;
+}
+.door-page .door-steps li + li {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+.door-page .door-step-n {
+  display: block;
+  margin: 0 0 18px;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-4);
+}
+.door-page .door-step-body b { font-size: 14px; margin-bottom: 4px; }
+.door-page .door-step-body { font-size: 13px; }
+@media (max-width: 1100px) {
+  .door-page .door-steps li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .door-page .door-steps li:nth-child(n + 3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 520px) {
+  .door-page .door-steps li { padding-left: 0; border-left: 0; }
+  .door-page .door-steps li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .door-page .door-step-n { margin-bottom: 10px; font-size: 22px; }
+}
+
+/* The doors: white sheets on the paper, hairline sides, a firm rule in
+   the door's own colour at the head; the tint arrives on hover. */
+.door-page .door {
+  background: var(--sheet);
+  border-color: var(--line);
+  box-shadow: inset 0 2px 0 var(--ink-tint);
+  transition: background-color 0.14s ease, border-color 0.14s ease;
+}
+.door-page .door:hover {
+  transform: none;
+  border-color: color-mix(in srgb, var(--ink-tint) 45%, var(--sheet));
+  background: color-mix(in srgb, var(--ink-tint) 4%, var(--sheet));
+}
+.door-page .door h2 { font-size: 19px; letter-spacing: -0.02em; }
+.door-page .door .icon { background: transparent; border-color: color-mix(in srgb, var(--ink-tint) 30%, var(--sheet)); }
+.door-page .door .foot { border-top-color: var(--line); }
+
+/* Bring your own session: a quiet ruled band, the purple kept to the badge. */
+.door-page .door-own {
+  border: 1px solid var(--line);
+  background: var(--sheet-2);
+}
+.door-page .door-own:hover { border-color: var(--accent); background: var(--sheet); }

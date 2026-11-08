@@ -1,0 +1,156 @@
+/* Hallmark · v2.0.0 · page: one move (/#/research/m/:code) · theme: almanac on Starling's paper · genre: editorial · redesign: restyle · signature: the tutor's words with the cue words marked in place */
+/* critique: what the move is, where it sits on the thinking scale, then a compact, filterable list of real examples instead of hundreds of cards */
+
+.mv-page { max-width: 1080px; }
+
+/* ------------------------------------------------------------------ head */
+.mv-head { margin-bottom: 32px; }
+.mv-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--cat) 70%, var(--ink));
+}
+.mv-group::before { content: ""; width: 12px; height: 12px; background: var(--cat); }
+.mv-head .page-h1 { font-size: 36px; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px; text-wrap: balance; }
+.mv-def { margin: 0; max-width: 40em; font-size: 18px; line-height: 1.5; color: var(--ink); }
+.mv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin: 16px 0 0;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.mv-stats b { font-family: var(--mono); font-weight: 500; color: var(--ink); }
+.mv-code { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+
+.mv-sub { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
+
+/* ---------------------------------------------------------------- scale */
+.mv-scale {
+  max-width: 560px;
+  margin: 0 0 40px;
+  padding: 16px 20px 20px;
+  border: 1px solid var(--line);
+  background: var(--sheet);
+}
+.mv-scale-bar {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 20px;
+}
+.mv-scale-bar li { flex: 1; height: 8px; background: var(--r); opacity: 0.35; }
+.mv-scale-bar li.is-on { height: 20px; opacity: 1; outline: 2px solid var(--ink); outline-offset: 2px; }
+.mv-scale-cap { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.mv-scale-now { margin: 12px 0 0; font-size: 15px; color: var(--ink-2); }
+.mv-scale-now b { color: var(--ink); }
+
+/* ------------------------------------------------------------- examples */
+.mv-examples { margin-bottom: 40px; }
+.mv-ex-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--rule-2);
+}
+.mv-filter { display: flex; flex-wrap: wrap; gap: 8px; }
+.mv-filter button {
+  padding: 4px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+.mv-filter button span { margin-left: 4px; font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.mv-filter button:hover { border-color: var(--g, var(--ink-tint)); color: var(--ink); }
+.mv-filter button[aria-pressed="true"] {
+  border-color: var(--g, var(--ink-tint));
+  background: color-mix(in srgb, var(--g, var(--ink-tint)) 12%, var(--sheet));
+  color: var(--ink);
+  font-weight: 600;
+}
+.mv-filter button:focus-visible { outline: 2px solid var(--g, var(--ink-tint)); outline-offset: 2px; }
+.mv-hint { margin: 12px 0 8px; font-size: 13.5px; color: var(--ink-3); }
+
+.mv-rows { list-style: none; margin: 0; padding: 0; }
+.mv-rows li + li .mv-row { border-top: 1px solid var(--line); }
+.mv-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 24em);
+  gap: 4px 24px;
+  align-items: baseline;
+  width: 100%;
+  padding: 12px 8px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+  color: var(--ink);
+  transition: background-color 0.12s ease;
+}
+.mv-row:hover { background: color-mix(in srgb, var(--cat) 6%, var(--sheet)); }
+.mv-row:active { background: color-mix(in srgb, var(--cat) 10%, var(--sheet)); }
+.mv-row:focus-visible { outline: 2px solid var(--cat); outline-offset: -2px; }
+.mv-row:disabled { opacity: 0.5; cursor: not-allowed; }
+.mv-said { font-size: 16px; line-height: 1.45; overflow-wrap: anywhere; }
+.mv-said mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--cat) 18%, transparent);
+  color: inherit;
+  font-weight: 600;
+}
+.mv-where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 2px 12px;
+  font-size: 13px;
+  color: var(--ink-3);
+  text-align: right;
+}
+.mv-grade { font-weight: 600; color: color-mix(in srgb, var(--g) 75%, var(--ink)); }
+.mv-topic { color: var(--ink-2); }
+.mv-row:hover .mv-topic { text-decoration: underline; text-underline-offset: 0.2em; }
+.mv-why, .mv-also { grid-column: 1 / -1; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.mv-also .move-term { text-decoration: none; font-weight: 600; color: var(--ink); }
+
+.mv-more {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  background: var(--sheet);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.mv-more span { color: var(--ink-3); font-weight: 400; }
+.mv-more:hover { border-color: var(--ink-tint); }
+.mv-more:focus-visible { outline: 2px solid var(--ink-tint); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-row { transition: none; }
+}
+
+@media (max-width: 720px) {
+  .mv-head .page-h1 { font-size: 30px; }
+  .mv-row { grid-template-columns: minmax(0, 1fr); }
+  .mv-where { justify-content: flex-start; text-align: left; }
+}

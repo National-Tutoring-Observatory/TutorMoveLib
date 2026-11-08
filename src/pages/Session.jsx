@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 
-import { MoveTerm, MoveTerms } from "../components/Dictionary.jsx";
+import { MoveTerm } from "../components/Dictionary.jsx";
 import Shell, { MATH_TINT, RESEARCH_TINT } from "../components/Shell.jsx";
 import Tour from "../components/Tour.jsx";
 import {
+  categoryColor,
   findMove,
   findSession,
   grades,
@@ -108,32 +109,68 @@ function parseAnswer(answer, options = []) {
 
 function QuestionHeader({ session, position, watch }) {
   const [open, setOpen] = useState(false);
+  const [clipped, setClipped] = useState(false);
+  const textRef = useRef(null);
   const inferred = session.confidence === "inferred";
   const options = session.options ?? [];
   const { key, note } = parseAnswer(session.answer, options);
+  // Where this question sits, as one plain line beside the title.
+  const lower = (t) => (t ? t.charAt(0).toLowerCase() + t.slice(1) : null);
+  const place = [grades[String(session.grade)], lower(session.strand), lower(position)]
+    .filter(Boolean)
+    .join(", ");
+
+  // "Show all" only when the one-line question is actually cut off.
+  useLayoutEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+    const measure = () => {
+      if (open) return;
+      setClipped(el.scrollHeight > el.clientHeight + 1);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [open, session.question]);
+
   return (
-    <header className={`ss-head${options.length ? " has-opts" : ""}`}>
-      <div className="ss-head-main">
-      <p className="ss-kicker">
-        {grades[String(session.grade)]} · {session.strand} · {position}
-      </p>
-      <h1 className="ss-title">{session.topic}</h1>
+    <header className="ss-head">
+      <div className="ss-title-row">
+        <h1 className="ss-title">{session.topic}</h1>
+        <p className="ss-place">{place}</p>
+      </div>
       <div className={`ss-q${open ? " open" : ""}`} id="ss-question">
         <div className="ss-q-row">
-          <p className="ss-q-text">
+          <p className="ss-q-text" ref={textRef}>
             <span className="ss-q-lbl">Question</span>
             {session.question}
           </p>
-          <button
-            className="ss-linkbtn"
-            aria-expanded={open}
-            aria-controls="ss-question"
-            onClick={() => setOpen((o) => !o)}
-          >
-            {open ? "Show less" : "Show all"}
-          </button>
+          {(clipped || open) && (
+            <button
+              className="ss-linkbtn"
+              aria-expanded={open}
+              aria-controls="ss-question"
+              onClick={() => setOpen((o) => !o)}
+            >
+              {open ? "Show less" : "Show all"}
+            </button>
+          )}
         </div>
-        {open && !key && (
+        {options.length > 0 && (
+          <ol className="ss-opts" aria-label="Answer options">
+            {options.map((o) => (
+              <li key={o.k} className={o.k === key ? "is-answer" : ""}>
+                <b>{o.k}</b>
+                <span>
+                  {o.t}
+                  {o.k === key && note && <span className="ss-opt-note"> ({note})</span>}
+                </span>
+                {o.k === key && <span className="ss-opt-tag">Answer</span>}
+              </li>
+            ))}
+          </ol>
+        )}
+        {!key && (options.length > 0 || open) && (
           <p className="ss-q-answer">
             <b>Answer</b> {session.answer}
           </p>
@@ -151,23 +188,6 @@ function QuestionHeader({ session, position, watch }) {
           <span className="ss-watch-lbl">Watch for</span>
           {watch}
         </p>
-      )}
-      </div>
-
-      {options.length > 0 && (
-        <div className="ss-opts">
-          <ol aria-label="Answer options">
-            {options.map((o) => (
-              <li key={o.k} className={o.k === key ? "is-answer" : ""}>
-                <b>{o.k}</b>
-                <span>{o.t}</span>
-                {o.k === key && <span className="ss-opt-tag">Answer</span>}
-              </li>
-            ))}
-          </ol>
-          {note && <p className="ss-opts-note">{note}</p>}
-          {!key && <p className="ss-opts-note">Answer: {session.answer}</p>}
-        </div>
       )}
     </header>
   );
@@ -319,9 +339,7 @@ function Quote({ who, n, children }) {
   return (
     <blockquote className={`ss-quote ${who}`}>
       <p>{children}</p>
-      <footer>
-        {who === "student" ? "Student" : "Tutor"} · message {n}
-      </footer>
+      <footer>Message {n}</footer>
     </blockquote>
   );
 }
@@ -353,7 +371,7 @@ function Detail({
   return (
     <div className="ss-detail">
       <div className="ss-detail-head">
-        <p className="ss-kicker">
+        <p className="ss-detail-kicker">
           {moment ? (
             <>
               <span className="ss-knum">{moment.num}</span> Key moment {moment.num} of{" "}
@@ -365,9 +383,11 @@ function Detail({
         </p>
       </div>
 
-      <section className="ss-sec">
-        <h3 className="ss-sec-h">The situation</h3>
-        <p className="ss-situation">{situation.label}</p>
+      {/* The moment in three steps: what the student said, what the tutor did
+          (the point of the panel, so it is the one tinted block), and what
+          happened next. */}
+      <section className="ss-sec ss-step is-said">
+        <h3 className="ss-situation">{situation.label}</h3>
         {situation.cue &&
           studentRun(session, situation.cue.n).map((m) => (
             <Quote who="student" n={m.n} key={m.n}>{m.s.trim()}</Quote>
@@ -395,7 +415,7 @@ function Detail({
         </section>
       ) : (
         <>
-          <section className="ss-sec">
+          <section className="ss-sec ss-step is-move">
             <h3 className="ss-sec-h">What the tutor did</h3>
             {draft.trim() && (
               <div className="ss-compare">
@@ -417,7 +437,15 @@ function Detail({
             ) : (
               <>
                 <p className="ss-move">
-                  <MoveTerms codes={focused.m} sep=" + " />
+                  {focused.m.map((code) => (
+                    <span
+                      key={code}
+                      className="ss-movetag"
+                      style={{ "--cat": categoryColor[moves[code]?.category] || "var(--ink-3)" }}
+                    >
+                      <MoveTerm code={code}>{moveName(code)}</MoveTerm>
+                    </span>
+                  ))}
                   {/* Where the move sits on the thinking scale, when it has a
                       place there. Most feedback and rapport moves do not. */}
                   {rung && (
@@ -432,7 +460,7 @@ function Detail({
             )}
           </section>
 
-          <section className="ss-sec">
+          <section className="ss-sec ss-step is-next">
             <h3 className="ss-sec-h">What happened next</h3>
             {next.replies.length ? (
               next.replies.map((r) => (
