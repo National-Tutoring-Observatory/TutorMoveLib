@@ -47,6 +47,22 @@ MOVES = {
         "def": "Points the student back at their own mistake to fix, without "
                "showing the right way.",
     },
+    # The taxonomy paper (Zhou et al., 2026, Table 1) lists the feedback moves
+    # under Learning support. They stay off the thinking scale (rung None):
+    # the site's six-rung scale was built without them.
+    "FEEDBACK_CORRECT": {
+        "name": "Feedback: correct", "category": "learning", "rung": None,
+        "def": "Confirms the student's answer is right.",
+    },
+    "FEEDBACK_INCORRECT": {
+        "name": "Feedback: incorrect", "category": "learning", "rung": None,
+        "def": "Signals the answer isn't right, without necessarily supplying "
+               "the right one.",
+    },
+    "FEEDBACK_NEUTRAL": {
+        "name": "Feedback: neutral", "category": "learning", "rung": None,
+        "def": "Acknowledges the answer without marking it right or wrong.",
+    },
     "GIVING_HINT": {
         "name": "Giving a hint", "category": "learning", "rung": 3,
         "def": "Nudges toward the answer while leaving the work to the student.",
@@ -80,19 +96,6 @@ MOVES = {
     "PROBING_PRIOR_KNOWLEDGE": {
         "name": "Probing prior knowledge", "category": "tutoring", "rung": None,
         "def": "Checks what the student already knew coming in.",
-    },
-    "FEEDBACK_CORRECT": {
-        "name": "Feedback: correct", "category": "tutoring", "rung": None,
-        "def": "Confirms the student's answer is right.",
-    },
-    "FEEDBACK_INCORRECT": {
-        "name": "Feedback: incorrect", "category": "tutoring", "rung": None,
-        "def": "Signals the answer isn't right, without necessarily supplying "
-               "the right one.",
-    },
-    "FEEDBACK_NEUTRAL": {
-        "name": "Feedback: neutral", "category": "tutoring", "rung": None,
-        "def": "Acknowledges the answer without marking it right or wrong.",
     },
     "CORRECTING_OWN_ERROR": {
         "name": "Correcting own error", "category": "tutoring", "rung": None,

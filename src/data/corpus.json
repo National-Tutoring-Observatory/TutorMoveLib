@@ -33037,6 +33037,24 @@
    "rung": 2,
    "def": "Points the student back at their own mistake to fix, without showing the right way."
   },
+  "FEEDBACK_CORRECT": {
+   "name": "Feedback: correct",
+   "category": "learning",
+   "rung": null,
+   "def": "Confirms the student's answer is right."
+  },
+  "FEEDBACK_INCORRECT": {
+   "name": "Feedback: incorrect",
+   "category": "learning",
+   "rung": null,
+   "def": "Signals the answer isn't right, without necessarily supplying the right one."
+  },
+  "FEEDBACK_NEUTRAL": {
+   "name": "Feedback: neutral",
+   "category": "learning",
+   "rung": null,
+   "def": "Acknowledges the answer without marking it right or wrong."
+  },
   "GIVING_HINT": {
    "name": "Giving a hint",
    "category": "learning",
@@ -33084,24 +33102,6 @@
    "category": "tutoring",
    "rung": null,
    "def": "Checks what the student already knew coming in."
-  },
-  "FEEDBACK_CORRECT": {
-   "name": "Feedback: correct",
-   "category": "tutoring",
-   "rung": null,
-   "def": "Confirms the student's answer is right."
-  },
-  "FEEDBACK_INCORRECT": {
-   "name": "Feedback: incorrect",
-   "category": "tutoring",
-   "rung": null,
-   "def": "Signals the answer isn't right, without necessarily supplying the right one."
-  },
-  "FEEDBACK_NEUTRAL": {
-   "name": "Feedback: neutral",
-   "category": "tutoring",
-   "rung": null,
-   "def": "Acknowledges the answer without marking it right or wrong."
   },
   "CORRECTING_OWN_ERROR": {
    "name": "Correcting own error",

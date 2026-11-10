@@ -457,7 +457,7 @@ function Definition({ entry: e, onCorpus }) {
       </p>
       {inCorpus && (
         <button type="button" className="dict-link" onClick={onCorpus}>
-          See where it is demonstrated in the corpus
+          See where it is demonstrated
         </button>
       )}
     </article>
