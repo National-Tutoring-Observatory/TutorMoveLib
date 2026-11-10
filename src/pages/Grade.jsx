@@ -6,7 +6,6 @@ import {
   allGrades,
   gradeColor,
   grades,
-  rungColor,
   sessionsByGrade,
 } from "../data/corpus.js";
 import { kindsOf, slugify } from "../data/topics.js";
@@ -15,9 +14,8 @@ import "./topic.css";
 
 /* Choose a question.
 
-   Each card previews how its session went before you open it: a thin
-   thinking strip (one mark per message, taller and darker where the tutor
-   took over) and the situations at its key moments. Grades switch in place
+   Each card previews its session before you open it: the question and
+   the situations at its key moments. Grades switch in place
    from the row at the top, so nobody has to go back up a level. */
 
 function GradeSwitch({ current }) {
@@ -172,16 +170,6 @@ export default function Grade() {
             <GradeSwitch current={n} />
           </header>
 
-          <p className="gr-legend" aria-hidden="true">
-            <span className="gr-legend-strip">
-              <i style={{ height: "5px", background: rungColor[1] }} />
-              <i style={{ height: "10px", background: rungColor[3] }} />
-              <i style={{ height: "15px", background: rungColor[5] }} />
-              <i style={{ height: "18px", background: rungColor[6] }} />
-            </span>
-            Each strip is one session, a mark per message. Taller, darker marks
-            are where the tutor took over the thinking.
-          </p>
 
           {shown.map((st, i) => {
             const cards = kind ? kind.sessions : st.sessions;

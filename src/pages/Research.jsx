@@ -12,6 +12,8 @@ import "./research.css";
    group is a panel of its moves, two panels to a row, every bar on the one
    scale so a bar in one group can be read against a bar in another. */
 
+const PAPER_URL = "https://arxiv.org/abs/2603.05778";
+
 const fmt = (n) => n.toLocaleString("en-US");
 
 export default function Research() {
@@ -43,7 +45,9 @@ export default function Research() {
         <NavRow back={{ to: "/", label: "Home" }} />
         <h1 className="page-h1">Tutoring moves, by group</h1>
         <p className="page-lede">
-          The taxonomy as it appears in this corpus: {moveCount} moves across{" "}
+          The Tutor Move Taxonomy{" "}
+          (<a className="rs-cite-link" href={PAPER_URL} target="_blank" rel="noreferrer">Zhou et al., 2026</a>)
+          as it appears in this corpus: {moveCount} moves across{" "}
           {moveGroups.length} groups, drawn from real tutoring sessions. Open any
           move to see every turn where it is demonstrated.
         </p>
@@ -125,6 +129,17 @@ export default function Research() {
             </div>
           ))}
         </div>
+
+        {/* Where the taxonomy comes from. */}
+        <section className="rs-ref" aria-labelledby="rs-ref-h">
+          <h2 id="rs-ref-h">Reference</h2>
+          <p>
+            Zhou, Z., Vanacore, K., Thompson, T., St John, J., &amp; Kizilcec, R. (2026).{" "}
+            <i>Tutor Move Taxonomy: A Theory-Aligned Framework for Analyzing Instructional
+            Moves in Tutoring</i>. arXiv:2603.05778.{" "}
+            <a href={PAPER_URL} target="_blank" rel="noreferrer">{PAPER_URL}</a>
+          </p>
+        </section>
       </main>
     </Shell>
   );

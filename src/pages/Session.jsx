@@ -960,6 +960,18 @@ function SessionScreen({ id, params, tour, endTour }) {
           onPick={pickFromTimeline}
         />
 
+        {/* Names the two panes so it is clear which side is which. */}
+        <div className="ss-pane-heads">
+          <p className="ss-pane-head">
+            Transcript <span>The full tutoring conversation</span>
+          </p>
+          {!narrow && (
+            <p className="ss-pane-head">
+              Key moments <span>What the tutor did, and why it matters</span>
+            </p>
+          )}
+        </div>
+
         <div className="ss-body">
           {/* ---------------- the conversation ------------------------- */}
           <section className="ss-convo" aria-label="Tutoring conversation">

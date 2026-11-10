@@ -1,6 +1,4 @@
-/* Choose a question. Prefixed gr-. Quiet headings and cards; the one
-   distinctive thing is each card's thinking strip, a preview of how the
-   session went. The grade's own colour marks the page. */
+/* Choose a question. Prefixed gr-. Quiet headings and cards. The grade's own colour marks the page. */
 
 .gr-page {
   width: min(1080px, calc(100% - 56px));
@@ -51,16 +49,6 @@
 .gr-switch-g:hover { background: color-mix(in srgb, var(--g) 14%, var(--white)); }
 .gr-switch-g.is-on { background: var(--g); border-color: var(--g); color: var(--white); }
 
-.gr-legend {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0 0;
-  font-size: 12.5px;
-  color: var(--ink-3);
-}
-.gr-legend-strip { display: inline-flex; align-items: flex-end; gap: 2px; height: 18px; }
-.gr-legend-strip i { display: block; width: 4px; border-radius: 2px; }
 
 /* -------------------------------------------------------------- strands */
 .gr-strand { margin-top: 26px; }
@@ -124,28 +112,8 @@
   overflow-wrap: anywhere;
 }
 
-/* One mark per message: tutor marks stand on the line, taller and darker
-   where the tutor took the thinking over; student marks sit just under it. */
-.gr-strip {
-  display: flex;
-  align-items: flex-end;
-  gap: 1px;
-  height: 22px;
-  margin-top: auto;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--line);
-  position: relative;
-}
-.gr-strip i { display: block; flex: 1 1 0; min-width: 1px; max-width: 8px; border-radius: 2px 2px 0 0; }
-/* A long session on a narrow card: the gaps go first, and nothing spills. */
-.gr-strip { overflow: hidden; }
-@media (max-width: 560px) {
-  .gr-strip { gap: 0; }
-}
-.gr-strip i.is-tick { height: 3px; background: var(--line-2); }
-.gr-strip i.is-student { height: 3px; margin-bottom: -4px; background: var(--line-2); }
 
-.gr-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.gr-foot { margin-top: auto; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
 .gr-kinds { display: flex; flex-wrap: wrap; gap: 4px; }
 .gr-kind {
   padding: 1px 8px;
@@ -168,5 +136,4 @@
 @media (max-width: 560px) {
   .gr-page { width: calc(100% - 32px); padding-top: 18px; }
   .gr-switch { flex-wrap: wrap; }
-  .gr-legend { align-items: flex-start; }
 }

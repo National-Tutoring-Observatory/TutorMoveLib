@@ -423,7 +423,11 @@ function Definition({ entry: e, onCorpus }) {
       )}
       {e.ex.length > 0 && (
         <div className="dict-ex">
-          <p className="dict-ex-lbl">In use</p>
+          <p className="dict-ex-lbl">Examples</p>
+          <p className="dict-ex-intro">
+            When a tutor says something like this, the turn is labelled{" "}
+            <b>{e.name}</b>:
+          </p>
           {e.ex.map((it, i) =>
             it.t === "dialog" ? (
               <div className="dict-dialog" key={i}>
@@ -437,7 +441,13 @@ function Definition({ entry: e, onCorpus }) {
             ) : it.t === "note" ? (
               <p className="dict-note" key={i}>{it.q}</p>
             ) : (
-              <p className="dict-cite" key={i}>“{it.q}”</p>
+              <p className="dict-cite" key={i}>
+                <span className="dict-cite-who">Tutor</span>
+                <span className="dict-cite-q">“{it.q}”</span>
+                <span className="dict-cite-is" aria-label={`labelled ${e.name}`}>
+                  <span aria-hidden="true">→</span> {e.name.charAt(0).toUpperCase() + e.name.slice(1)}
+                </span>
+              </p>
             )
           )}
         </div>

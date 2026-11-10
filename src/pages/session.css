@@ -350,6 +350,24 @@
      one screen. Both panes scroll inside it. */
   height: clamp(440px, calc(100vh - 48px), 980px);
 }
+/* The headings over the two panes, on the same grid as the panes. */
+.ss-pane-heads {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: 24px;
+  margin: 14px 0 8px;
+}
+.ss-pane-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ss-pane-head span { font-size: 13px; font-weight: 400; color: var(--ink-3); }
 .ss-convo { min-height: 0; display: flex; }
 .ss-script {
   flex: 1;
@@ -770,6 +788,7 @@
 /* ------------------------------------------------------------ narrow */
 @media (max-width: 900px) {
   .ss-body { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .ss-pane-heads { grid-template-columns: minmax(0, 1fr); }
   .ss-script { height: 72vh; padding: 2px 10px 14px; }
   /* The side pane's contents, drawn under the chosen turn instead. */
   .ss-inline {

@@ -142,3 +142,16 @@
   .rs-row { grid-template-columns: minmax(0, 1fr) 30% 3em; gap: 12px; }
   .rs-key-share { font-size: 24px; }
 }
+
+/* ------------------------------------------------------------ reference */
+.rs-cite-link { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+.rs-cite-link:hover { text-decoration-thickness: 2px; }
+.rs-ref {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  max-width: 52em;
+}
+.rs-ref h2 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+.rs-ref p { margin: 0; padding-left: 2em; text-indent: -2em; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+.rs-ref a { color: var(--ink-2); overflow-wrap: anywhere; text-underline-offset: 0.2em; }

@@ -15,6 +15,8 @@ import {
 import { entries, parts } from "../data/dictionary.js";
 import { subjects } from "../data/subjects.js";
 import logo from "../assets/logo.png";
+import award from "../assets/nsf-career-award.png";
+import { FundingNote } from "../components/SiteFooter.jsx";
 import "./newlanding.css";
 import Brand from "../components/Brand.jsx";
 import useTitle from "../hooks/useTitle.js";
@@ -124,7 +126,7 @@ function Practice() {
           setOpen(true);
         }}
       >
-        <label htmlFor={replyId}>You are the tutor. What do you say?</label>
+        <label htmlFor={replyId}>You are the tutor. What would you say?</label>
         <textarea
           id={replyId}
           rows={2}
@@ -275,20 +277,25 @@ export default function NewLanding() {
 
       <footer className="nl-foot">
         <div className="nl-wrap nl-foot-inner">
-          <img className="nl-foot-logo" src={logo} alt="National Tutoring Observatory" />
-          <p>
-            Starling, the Tutoring Moves Library, is part of the National Tutoring Observatory.{" "}
-            Every tutoring session is de-identified, from Eedi through the National Tutoring
-            Observatory. {subjects.length} subjects planned; math is the first. The
-            dictionary holds {entries.length} moves in {Object.keys(parts).length} parts.
-          </p>
-          <p>
-            Built for the NSF CAREER project <i>Improving Educators' Trust in and Effective Uses of
-            Predictive Learning Analytics</i> (NSF DRL-2237593).
-          </p>
-          <p className="nl-foot-links">
-            <Link to="/classic">The previous front door</Link>
-          </p>
+          <div className="nl-foot-logos">
+            <img className="nl-foot-logo" src={logo} alt="National Tutoring Observatory" />
+            <img
+              className="nl-foot-award"
+              src={award}
+              alt="NSF Faculty Early Career Development Program (CAREER) Award"
+            />
+          </div>
+          <div className="nl-foot-text">
+            <p>
+              Starling, the Tutoring Moves Library, is part of the National Tutoring Observatory.{" "}
+              Every tutoring session is de-identified, from Eedi. {subjects.length} subjects
+              planned; math is the first. The
+              dictionary holds {entries.length} moves in {Object.keys(parts).length} parts.
+            </p>
+            <p className="nl-foot-fund">
+              <FundingNote />
+            </p>
+          </div>
         </div>
       </footer>
     </main>
