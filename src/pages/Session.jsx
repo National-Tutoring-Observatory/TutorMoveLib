@@ -250,6 +250,10 @@ function Timeline({ msgs, focus, keyByN, hideAfter, onPick }) {
             ))}
           </span>
           <span>Tutor</span>
+          <span className="ss-scale-student">
+            <i />
+            Student message
+          </span>
         </span>
       </div>
       <div
@@ -284,7 +288,7 @@ function Timeline({ msgs, focus, keyByN, hideAfter, onPick }) {
               className={`ss-seg is-${hidden ? "hidden" : kind}${on ? " is-on" : ""}${km ? " is-key" : ""}`}
               style={
                 !hidden && rung
-                  ? { "--h": `${4 + rung * 3}px`, "--c": rungColor[rung] }
+                  ? { "--h": `${3 + rung * 3}px`, "--c": rungColor[rung] }
                   : undefined
               }
               tabIndex={i === roving ? 0 : -1}

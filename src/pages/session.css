@@ -7,7 +7,9 @@
 .ss-page {
   --student-bg: var(--sheet-3);
   --student-line: var(--line);
-  --student-mark: var(--line-2);
+  /* the student's own turns, in amber: the opposite of the tutor's blue ramp,
+     so they never read as the tutor's grey small-talk ticks */
+  --student-mark: #c47a3a;
   --tick: var(--line-2);
 }
 
@@ -275,36 +277,38 @@
   padding: 2px 1px;
   scrollbar-width: thin;
 }
-/* Each mark is a button 40px tall with the baseline at 28px: tutor bars
-   stand on it, student marks hang from it. */
+/* Each mark is a button 36px tall with the baseline at 26px: tutor bars
+   stand on it, student marks hang from it. Marks are capped at 30px wide so
+   a short session stays a compact strip instead of stretching wide. */
 .ss-seg {
   position: relative;
-  flex: 1 0 8px;
+  flex: 1 1 8px;
   min-width: 8px;
-  height: 40px;
+  max-width: 30px;
+  height: 36px;
   padding: 0;
   border: 0;
   border-radius: 2px;
-  background: linear-gradient(var(--line), var(--line)) 0 28px / 100% 1px no-repeat;
+  background: linear-gradient(var(--line), var(--line)) 0 26px / 100% 1px no-repeat;
 }
 .ss-seg:hover:not(:disabled) { background-color: var(--wash); }
 .ss-seg:disabled { cursor: default; }
 .ss-seg-mark { position: absolute; left: 1px; right: 1px; }
 .ss-seg.is-rung .ss-seg-mark {
-  bottom: 12px;
+  bottom: 10px;
   height: var(--h);
   background: var(--c);
   border-radius: 2px 2px 0 0;
 }
-.ss-seg.is-tick .ss-seg-mark { bottom: 12px; height: 4px; background: var(--tick); }
+.ss-seg.is-tick .ss-seg-mark { bottom: 10px; height: 3px; background: var(--tick); }
 .ss-seg.is-student .ss-seg-mark {
-  top: 29px;
-  height: 6px;
+  top: 27px;
+  height: 5px;
   background: var(--student-mark);
   border-radius: 0 0 2px 2px;
 }
 .ss-seg.is-hidden { opacity: 0.5; background-image: none; }
-.ss-seg.is-hidden .ss-seg-mark { top: 27px; height: 2px; background: var(--line); }
+.ss-seg.is-hidden .ss-seg-mark { top: 25px; height: 2px; background: var(--line); }
 /* A key moment carries a dot above its bar. */
 .ss-seg.is-key::before {
   content: "";
@@ -340,6 +344,16 @@
 }
 .ss-ramp { display: inline-flex; gap: 2px; }
 .ss-ramp i { display: block; width: 10px; height: 7px; border-radius: 2px; }
+/* The student's marks (below the line) in the key, after the tutor ramp. */
+.ss-scale-student {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+}
+.ss-scale-student i { display: block; width: 10px; height: 7px; border-radius: 2px; background: var(--student-mark); }
 
 /* ---------------------------------------------------------- two panes */
 .ss-body {

@@ -35,12 +35,15 @@
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
   gap: var(--nl-gap);
   align-items: center;
-  min-height: min(calc(100svh - 60px), 680px);
-  padding: 48px 0;
+  /* The opening screen is the hero alone: it fills the window under the top
+     bar, and everything in it scales with the window's width and height. */
+  column-gap: clamp(48px, 5vw, 88px);
+  min-height: calc(100svh - 67px);
+  padding: clamp(32px, 6vh, 72px) 0;
 }
 .nl-hero h1 {
   max-width: 11ch;
-  font-size: clamp(44px, 6vw, 84px);
+  font-size: clamp(44px, min(7.4vw, 12.5vh), 124px);
   font-weight: 600;
   line-height: 0.96;
   letter-spacing: -0.045em;
@@ -51,17 +54,25 @@
 }
 .nl-lede {
   max-width: 28em;
-  margin: 24px 0 0;
-  font-size: 19px;
+  margin: clamp(24px, 3.5vh, 40px) 0 0;
+  font-size: clamp(19px, min(1.6vw, 2.7vh), 25px);
   line-height: 1.5;
   color: var(--ink-2);
   text-wrap: pretty;
 }
-.nl-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.nl-actions { display: flex; flex-wrap: wrap; gap: clamp(12px, 1.4vh, 16px); margin-top: clamp(32px, 5vh, 56px); }
+.nl-hero .nl-btn {
+  min-height: clamp(48px, 6.4vh, 62px);
+  padding: 0 clamp(24px, 2.2vw, 36px);
+  font-size: clamp(15px, min(1.15vw, 1.9vh), 18.5px);
+}
 .nl-actions-break { flex-basis: 100%; height: 0; }
 /* Who Starling belongs to, quietly, under the actions. */
-.nl-from { display: flex; align-items: center; gap: 12px; margin: 32px 0 0; font-size: 14px; color: var(--ink-3); }
-.nl-from img { display: block; width: auto; height: 36px; }
+.nl-from { display: flex; align-items: center; gap: 12px; margin: clamp(32px, 5.5vh, 64px) 0 0; font-size: clamp(14px, 1.9vh, 16px); color: var(--ink-3); }
+.nl-from img { display: block; width: auto; height: clamp(36px, 5vh, 46px); }
+/* The practice card grows with the screen too, all of it in proportion. */
+@media (min-width: 1200px) and (min-height: 860px) { .nl-hero .nl-practice { zoom: 1.1; } }
+@media (min-width: 1440px) and (min-height: 980px) { .nl-hero .nl-practice { zoom: 1.2; } }
 /* Once the practice round opens it grows tall: the head stops centring on it
    and stays in view while the reader scrolls the tutor's turns. */
 .nl-hero:has(.nl-reveal:not([hidden])) { align-items: start; }
@@ -460,4 +471,134 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .nl-btn, .nl-way, .nl-way-name { transition: none; }
+}
+
+/* ------------------------------------------------------------ scroll rail */
+/* ScrollRail.jsx: a teal line down the far left of the window that fills as
+   the page scrolls, a glowing dot on its leading edge, and a marker for each
+   section whose label pops out to the right of the line as the dot reaches
+   it. Only drawn when the window is wide enough for the margin to hold it
+   clear of the 1180px column. */
+.rail { display: none; }
+@media (min-width: 1440px) {
+  .rail {
+    --p: 0;
+    display: block;
+    position: fixed;
+    z-index: 20;
+    left: 26px;
+    top: 150px;
+    bottom: 110px;
+    width: 2px;
+  }
+}
+/* Everything on the rail is placed from its centre line, x = 1px. */
+.rail-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--line);
+}
+/* The filled part: sage at the top deepening to the site's teal, with a
+   faint glow so it reads as lit rather than drawn. */
+.rail-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: calc(var(--p) * 100%);
+  border-radius: 2px;
+  background: linear-gradient(var(--sage), var(--accent-mid) 55%, var(--accent));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+/* The dot rides the end of the fill, centred on the line, ringed in paper,
+   with a slow halo pulsing out of it. */
+.rail-dot {
+  position: absolute;
+  left: 1px;
+  top: calc(var(--p) * 100%);
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--accent-mid), var(--accent-deep));
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 14px 2px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+.rail-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  animation: rail-halo 2.6s ease-out infinite;
+}
+@keyframes rail-halo {
+  0% { transform: scale(0.8); opacity: 0.55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.rail-stops { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; }
+.rail-stop { position: absolute; left: 1px; width: 0; height: 0; }
+/* The button: the marker, centred on the line, then its label to the right. */
+.rail-stop button {
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 24px;
+  padding: 0 4px 0 7px; /* 7px + half the 10px marker = 12px: the line */
+  border: 0;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.rail-mark {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--line-2);
+  background: var(--paper);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+/* Labels wait faintly until the dot arrives, then pop out: the one you are
+   in turns teal and bold, with no box behind it. */
+.rail-label {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  opacity: 0.6;
+  transform: translateX(-6px) scale(0.92);
+  transform-origin: left center;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+.rail-stop.is-reached .rail-mark { border-color: var(--accent); background: var(--accent); }
+.rail-stop.is-reached .rail-label { color: var(--ink-3); opacity: 1; transform: none; }
+.rail-stop.is-active .rail-mark { transform: scale(1.3); }
+.rail-stop.is-active .rail-label {
+  color: var(--accent);
+  font-weight: 700;
+  transform: scale(1.12);
+}
+.rail-stop button:hover .rail-label { opacity: 1; transform: none; color: var(--accent); }
+.rail-stop.is-active button:hover .rail-label { transform: scale(1.12); }
+.rail-stop button:hover .rail-mark { border-color: var(--accent); }
+.rail-stop button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-dot::after { animation: none; }
+  .rail-mark, .rail-label { transition: none; }
 }

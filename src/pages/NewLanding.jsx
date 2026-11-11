@@ -19,6 +19,7 @@ import award from "../assets/nsf-career-award.png";
 import { FundingNote } from "../components/SiteFooter.jsx";
 import "./newlanding.css";
 import Brand from "../components/Brand.jsx";
+import ScrollRail from "../components/ScrollRail.jsx";
 import useTitle from "../hooks/useTitle.js";
 
 /* The front door. The previous one is kept at /#/classic.
@@ -43,6 +44,13 @@ const before = practice ? practice.msgs.filter((m) => m.n <= STUCK_AT) : [];
 const reveal = practice ? practice.msgs.filter((m) => m.n > STUCK_AT && m.n < ANSWERED_AT) : [];
 const answer = practice ? practice.msgs.find((m) => m.n === ANSWERED_AT) : null;
 const answerKey = practice ? /^\s*([A-D])\b/.exec(practice.answer || "")?.[1] ?? null : null;
+// The stops on the scroll rail down the left margin.
+const RAIL = [
+  { id: "nl-s-hero", label: "Welcome", name: "Welcome: learn from real tutoring" },
+  { id: "nl-s-ask", label: "Ask", name: "Describe your situation" },
+  { id: "nl-s-ways", label: "Start here", name: "Where to start" },
+  { id: "nl-s-about", label: "About", name: "About Starling" },
+];
 const moveCount = moveGroups.reduce((n, g) => n + g.moves.length, 0);
 // The grades the library covers, for the "Choose a subject" row.
 const liveGrades = allGrades.filter((g) => g.available).map((g) => g.grade);
@@ -208,8 +216,10 @@ export default function NewLanding() {
         <DictionaryButton className="nl-dict" />
       </div>
 
+      <ScrollRail sections={RAIL} />
+
       <div className="nl-wrap">
-        <section className="nl-hero">
+        <section className="nl-hero" id="nl-s-hero">
           <div className="nl-hero-text">
             <h1>Learn from real tutoring</h1>
             <p className="nl-lede">
@@ -238,7 +248,7 @@ export default function NewLanding() {
       </div>
 
       {/* Describe your situation: the search, right under the hero. */}
-      <div className="nl-band nl-band-ask">
+      <div className="nl-band nl-band-ask" id="nl-s-ask">
         <section className="nl-wrap nl-ask" aria-labelledby="nl-ask-h">
           <div className="nl-ask-head">
             <h2 id="nl-ask-h" className="nl-h2">Describe your situation</h2>
@@ -253,7 +263,7 @@ export default function NewLanding() {
 
       <div className="nl-wrap nl-grow">
 
-        <section className="nl-section" aria-labelledby="nl-ways-h">
+        <section className="nl-section" id="nl-s-ways" aria-labelledby="nl-ways-h">
           <h2 id="nl-ways-h" className="nl-h2">Where to start</h2>
           <ul className="nl-ways">
             {ways.map((w) => (
@@ -275,7 +285,7 @@ export default function NewLanding() {
         </section>
       </div>
 
-      <footer className="nl-foot">
+      <footer className="nl-foot" id="nl-s-about">
         <div className="nl-wrap nl-foot-inner">
           <div className="nl-foot-logos">
             <img className="nl-foot-logo" src={logo} alt="National Tutoring Observatory" />
