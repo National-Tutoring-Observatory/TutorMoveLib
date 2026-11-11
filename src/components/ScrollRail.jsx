@@ -17,6 +17,7 @@ export default function ScrollRail({ sections }) {
 
   useEffect(() => {
     let frame = 0;
+    let settle = 0;
     const measure = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const at = sections.map(({ id }, i) => {
@@ -42,12 +43,17 @@ export default function ScrollRail({ sections }) {
       });
       setActive(a);
     };
+    // While the page is moving the rail brightens; it fades back to faint
+    // a moment after the scrolling stops.
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
+      railRef.current?.classList.add("is-moving");
+      clearTimeout(settle);
+      settle = setTimeout(() => railRef.current?.classList.remove("is-moving"), 700);
     };
     const onResize = () => {
       max = measure();
-      onScroll();
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     update();
@@ -58,6 +64,7 @@ export default function ScrollRail({ sections }) {
     ro.observe(document.body);
     return () => {
       if (frame) cancelAnimationFrame(frame);
+      clearTimeout(settle);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       ro.disconnect();

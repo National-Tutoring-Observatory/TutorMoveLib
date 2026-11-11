@@ -22,6 +22,7 @@ import {
   situationFor,
   studentRun,
   turnRung,
+  tutorRun,
   whatNext,
 } from "../data/moments.js";
 import "./session.css";
@@ -354,10 +355,7 @@ function Detail({
   moment,
   moments,
   situation,
-  trying,
   draft,
-  setDraft,
-  reveal,
   hot,
   setHot,
   howOpen,
@@ -398,27 +396,7 @@ function Detail({
           ))}
       </section>
 
-      {trying ? (
-        <section className="ss-sec ss-try">
-          <h3 className="ss-sec-h">Your turn</h3>
-          <label className="ss-try-lbl" htmlFor={`ss-draft-${focused.n}`}>
-            The student just said this. What would you say?
-          </label>
-          <textarea
-            id={`ss-draft-${focused.n}`}
-            className="ss-try-box"
-            rows={4}
-            value={draft}
-            onChange={(ev) => setDraft(ev.target.value)}
-            placeholder="Write your reply. It stays on this page and is not saved."
-          />
-          <button className="ss-btn" onClick={reveal}>
-            Reveal what the tutor did
-          </button>
-          {stepper}
-        </section>
-      ) : (
-        <>
+      <>
           <section className="ss-sec ss-step is-move">
             <h3 className="ss-sec-h">What the tutor did</h3>
             {draft.trim() && (
@@ -529,8 +507,270 @@ function Detail({
               )}
             </details>
           )}
-        </>
-      )}
+      </>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------- try it yourself */
+
+// How many messages lead up to the student's line before "Show earlier".
+const LEAD_IN = 4;
+
+/* "Try it yourself" opens over the page with nothing else on screen: one key
+   moment at a time. The question and its answer at the top, the last few
+   messages up to what the student just said, a box for the reader's reply,
+   then what the tutor actually did and what the student said next. Clicking
+   outside, Esc or the close button goes back to the page. */
+function Practice({ session, moments, start, drafts, setDraft, revealed, reveal, onClose }) {
+  const [at, setAt] = useState(start);
+  const [earlier, setEarlier] = useState(false);
+  const dialogRef = useRef(null);
+  const bodyRef = useRef(null);
+  const convoRef = useRef(null);
+  const boxRef = useRef(null);
+  const revealRef = useRef(null);
+
+  const km = moments[at];
+  const msgs = session.msgs;
+  const close = () => onClose(km.n);
+  const sofar = msgs.slice(0, msgs.findIndex((m) => m.n === km.cue) + 1).filter((m) => m.s.trim());
+  const shown = earlier ? sofar : sofar.slice(-LEAD_IN);
+  const cue = new Set(studentRun(session, km.cue).map((m) => m.n));
+  const open = Boolean(revealed[km.n]);
+  const draft = drafts[km.n] ?? "";
+  const turn = msgs.find((m) => m.n === km.n);
+  const said = tutorRun(session, km.n).filter((m) => m.s.trim());
+  const rung = turnRung(turn);
+  const next = whatNext(session, km.n);
+  const options = session.options ?? [];
+  const { key, note } = parseAnswer(session.answer, options);
+  const boxId = `pr-reply-${km.n}`;
+
+  // The page behind stays still while the overlay is open.
+  useEffect(() => {
+    const was = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = was;
+    };
+  }, []);
+
+  // Each moment starts at the top, with the student's line in view at the
+  // foot of the conversation and the cursor in the reply box.
+  useEffect(() => {
+    setEarlier(false);
+    bodyRef.current?.scrollTo({ top: 0 });
+    if (convoRef.current) convoRef.current.scrollTop = convoRef.current.scrollHeight;
+    if (!revealed[km.n]) boxRef.current?.focus({ preventScroll: true });
+    else dialogRef.current?.focus({ preventScroll: true });
+  }, [at]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Revealing brings the tutor's reply up into view.
+  useEffect(() => {
+    if (!open || !revealRef.current || !bodyRef.current) return;
+    const body = bodyRef.current;
+    const top = revealRef.current.offsetTop - 12;
+    if (top > body.scrollTop) body.scrollTo({ top, behavior: reducedMotion() ? "auto" : "smooth" });
+  }, [open]);
+
+  // Esc closes; Tab stays inside the overlay.
+  const onKeyDown = (ev) => {
+    if (ev.key === "Escape") {
+      ev.stopPropagation();
+      close();
+      return;
+    }
+    if (ev.key !== "Tab") return;
+    const f = [...dialogRef.current.querySelectorAll("button:not(:disabled), textarea, a[href], [tabindex='0']")];
+    if (!f.length) return;
+    const first = f[0];
+    const last = f[f.length - 1];
+    if (ev.shiftKey && document.activeElement === first) {
+      ev.preventDefault();
+      last.focus();
+    } else if (!ev.shiftKey && document.activeElement === last) {
+      ev.preventDefault();
+      first.focus();
+    }
+  };
+
+  return (
+    <div className="pr-scrim" onMouseDown={(ev) => ev.target === ev.currentTarget && close()}>
+      <div
+        className="pr"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pr-title"
+        ref={dialogRef}
+        tabIndex={-1}
+        onKeyDown={onKeyDown}
+      >
+        <header className="pr-head">
+          <div className="pr-head-text">
+            <p className="pr-kicker">Try it yourself</p>
+            <h2 id="pr-title" className="pr-title">
+              <span className="ss-knum">{km.num}</span>
+              {km.situation}
+            </h2>
+          </div>
+          <ol className="pr-dots" aria-label="Key moments">
+            {moments.map((m, i) => (
+              <li key={m.n}>
+                <button
+                  className={`pr-dot${i === at ? " is-on" : ""}${revealed[m.n] ? " is-done" : ""}`}
+                  aria-current={i === at ? "step" : undefined}
+                  aria-label={`Key moment ${m.num}: ${m.situation}${revealed[m.n] ? ", done" : ""}`}
+                  onClick={() => setAt(i)}
+                />
+              </li>
+            ))}
+          </ol>
+          <button className="pr-close" onClick={close} aria-label="Close and go back to the session">
+            ×
+          </button>
+        </header>
+
+        <div className="pr-body" ref={bodyRef}>
+          <section className="pr-q" aria-label="The question">
+            <p className="pr-q-text">
+              <span className="pr-lbl">Question</span>
+              {session.question}
+            </p>
+            {options.length > 0 && (
+              <ol className="ss-opts" aria-label="Answer options">
+                {options.map((o) => (
+                  <li key={o.k} className={o.k === key ? "is-answer" : ""}>
+                    <b>{o.k}</b>
+                    <span>
+                      {o.t}
+                      {o.k === key && note && <span className="ss-opt-note"> ({note})</span>}
+                    </span>
+                    {o.k === key && <span className="ss-opt-tag">Answer</span>}
+                  </li>
+                ))}
+              </ol>
+            )}
+            {!key && session.answer && (
+              <p className="pr-q-answer">
+                <b>Answer</b> {session.answer}
+              </p>
+            )}
+          </section>
+
+          <section className="pr-convo" aria-label="The conversation so far">
+            <div className="pr-convo-scroll" ref={convoRef}>
+              {sofar.length > shown.length && (
+                <button className="pr-earlier" onClick={() => setEarlier(true)}>
+                  Show {sofar.length - shown.length} earlier{" "}
+                  {sofar.length - shown.length === 1 ? "message" : "messages"}
+                </button>
+              )}
+              {shown.map((m) => (
+                <div
+                  key={m.n}
+                  className={`pr-msg ${m.t ? "is-tutor" : "is-student"}${cue.has(m.n) ? " is-cue" : ""}`}
+                >
+                  <span className="pr-who">{m.t ? "Tutor" : "Student"}</span>
+                  <p>{m.s.trim()}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {!open ? (
+            <form
+              className="pr-try"
+              onSubmit={(ev) => {
+                ev.preventDefault();
+                reveal(km.n);
+              }}
+            >
+              <label htmlFor={boxId}>The student just said this. What would you say?</label>
+              <textarea
+                id={boxId}
+                ref={boxRef}
+                rows={3}
+                value={draft}
+                onChange={(ev) => setDraft(km.n, ev.target.value)}
+                placeholder="Write your reply. Nothing is sent or saved."
+              />
+              <button type="submit" className="pr-btn pr-btn-primary">
+                Reveal what the tutor did
+              </button>
+            </form>
+          ) : (
+            <section className="pr-reveal" aria-live="polite" ref={revealRef}>
+              <div className="pr-compare">
+                <div className="pr-yours">
+                  <p className="pr-lbl">You would have said</p>
+                  {draft.trim() ? (
+                    <p className="pr-text">{draft.trim()}</p>
+                  ) : (
+                    <p className="pr-text pr-muted">You didn't write a reply this time.</p>
+                  )}
+                </div>
+                <div className="pr-theirs">
+                  <p className="pr-lbl">The tutor said</p>
+                  {said.map((m) => (
+                    <p className="pr-text" key={m.n}>
+                      {m.s.trim()}
+                    </p>
+                  ))}
+                  <p className="pr-move">
+                    {turn.m.map((code) => (
+                      <span
+                        key={code}
+                        className="ss-movetag"
+                        style={{ "--cat": categoryColor[moves[code]?.category] || "var(--ink-3)" }}
+                      >
+                        <MoveTerm code={code}>{moveName(code)}</MoveTerm>
+                      </span>
+                    ))}
+                    {rung && (
+                      <span className="ss-move-rung">
+                        <i style={{ background: rungColor[rung] }} aria-hidden="true" />
+                        {lowerFirst(spectrum[String(rung)])}
+                      </span>
+                    )}
+                  </p>
+                  {moves[turn.m[0]]?.def && <p className="pr-def">{moves[turn.m[0]].def}</p>}
+                </div>
+              </div>
+              <div className="pr-after">
+                <p className="pr-lbl">What happened next</p>
+                {next.replies.length ? (
+                  next.replies.map((r) => (
+                    <p className="pr-text pr-student" key={r.n}>
+                      {r.s.trim()}
+                    </p>
+                  ))
+                ) : (
+                  <p className="pr-text pr-muted">The session ended here. The student did not reply.</p>
+                )}
+              </div>
+            </section>
+          )}
+        </div>
+
+        <footer className="pr-foot">
+          <button className="pr-btn" onClick={() => setAt(at - 1)} disabled={at === 0}>
+            ← Previous
+          </button>
+          <span className="pr-count">
+            {at + 1} of {moments.length}
+          </span>
+          {at < moments.length - 1 ? (
+            <button className={`pr-btn${open ? " pr-btn-primary" : ""}`} onClick={() => setAt(at + 1)}>
+              Next moment →
+            </button>
+          ) : (
+            <button className={`pr-btn${open ? " pr-btn-primary" : ""}`} onClick={close}>
+              Finish
+            </button>
+          )}
+        </footer>
+      </div>
     </div>
   );
 }
@@ -618,12 +858,13 @@ function tourSteps(session, moments, focus) {
       why: "Seeing the move alongside what happened next is how you learn which moves keep the student thinking.",
     },
     {
-      target: ".ss-switch",
+      target: ".ss-practice-btn",
       title: "Try it yourself",
       text: (
         <p>
-          Turn this on and the conversation stops just after the student speaks.
-          Write what you would say, then reveal what the tutor did and compare.
+          Opens each key moment on its own: the question, the conversation up to
+          the student's message, and a box for your reply. Write what you would
+          say, then reveal what the tutor did and compare.
         </p>
       ),
       why: "Deciding for yourself first is the practice. Reading the answer straight away is easier but teaches less.",
@@ -633,10 +874,10 @@ function tourSteps(session, moments, focus) {
       text: (
         <p>
           {at === 1
-            ? `You're on key moment 1 of ${n}. Read it, then use Next moment to step through the rest, or turn on Try it yourself and have a go first.`
+            ? `You're on key moment 1 of ${n}. Read it, then use Next moment to step through the rest, or press Try it yourself and have a go first.`
             : at
               ? `You're on key moment ${at} of ${n}. Read what happens next, then go back to moment 1 and read from the start.`
-              : "Pick a key moment above to begin, or turn on Try it yourself and have a go first."}{" "}
+              : "Pick a key moment above to begin, or press Try it yourself and have a go first."}{" "}
           Every session in the library works the same way.
         </p>
       ),
@@ -697,7 +938,9 @@ function SessionScreen({ id, params, tour, endTour }) {
   // Walking key moments is the default; arriving from a move page, where the
   // point is the move itself, walks every labelled turn instead.
   const [stepAll, setStepAll] = useState(Boolean(cameFrom) || moments.length === 0);
-  const [trying, setTrying] = useState(false);
+  // Which key moment the "Try it yourself" overlay is on, or null when closed.
+  const [practice, setPractice] = useState(null);
+  const practiceBtn = useRef(null);
   const [revealed, setRevealed] = useState({});
   const [drafts, setDrafts] = useState({});
   const [hot, setHot] = useState(null);
@@ -766,11 +1009,6 @@ function SessionScreen({ id, params, tour, endTour }) {
   const moment = keyByN.get(focus) ?? null;
   const clues = focused?.x?.clues ?? [];
 
-  // Try-it mode: on an unrevealed key moment, the conversation stops at the
-  // student's message, so the reader answers before seeing the tutor's reply.
-  const hiding = trying && moment && !revealed[moment.n];
-  const hideAfter = hiding ? msgs.findIndex((m) => m.n === moment.cue) : null;
-
   // A layout effect, so the box has its new content measured before it moves.
   useLayoutEffect(() => {
     if (!jump || !scriptRef.current) return;
@@ -778,12 +1016,9 @@ function SessionScreen({ id, params, tour, endTour }) {
     // A key moment starts with what the student said (the wrong answer, the
     // "I'm stuck"), so that line goes to the top of the box and the tutor's
     // reply and what happened next read on below it. Any other turn goes to
-    // the top itself. In try-it mode the student's line is all that shows.
+    // the top itself.
     const km = keyByN.get(jump.n);
-    const el =
-      (km && find(km.cue)) ||
-      find(jump.n) ||
-      (hideAfter !== null ? find(msgs[hideAfter].n) : null);
+    const el = (km && find(km.cue)) || find(jump.n);
     if (!el) return;
     // The conversation scrolls in its own box, so only that box moves.
     const box = scriptRef.current;
@@ -796,7 +1031,7 @@ function SessionScreen({ id, params, tour, endTour }) {
   }, [jump]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // The stepper walks key moments, or every labelled turn.
-  const walkAll = stepAll && !trying && classified.length > 0;
+  const walkAll = stepAll && classified.length > 0;
   const stops = walkAll ? classified.map((m) => m.n) : moments.map((m) => m.n);
   const order = (n) => msgs.findIndex((m) => m.n === n);
   const here = order(focus);
@@ -819,11 +1054,15 @@ function SessionScreen({ id, params, tour, endTour }) {
     }
   }
 
-  function toggleTrying() {
-    const on = !trying;
-    setTrying(on);
-    // Trying works on key moments; land on one if the reader is elsewhere.
-    if (on) select(keyByN.has(focus) ? focus : moments[0].n, { scroll: true });
+  // Practice starts on the chosen key moment, or the first; closing it
+  // brings the page to whichever moment the reader finished on.
+  function openPractice() {
+    setPractice(Math.max(0, moments.findIndex((m) => m.n === focus)));
+  }
+  function closePractice(n) {
+    setPractice(null);
+    select(n, { scroll: true });
+    practiceBtn.current?.focus();
   }
 
   const situation = focused ? situationFor(session, focused.n, moments) : null;
@@ -833,7 +1072,7 @@ function SessionScreen({ id, params, tour, endTour }) {
     <nav className="ss-stepper" aria-label="Step through">
       {/* Arriving from a move page, a researcher may want every labelled
           turn; everyone else just walks the key moments. */}
-      {cameFrom && moments.length > 0 && classified.length > 0 && !trying && (
+      {cameFrom && moments.length > 0 && classified.length > 0 && (
         <div className="ss-mode" role="group" aria-label="Step through">
           <button aria-pressed={!stepAll} onClick={() => setStepAll(false)}>
             Key moments
@@ -873,10 +1112,7 @@ function SessionScreen({ id, params, tour, endTour }) {
       moment={moment}
       moments={moments}
       situation={situation}
-      trying={Boolean(hiding)}
       draft={drafts[focused.n] ?? ""}
-      setDraft={(v) => setDrafts((d) => ({ ...d, [focused.n]: v }))}
-      reveal={() => setRevealed((r) => ({ ...r, [focused.n]: true }))}
       hot={hot}
       setHot={setHot}
       howOpen={howOpen}
@@ -890,9 +1126,8 @@ function SessionScreen({ id, params, tour, endTour }) {
     </p>
   );
 
-  // Where the inline detail goes on a phone: under the chosen turn, or under
-  // the student's message when the tutor's reply is hidden.
-  const inlineAt = narrow ? (hiding ? moment.cue : focus) : null;
+  // Where the inline detail goes on a phone: under the chosen turn.
+  const inlineAt = narrow ? focus : null;
 
   let lastSpeaker = null;
 
@@ -935,32 +1170,24 @@ function SessionScreen({ id, params, tour, endTour }) {
             )}
             {moments.length > 0 && (
               <button
-                className="ss-switch"
-                role="switch"
-                aria-checked={trying}
-                onClick={toggleTrying}
+                className="ss-practice-btn"
+                ref={practiceBtn}
+                onClick={openPractice}
+                aria-haspopup="dialog"
                 title="At each key moment, write what you would say before seeing the tutor's reply."
               >
-                <span className="ss-switch-track" aria-hidden="true">
-                  <span className="ss-switch-knob" />
-                </span>
+                <span className="ss-practice-ico" aria-hidden="true">✎</span>
                 Try it yourself
               </button>
             )}
           </div>
-          {trying && (
-            <p className="ss-try-note">
-              The conversation stops where the student has just spoken. Write
-              what you would say, then reveal what the tutor did.
-            </p>
-          )}
         </section>
 
         <Timeline
           msgs={msgs}
           focus={focus}
           keyByN={keyByN}
-          hideAfter={hideAfter}
+          hideAfter={null}
           onPick={pickFromTimeline}
         />
 
@@ -981,7 +1208,6 @@ function SessionScreen({ id, params, tour, endTour }) {
           <section className="ss-convo" aria-label="Tutoring conversation">
             <div className="ss-script" ref={scriptRef} role="log" tabIndex={0} aria-label="Conversation, scrolls on its own">
               {msgs.map((m, i) => {
-                if (hideAfter !== null && i > hideAfter) return null;
                 const who = m.t ? "tutor" : "student";
                 const firstOfRun = who !== lastSpeaker;
                 lastSpeaker = who;
@@ -1043,12 +1269,6 @@ function SessionScreen({ id, params, tour, endTour }) {
                   </div>
                 );
               })}
-              {hiding && (
-                <p className="ss-cut">
-                  The rest of the conversation is hidden until you reveal what
-                  the tutor did.
-                </p>
-              )}
             </div>
           </section>
 
@@ -1060,6 +1280,18 @@ function SessionScreen({ id, params, tour, endTour }) {
           )}
         </div>
       </main>
+      {practice !== null && (
+        <Practice
+          session={session}
+          moments={moments}
+          start={practice}
+          drafts={drafts}
+          setDraft={(n, v) => setDrafts((d) => ({ ...d, [n]: v }))}
+          revealed={revealed}
+          reveal={(n) => setRevealed((r) => ({ ...r, [n]: true }))}
+          onClose={closePractice}
+        />
+      )}
       {tour && <Tour steps={tourSteps(session, moments, focus)} onClose={endTour} />}
     </Shell>
   );

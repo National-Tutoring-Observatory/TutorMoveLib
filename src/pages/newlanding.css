@@ -474,11 +474,13 @@
 }
 
 /* ------------------------------------------------------------ scroll rail */
-/* ScrollRail.jsx: a teal line down the far left of the window that fills as
-   the page scrolls, a glowing dot on its leading edge, and a marker for each
-   section whose label pops out to the right of the line as the dot reaches
-   it. Only drawn when the window is wide enough for the margin to hold it
-   clear of the 1180px column. */
+/* ScrollRail.jsx: a hairline down the far left of the window that fills as
+   the page scrolls, a small dot on its leading edge, and a marker for each
+   section whose label pops out to the right as the dot reaches it. Kept
+   faint on purpose, so it guides without pulling the eye from the page; it
+   brightens while the page is scrolling (.is-moving) or pointed at, then
+   fades back. Only drawn when the window is wide
+   enough for the margin to hold it clear of the 1180px column. */
 .rail { display: none; }
 @media (min-width: 1440px) {
   .rail {
@@ -490,54 +492,69 @@
     top: 150px;
     bottom: 110px;
     width: 2px;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
   }
+  .rail:hover, .rail:focus-within, .rail.is-moving { opacity: 1; transition-duration: 0.15s; }
 }
 /* Everything on the rail is placed from its centre line, x = 1px. */
 .rail-track {
   position: absolute;
   inset: 0;
-  border-radius: 2px;
-  background: var(--line);
+  background: linear-gradient(var(--line), var(--line)) center / 1px 100% no-repeat;
 }
-/* The filled part: sage at the top deepening to the site's teal, with a
-   faint glow so it reads as lit rather than drawn. */
+/* The filled part: a soft sage hairline. */
 .rail-fill {
   position: absolute;
-  left: 0;
+  left: 0.5px;
   top: 0;
-  width: 2px;
+  width: 1px;
   height: calc(var(--p) * 100%);
-  border-radius: 2px;
-  background: linear-gradient(var(--sage), var(--accent-mid) 55%, var(--accent));
-  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 35%, transparent);
+  background: linear-gradient(var(--line-2), color-mix(in oklab, var(--sage) 70%, var(--paper)));
+  transition: background 0.5s ease, box-shadow 0.5s ease;
 }
-/* The dot rides the end of the fill, centred on the line, ringed in paper,
-   with a slow halo pulsing out of it. */
+/* The dot rides the end of the fill, centred on the line. */
 .rail-dot {
   position: absolute;
   left: 1px;
   top: calc(var(--p) * 100%);
-  width: 12px;
-  height: 12px;
+  width: 7px;
+  height: 7px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--accent-mid), var(--accent-deep));
+  background: color-mix(in oklab, var(--accent-mid) 70%, var(--paper));
+  box-shadow: 0 0 0 3px var(--paper);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, width 0.3s ease, height 0.3s ease;
+}
+/* Scrolling: the fill and the dot light up in the site's teal. */
+.rail.is-moving .rail-fill {
+  background: linear-gradient(var(--sage), var(--accent-mid));
+  box-shadow: 0 0 8px color-mix(in oklab, var(--accent) 30%, transparent);
+  transition-duration: 0.15s;
+}
+.rail.is-moving .rail-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
   box-shadow:
     0 0 0 3px var(--paper),
-    0 0 14px 2px color-mix(in oklab, var(--accent) 45%, transparent);
+    0 0 12px 2px color-mix(in oklab, var(--accent) 40%, transparent);
+  transition-duration: 0.15s;
 }
+.rail.is-moving .rail-stop.is-active .rail-label { color: var(--accent); }
+/* A faint, slow halo, so the dot reads as "you are here". */
 .rail-dot::after {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   border-radius: 50%;
-  border: 1.5px solid var(--accent);
+  border: 1px solid var(--sage);
   opacity: 0;
-  animation: rail-halo 2.6s ease-out infinite;
+  animation: rail-halo 3.2s ease-out infinite;
 }
 @keyframes rail-halo {
-  0% { transform: scale(0.8); opacity: 0.55; }
-  100% { transform: scale(2.4); opacity: 0; }
+  0% { transform: scale(0.9); opacity: 0.35; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 .rail-stops { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; }
@@ -549,9 +566,9 @@
   top: -12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   height: 24px;
-  padding: 0 4px 0 7px; /* 7px + half the 10px marker = 12px: the line */
+  padding: 0 4px 0 9px; /* 9px + half the 6px marker = 12px: the line */
   border: 0;
   background: none;
   cursor: pointer;
@@ -560,45 +577,35 @@
 .rail-mark {
   box-sizing: border-box;
   flex-shrink: 0;
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border: 2px solid var(--line-2);
+  border: 1px solid var(--line-2);
   background: var(--paper);
-  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
-/* Labels wait faintly until the dot arrives, then pop out: the one you are
-   in turns teal and bold, with no box behind it. */
+/* Labels wait faintly until the dot arrives, then pop out a touch. */
 .rail-label {
-  padding: 3px 8px;
-  border-radius: 3px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-4);
-  opacity: 0.6;
-  transform: translateX(-6px) scale(0.92);
-  transform-origin: left center;
+  opacity: 0.5;
+  transform: translateX(-4px);
   transition:
     transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.3s ease,
     color 0.3s ease;
 }
-.rail-stop.is-reached .rail-mark { border-color: var(--accent); background: var(--accent); }
-.rail-stop.is-reached .rail-label { color: var(--ink-3); opacity: 1; transform: none; }
-.rail-stop.is-active .rail-mark { transform: scale(1.3); }
-.rail-stop.is-active .rail-label {
-  color: var(--accent);
-  font-weight: 700;
-  transform: scale(1.12);
-}
+.rail-stop.is-reached .rail-mark { border-color: var(--sage); background: var(--sage); }
+.rail-stop.is-reached .rail-label { opacity: 0.8; transform: none; }
+.rail-stop.is-active .rail-label { color: var(--sage-deep); opacity: 1; }
 .rail-stop button:hover .rail-label { opacity: 1; transform: none; color: var(--accent); }
-.rail-stop.is-active button:hover .rail-label { transform: scale(1.12); }
 .rail-stop button:hover .rail-mark { border-color: var(--accent); }
 .rail-stop button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   .rail-dot::after { animation: none; }
-  .rail-mark, .rail-label { transition: none; }
+  .rail-mark, .rail-label, .rail, .rail-fill, .rail-dot { transition: none; }
 }
