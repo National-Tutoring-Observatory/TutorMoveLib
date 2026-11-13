@@ -132,7 +132,24 @@
 .ys-drop { cursor: pointer; transition: border-color 0.14s ease, background 0.14s ease; }
 .ys-drop:hover, .ys-drop.is-over { border-color: var(--ink-tint); background: var(--wash); color: var(--ink-tint); }
 .ys-drop:focus-within { outline: 2px solid var(--ink-tint); outline-offset: 2px; }
-.ys-drop-browse { color: var(--ink-tint); font-weight: 600; text-decoration: underline; }
+.ys-drop.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: grayscale(1);
+  user-select: none;
+}
+.ys-drop.is-disabled:hover { border-color: var(--line); background: var(--sheet-2); color: var(--ink-3); }
+.ys-drop.is-disabled .ys-drop-title { color: var(--ink-3); }
+.ys-soon {
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .ys-file {
   margin: -6px 0 12px;
   font-family: var(--mono);

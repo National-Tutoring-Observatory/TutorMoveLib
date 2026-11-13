@@ -12,8 +12,8 @@ import "./yoursession.css";
    with a tutor's own transcript. Upload, annotate, explore, then learn from
    how other tutors handled the same moments.
 
-   The upload is simulated. A dropped or chosen file is never opened, read
-   or sent anywhere: only its name is shown. Whatever is uploaded, the
+   Uploading is switched off and marked "Coming soon": no file can be chosen
+   or dropped. The walk-through runs on the sample only, and its
    results are those of one real, de-identified session from the library,
    so everything on the page is computed from real data and nothing is
    invented. There is no AI and no annotation pipeline behind this page. */
@@ -90,35 +90,13 @@ function Said({ who, children, n }) {
 }
 
 /* ---------------------------------------------------------------- upload */
-function Upload({ onFile, onSample }) {
-  const [over, setOver] = useState(false);
-  const pick = (files) => {
-    const f = files && files[0];
-    if (f) onFile(f.name);
-  };
-
+function Upload({ onSample }) {
   return (
     <section className="ys-card ys-upload">
-      <label
-        className={`ys-drop${over ? " is-over" : ""}`}
-        onDragOver={(ev) => {
-          ev.preventDefault();
-          setOver(true);
-        }}
-        onDragLeave={() => setOver(false)}
-        onDrop={(ev) => {
-          ev.preventDefault();
-          setOver(false);
-          pick(ev.dataTransfer.files);
-        }}
-      >
-        {/* Only the file's name is used; its contents are never read. */}
-        <input
-          type="file"
-          className="sr-only"
-          accept=".txt,.csv,.json,.docx,.pdf,.vtt,.srt"
-          onChange={(ev) => pick(ev.target.files)}
-        />
+      {/* Uploading is switched off for now: there is no file input and
+          nothing can be dropped here. Only the sample session is available. */}
+      <div className="ys-drop is-disabled" aria-disabled="true">
+        <span className="ys-soon">Coming soon</span>
         <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
           <path
             d="M12 15V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"
@@ -129,16 +107,15 @@ function Upload({ onFile, onSample }) {
             strokeLinejoin="round"
           />
         </svg>
-        <p className="ys-drop-title">Drop a transcript from your tutoring session</p>
+        <p className="ys-drop-title">Upload a transcript from your tutoring session</p>
         <p className="ys-drop-note">
-          or <span className="ys-drop-browse">choose a file</span>. A chat
-          export, a text file or a document.
+          Uploading your own transcript is not available yet.
         </p>
-      </label>
+      </div>
       <div className="ys-upload-side">
-        <h2>No transcript to hand?</h2>
+        <h2>Try it with a sample session</h2>
         <p>
-          Use a sample session instead. It is a real, de-identified tutoring
+          For now, use a sample session. It is a real, de-identified tutoring
           conversation, and you will see it exactly as you would see your own.
         </p>
         <button type="button" className="ys-primary" onClick={onSample}>
@@ -452,10 +429,6 @@ export default function YourSession() {
           <p className="ys-note">The sample session is missing from the library.</p>
         ) : at === 0 ? (
           <Upload
-            onFile={(name) => {
-              setFile(name);
-              go(1);
-            }}
             onSample={() => {
               setFile(null);
               go(1);
