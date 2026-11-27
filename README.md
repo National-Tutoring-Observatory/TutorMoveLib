@@ -24,40 +24,54 @@ Other scripts:
 | --- | --- |
 | `npm run build` | Production build into `dist/` |
 | `npm run preview` | Serve the production build locally |
-| `npm run data` | Regenerate `src/data/corpus.json` from the source workbook |
-| `npm run dictionary` | Regenerate `src/data/dictionary.json` from the taxonomy definitions |
+| `npm run data` | Rebuild `src/data/corpus.json` from the source workbook |
+| `npm run dictionary` | Rebuild `src/data/dictionary.json` from the taxonomy definitions |
 
 ## The corpus
 
-`src/data/corpus.json` is generated and committed, so the site builds without
-the source spreadsheet. Regenerate it only when the transcripts or the
-explanation copy change:
+The transcripts and their move labels are real: they come from the coded
+Eedi workbook, `source/codedTranscript_Eedi.xlsx` (one sheet,
+`tutoring_transcripts_combined`, one row per message). A script turns that
+workbook into `src/data/corpus.json`, the file the site reads. That file is
+committed, so the site builds without the spreadsheet. Rebuild it only when
+the transcripts or the explanation copy change:
 
 ```bash
 npm run data
 ```
 
-The pipeline lives in `pipeline/` and reads the consensus workbook from
-`source/codedTranscript_Eedi.xlsx`. It:
+The pipeline lives in `pipeline/`. It:
 
-- reads the OOXML parts directly (openpyxl cannot open that workbook — it has a
+- reads the workbook's OOXML parts directly (openpyxl cannot open it — it has a
   dangling `xl/drawings/drawing1.xml` relationship);
+- restores fractions the spreadsheet turned into dates (a typed `2/3` is stored
+  as a date and is put back as `2/3`);
+- takes each session's question text and answer options from
+  `source/dq-question-metadata.csv` and its strand from
+  `source/dialogue-subjects.csv`;
 - **de-identifies** every transcript, replacing all 27 personal names with
   stable pseudonyms, and asserts none survive;
-- attaches an explanation to each of the 344 classified tutor turns — 40 written
-  by hand for the two worked sessions, the rest generated from per-move
-  templates plus cue phrases actually present in the text;
-- asserts the corpus still matches its known shape (668 messages, 402 tutor /
-  266 student, 82 contested) so a silent data change cannot slip through.
+- attaches an explanation to each of the 1,301 classified tutor turns — 30
+  written by hand for the two worked sessions, the rest assembled from
+  per-move templates plus cue phrases actually present in the text. The
+  explanations are the only text on a session page that does not come from the
+  source data;
+- asserts the workbook still matches its known shape (76 sessions, 2,665
+  messages, 1,597 tutor / 1,068 student) so a silent data change cannot slip
+  through.
 
-Two things about the data worth knowing:
+Three things about the data worth knowing:
 
-- **Only tutor turns carry labels.** All 266 student turns are unlabelled by
-  design; they are context, not classification targets.
-- **24% of labelled tutor turns are contested** — two trained annotators
-  disagreed and never settled it, most often `STRATEGIZING` vs
-  `EXPLAINING_PROCEDURAL` (16 times). The interface shows both readings rather
-  than picking one and looking certain.
+- **73 of the 76 sessions are shown.** Sessions `258`, `4069` and `5642` are
+  held back, each with its reason recorded in `pipeline/questions.py`. The site
+  therefore carries 2,592 messages (1,555 tutor / 1,037 student).
+- **Only tutor turns carry labels.** All student turns are unlabelled by
+  design; they are context, not classification targets. 254 tutor turns
+  (greetings, filler) are unlabelled too.
+- **The labels are the annotators' agreed labels.** The workbook holds a
+  primary and, for 137 of the shown turns, a secondary agreed label; both are
+  shown. It does not record disagreements between annotators, so no turn is
+  marked as contested.
 
 ## The dictionary
 
@@ -72,7 +86,8 @@ Move names elsewhere in the site (the tags on a session, the taxonomy list)
 are underlined; hovering or focusing one shows the definition in a small card
 at the top left, and clicking it opens the dictionary at that entry.
 
-The data is generated. `pipeline/dictionary_entries.json` holds the moves as
+The dictionary is built by a script from the taxonomy's own definitions, not
+written by hand in the app. `pipeline/dictionary_entries.json` holds the moves as
 parsed from the taxonomy's definitions sheet, including the near-miss /
 near-hit / non-example columns that are kept but not shown. Edit it, then:
 
